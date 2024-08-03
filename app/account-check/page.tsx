@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import WebApp from "@twa-dev/sdk";
-import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 interface UserData {
   id: number;
@@ -36,7 +36,7 @@ export default function AccountCheckPage() {
   }, []);
 
   return (
-    <main>
+    <main className="flex min-h-dvh flex-col justify-center gap-10 px-4">
       {userData ? (
         <>
           <h1>User Data</h1>
