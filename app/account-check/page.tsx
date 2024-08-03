@@ -6,6 +6,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { VerifiedIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface UserData {
   id: number;
@@ -35,6 +36,7 @@ export default function AccountCheckPage() {
     useState<boolean>(false);
   const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
   const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
+  const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
 
   useEffect(() => {
     if (WebApp.initDataUnsafe.user) {
@@ -47,6 +49,10 @@ export default function AccountCheckPage() {
       setIsPremiumChecked(true);
       setOgStatusChecked(true);
     }, 500);
+
+    setTimeout(() => {
+      setLinkDisabled(false);
+    }, 3500);
   }, []);
 
   console.log(activityLevelChecked);
@@ -71,30 +77,46 @@ export default function AccountCheckPage() {
             Account Age Verified
             <VerifiedIcon />
           </div>
-          <Progress value={accountAgeChecked ? 100 : 0} />
+          <Progress className="h-3 mt-3" value={accountAgeChecked ? 100 : 0} />
         </div>
         <div>
           <div className="flex justify-between">
             Acitivy Level Analyzed <VerifiedIcon />
           </div>
-          <Progress defaultValue={0} value={activityLevelChecked ? 100 : 0} />
+          <Progress
+            className="h-3 mt-3"
+            defaultValue={0}
+            value={activityLevelChecked ? 100 : 0}
+          />
         </div>
         <div>
           <div className="flex justify-between">
             Telegram Premium Checked
             <VerifiedIcon />
           </div>
-          <Progress defaultValue={0} value={isPremiumChecked ? 100 : 0} />
+          <Progress
+            className="h-3 mt-3"
+            defaultValue={0}
+            value={isPremiumChecked ? 100 : 0}
+          />
         </div>
         <div>
           <div className="flex justify-between">
             OG Status Confirmed
             <VerifiedIcon />
           </div>
-          <Progress defaultValue={0} value={ogStatusChecked ? 100 : 0} />
+          <Progress
+            className="h-3 mt-3"
+            defaultValue={0}
+            value={ogStatusChecked ? 100 : 0}
+          />
         </div>
 
-        <Link href={"/main"} className={buttonVariants({ variant: "default" })}>
+        <Link
+          href={"/main"}
+          className={cn(buttonVariants({ variant: "default" }))}
+          aria-disabled={linkDisabled}
+        >
           Continue
         </Link>
       </>
