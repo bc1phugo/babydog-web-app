@@ -1,43 +1,16 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import WebApp from "@twa-dev/sdk";
-
-interface UserData {
-  id: number;
-  first_name: string;
-  last_name: string;
-  username?: string;
-  language_code: string;
-  is_premium?: boolean;
-}
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function LandingPage() {
-  const [userData, setUserData] = useState<UserData | null>(null);
-
-  useEffect(() => {
-    if (WebApp.initDataUnsafe.user) {
-      setUserData(WebApp.initDataUnsafe.user as UserData);
-    }
-  }, []);
-
   return (
     <main>
-      {userData ? (
-        <>
-          <h1>User Data</h1>
-          <ul>
-            <li>ID : {userData.id}</li>
-            <li>First Name : {userData.first_name}</li>
-            <li>Last Name : {userData.last_name}</li>
-            <li>User Name : {userData.username}</li>
-            <li>Language Code : {userData.language_code}</li>
-            <li>Is Premium : {userData.is_premium ? "YES" : "NO"}</li>
-          </ul>
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
+      {`Hey! You've been in Telegram for a while, it's time to get rewarded!`}
+      <Link
+        href={"/account-check"}
+        className={buttonVariants({ variant: "default" })}
+      >
+        Continue
+      </Link>
     </main>
   );
 }
