@@ -12,7 +12,7 @@ interface UserData {
   is_premium?: boolean;
 }
 
-export default function Home() {
+export default function LandingPage() {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export default function Home() {
       setUserData(WebApp.initDataUnsafe.user as UserData);
     }
   }, []);
+
   return (
     <main>
       {userData ? (
