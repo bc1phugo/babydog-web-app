@@ -136,7 +136,7 @@ export default function AccountCheckPage() {
         </div>
 
         <Link
-          href={"/main"}
+          href={"/account-score"}
           className={cn(buttonVariants({ variant: "blue" }))}
           aria-disabled={linkDisabled}
         >

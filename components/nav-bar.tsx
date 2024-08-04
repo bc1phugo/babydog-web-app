@@ -51,9 +51,7 @@ export default function NavBar() {
               })}
               <span
                 className={cn(
-                  isActive
-                    ? "text-foreground font-bold"
-                    : "text-muted-foreground",
+                  isActive ? "text-foreground" : "text-muted-foreground",
                   "text-sm"
                 )}
               >

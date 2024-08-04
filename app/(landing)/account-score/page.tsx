@@ -1,0 +1,92 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import WebApp from "@twa-dev/sdk";
+import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { VerifiedIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Phase1 from "./components/phase1";
+import Phase2 from "./components/phase2";
+
+interface UserData {
+  id: number;
+  first_name: string;
+  last_name: string;
+  username?: string;
+  language_code: string;
+  is_premium?: boolean;
+}
+
+export default function AccountScorePage() {
+  const testerUser =
+    process.env.NODE_ENV === "development"
+      ? {
+          id: 123123,
+          first_name: "Hugo",
+          last_name: "oh",
+          username: "Hugooh",
+          language_code: "en",
+          is_premium: true,
+        }
+      : null;
+
+  const [userData, setUserData] = useState<UserData | null>(testerUser);
+  const [accountAgeChecked, setAccountAgeChecked] = useState<boolean>(false);
+  const [activityLevelChecked, setActivityLevelChecked] =
+    useState<boolean>(false);
+  const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
+  const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
+  const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
+  const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
+  const isLastPhase = currentPhase === 2;
+
+  useEffect(() => {
+    if (WebApp.initDataUnsafe.user) {
+      setUserData(WebApp.initDataUnsafe.user as UserData);
+    }
+
+    setTimeout(() => {
+      setAccountAgeChecked(true);
+      setActivityLevelChecked(true);
+      setIsPremiumChecked(true);
+      setOgStatusChecked(true);
+    }, 500);
+
+    setTimeout(() => {
+      setLinkDisabled(false);
+    }, 3500);
+  }, []);
+
+  if (!userData) return <div>No User Data</div>;
+
+  return (
+    <main className="flex min-h-dvh flex-col justify-between pt-4 pb-16 gap-10 px-4">
+      <div className="flex gap-2">
+        <Progress className="h-2" value={currentPhase >= 1 ? 100 : 0} />
+        <Progress className="h-2" value={currentPhase >= 2 ? 100 : 0} />
+      </div>
+      <section className="flex justify-center text-center">
+        {currentPhase === 1 ? <Phase1 /> : <Phase2 />}
+      </section>
+
+      {isLastPhase ? (
+        <Link
+          href={"/main"}
+          className={cn(buttonVariants({ variant: "blue" }))}
+          aria-disabled={linkDisabled}
+        >
+          Continue
+        </Link>
+      ) : (
+        <Button
+          variant="blue"
+          onClick={() => setCurrentPhase((prev) => (prev + 1) as 1 | 2)}
+        >
+          Continue
+        </Button>
+      )}
+    </main>
+  );
+}
