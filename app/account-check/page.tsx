@@ -55,33 +55,48 @@ export default function AccountCheckPage() {
     }, 3500);
   }, []);
 
-  console.log(activityLevelChecked);
-
   if (!userData) return <div>No User Data</div>;
 
   return (
-    <main className="flex min-h-dvh flex-col justify-center gap-10 px-4">
+    <main className="flex min-h-dvh flex-col py-16 gap-10 px-4">
       <>
-        <h1>Checking your account</h1>
-        <ul>
+        <section className="flex justify-center text-center">
+          <h1 className="text-3xl font-bold">
+            Checking <br />
+            your account
+          </h1>
+        </section>
+        {/* <ul>
           <li>ID : {userData.id}</li>
           <li>First Name : {userData.first_name}</li>
           <li>Last Name : {userData.last_name}</li>
           <li>User Name : {userData.username}</li>
           <li>Language Code : {userData.language_code}</li>
           <li>Is Premium : {userData.is_premium ? "YES" : "NO"}</li>
-        </ul>
+        </ul> */}
 
         <div>
           <div className="flex justify-between">
             Account Age Verified
-            <VerifiedIcon />
+            <VerifiedIcon
+              className={cn(
+                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+              )}
+            />
           </div>
-          <Progress className="h-3 mt-3" value={accountAgeChecked ? 100 : 0} />
+          <Progress
+            className={cn("h-3 mt-3")}
+            value={accountAgeChecked ? 100 : 0}
+          />
         </div>
         <div>
           <div className="flex justify-between">
-            Acitivy Level Analyzed <VerifiedIcon />
+            Acitivy Level Analyzed{" "}
+            <VerifiedIcon
+              className={cn(
+                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+              )}
+            />
           </div>
           <Progress
             className="h-3 mt-3"
@@ -92,7 +107,11 @@ export default function AccountCheckPage() {
         <div>
           <div className="flex justify-between">
             Telegram Premium Checked
-            <VerifiedIcon />
+            <VerifiedIcon
+              className={cn(
+                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+              )}
+            />
           </div>
           <Progress
             className="h-3 mt-3"
@@ -103,7 +122,11 @@ export default function AccountCheckPage() {
         <div>
           <div className="flex justify-between">
             OG Status Confirmed
-            <VerifiedIcon />
+            <VerifiedIcon
+              className={cn(
+                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+              )}
+            />
           </div>
           <Progress
             className="h-3 mt-3"
@@ -114,7 +137,7 @@ export default function AccountCheckPage() {
 
         <Link
           href={"/main"}
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(buttonVariants({ variant: "blue" }))}
           aria-disabled={linkDisabled}
         >
           Continue
