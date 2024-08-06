@@ -24,11 +24,11 @@ export default function MainPage() {
           <div className="mt-[30px]">
             <div className="flex justify-between gap-[30px]">
               <div>
-                <div className="text-muted-foreground leading-[22px] font-normal">
+                <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
                   Rewards
                 </div>
                 <div className={cn("flex gap-[5px]")}>
-                  <span className="text-center text-[18px] leading-[22px] font-semibold">
+                  <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
                     + 600
                   </span>
                   <Image
@@ -41,11 +41,11 @@ export default function MainPage() {
               </div>
               <div>
                 <div>
-                  <div className="text-muted-foreground leading-[22px] font-normal">
+                  <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
                     Task
                   </div>
                   <div className={cn("flex gap-[5px]")}>
-                    <span className="text-center text-[18px] leading-[22px] font-semibold">
+                    <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
                       + 0
                     </span>
                     <Image
@@ -58,11 +58,11 @@ export default function MainPage() {
                 </div>
               </div>
               <div>
-                <div className="text-muted-foreground leading-[22px] font-normal">
+                <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
                   Invites
                 </div>
                 <div className={cn("flex gap-[5px]")}>
-                  <span className="text-center text-[18px] leading-[22px] font-semibold">
+                  <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
                     + 0
                   </span>
                   <Image

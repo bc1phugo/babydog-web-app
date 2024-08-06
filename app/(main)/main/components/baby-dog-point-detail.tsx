@@ -110,7 +110,7 @@ export default function BabyDogPointDetail() {
                 <TableCell className="px-0 w-[30px]">
                   {task.headerIcon()}
                 </TableCell>
-                <TableCell className="px-2 gap-[3px]">
+                <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                   <div className="flex flex-col">
                     <span className="text-muted-foreground font-medium text-[16px] leading-6">
                       {task.mission}
@@ -122,11 +122,11 @@ export default function BabyDogPointDetail() {
                 </TableCell>
                 <TableCell className="px-0 flex justify-end">
                   {task.buttonType === "start" ? (
-                    <Button variant={"gray"} className="w-20">
+                    <Button variant={"gray"} className="w-20 tracking-tight">
                       Start
                     </Button>
                   ) : (
-                    <Button variant={"orange"} className="w-20">
+                    <Button variant={"orange"} className="w-20 tracking-tight">
                       Check
                     </Button>
                   )}
@@ -145,10 +145,10 @@ export default function BabyDogPointDetail() {
                 <TableCell className="px-0 w-[30px]">
                   {reward.headerIcon()}
                 </TableCell>
-                <TableCell className="px-2 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium">
+                <TableCell className="pl-2 pr-0 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium tracking-tight">
                   {reward.mission}
                 </TableCell>
-                <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end">
+                <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end tracking-tight">
                   + {reward.point} BABY DOG
                 </TableCell>
               </TableRow>

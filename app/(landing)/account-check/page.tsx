@@ -63,18 +63,9 @@ export default function AccountCheckPage() {
           your account
         </h1>
       </section>
-      {/* <ul>
-          <li>ID : {userData.id}</li>
-          <li>First Name : {userData.first_name}</li>
-          <li>Last Name : {userData.last_name}</li>
-          <li>User Name : {userData.username}</li>
-          <li>Language Code : {userData.language_code}</li>
-          <li>Is Premium : {userData.is_premium ? "YES" : "NO"}</li>
-        </ul> */}
-
       <section className="text-lg leading-6 flex flex-col gap-10 mt-[60px]">
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between tracking-tight">
             Account Age Verified
             <CheckCircleIcon
               width={18}
@@ -93,7 +84,7 @@ export default function AccountCheckPage() {
           />
         </div>
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between tracking-tight">
             Acitivy Level Analyzed{" "}
             <CheckCircleIcon
               width={18}
@@ -113,7 +104,7 @@ export default function AccountCheckPage() {
           />
         </div>
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between tracking-tight">
             Telegram Premium Checked
             <CheckCircleIcon
               width={18}
@@ -133,7 +124,7 @@ export default function AccountCheckPage() {
           />
         </div>
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between tracking-tight">
             OG Status Confirmed
             <CheckCircleIcon
               width={18}

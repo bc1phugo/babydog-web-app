@@ -4,8 +4,8 @@ export default function Phase2() {
   return (
     <>
       <h1 className="text-4xl font-semibold mt-[60px]">You are amazing!</h1>
-      <div className="mt-[10px] text-muted-foreground">
-        Here is your BABY DOG reward
+      <div className="mt-[10px] text-muted-foreground tracking-tight">
+        Here is your DOGS reward
       </div>
       <div className="mt-[60px] mb-[25px]">
         <Image
@@ -16,7 +16,7 @@ export default function Phase2() {
           className="m-auto"
         />
         <div className="text-4xl font-semibold mt-[14px]">838</div>
-        <div className="text-base mt-[60px]">
+        <div className="text-base mt-[60px] tracking-tight">
           Thanks for your time on Telegram
         </div>
       </div>

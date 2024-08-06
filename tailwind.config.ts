@@ -10,10 +10,14 @@ const config = {
   ],
   prefix: "",
   theme: {
+    letterSpacing: {
+      tight: "-0.01em",
+    },
     fontSize: {
       xs: ["12px", "16px"],
       sm: ["14px", "20px"],
       base: ["16px", "22px"],
+      md: ["18px", "24px"],
       lg: ["20px", "24px"],
       xl: ["24px", "32px"],
       "2xl": ["24px", "32px"],
