@@ -15,16 +15,16 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-svh pt-[80px] pb-[90px] px-[23px]">
+    <main className="flex flex-col min-h-svh pt-[96px] pb-[90px] px-[23px]">
       <section className="flex justify-center">
         <Image
-          src="/images/babydog-1.png"
-          width={218}
-          height={316}
+          src="/images/babydog-3.png"
+          width={250}
+          height={297}
           alt={"image-baby-dog"}
         />
       </section>
-      <section className="flex flex-col text-primary text-[18px] leading-7 items-center justify-center text-center mt-[54px] mb-[60px]">
+      <section className="flex flex-col text-primary text-[18px] leading-7 items-center justify-center text-center mt-[57px] mb-[60px]">
         <div>{`👋 Hey!`}</div>
         <div>
           {`You've been in Telegram for a while,`}
