@@ -58,8 +58,6 @@ export default function AccountScorePage() {
     }, 3500);
   }, []);
 
-  if (!userData) return <div>No User Data</div>;
-
   return (
     <main className="flex flex-col min-h-svh pt-[20px] pb-[90px] px-[23px]">
       <section className="flex-1">
