@@ -20,7 +20,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         blue: "bg-blue-700 text-primary-foreground hover:bg-blue-500 ",
         orange:
-          "text-primary-foreground bg-gradient-to-b from-customOrange to-customOrange-deep font-bold rounded-full hover:bg-primaryBlue-100/50 transition-all duration-300",
+          "text-primary-foreground bg-gradient-to-b from-customOrange to-customOrange-deep rounded-full transition-all duration-300",
+        gray: "text-muted-foreground bg-gradient-to-b from-[#F4F4F4] to-[#DFDFDF] rounded-full transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
