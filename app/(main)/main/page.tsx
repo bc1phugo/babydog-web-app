@@ -1,12 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,8 +12,8 @@ export default function HomePage() {
           <div className="flex flex-col items-center">
             <Image
               src="/images/babydog-2.png"
-              width={190}
-              height={154}
+              width={249}
+              height={202}
               alt={"image-baby-dog"}
               className="m-auto"
             />

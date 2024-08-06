@@ -61,15 +61,15 @@ export default function AccountScorePage() {
   if (!userData) return <div>No User Data</div>;
 
   return (
-    <main className="flex flex-col justify-end min-h-svh gap-[60px] pt-[20px] pb-[90px] px-[23px]">
+    <main className="flex flex-col min-h-svh pt-[20px] pb-[90px] px-[23px]">
       <section className="flex-1">
         <div className="flex gap-2">
           <Progress
-            className="h-2"
+            className="h-[5px]"
             value={currentPhase >= 1 ? 100 : 0}
             onClick={() => setCurrentPhase(1)}
           />
-          <Progress className="h-2" value={currentPhase >= 2 ? 100 : 0} />
+          <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
         <div className="text-center flex-1">
           {currentPhase === 1 ? <Phase1 /> : <Phase2 />}

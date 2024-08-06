@@ -58,9 +58,9 @@ export default function AccountCheckPage() {
   if (!userData) return <div>No User Data</div>;
 
   return (
-    <main className="flex flex-col justify-end min-h-svh gap-[60px] pt-[80px] pb-[90px] px-[23px]">
+    <main className="flex flex-col min-h-svh pt-[60px] pb-[90px] px-[23px]">
       <section>
-        <h1 className="text-3xl font-semibold">
+        <h1 className="text-4xl font-semibold">
           Checking <br />
           your account
         </h1>
@@ -74,7 +74,7 @@ export default function AccountCheckPage() {
           <li>Is Premium : {userData.is_premium ? "YES" : "NO"}</li>
         </ul> */}
 
-      <section className="text-lg leading-6 flex flex-col gap-10">
+      <section className="text-lg leading-6 flex flex-col gap-10 mt-[60px]">
         <div>
           <div className="flex justify-between">
             Account Age Verified
@@ -90,7 +90,7 @@ export default function AccountCheckPage() {
             />
           </div>
           <Progress
-            className={cn("h-2 mt-3")}
+            className={cn("h-2 mt-[10px]")}
             value={accountAgeChecked ? 100 : 0}
           />
         </div>
@@ -109,7 +109,7 @@ export default function AccountCheckPage() {
             />
           </div>
           <Progress
-            className={cn("h-2 mt-3")}
+            className={cn("h-2 mt-[10px]")}
             defaultValue={0}
             value={activityLevelChecked ? 100 : 0}
           />
@@ -129,7 +129,7 @@ export default function AccountCheckPage() {
             />
           </div>
           <Progress
-            className={cn("h-2 mt-3")}
+            className={cn("h-2 mt-[10px]")}
             defaultValue={0}
             value={isPremiumChecked ? 100 : 0}
           />
@@ -149,7 +149,7 @@ export default function AccountCheckPage() {
             />
           </div>
           <Progress
-            className={cn("h-2 mt-3")}
+            className={cn("h-2 mt-[10px]")}
             defaultValue={0}
             value={ogStatusChecked ? 100 : 0}
           />
@@ -160,7 +160,7 @@ export default function AccountCheckPage() {
         href={"/account-score"}
         className={cn(
           buttonVariants({ variant: "orange", size: "xl" }),
-          "font-semibold text-xl leading-6"
+          "font-semibold text-xl leading-6 mt-[94px]"
         )}
         aria-disabled={linkDisabled}
       >

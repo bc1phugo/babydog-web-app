@@ -7,15 +7,15 @@ export default function Phase2() {
       <div className="mt-[10px] text-muted-foreground">
         Here is your BABY DOG reward
       </div>
-      <div className="mt-[60px]">
+      <div className="mt-[60px] mb-[25px]">
         <Image
           src="/images/babydog-2.png"
-          width={190}
-          height={154}
+          width={249}
+          height={202}
           alt={"image-baby-dog"}
           className="m-auto"
         />
-        <span className="text-4xl font-semibold mt-[18px]">838</span>
+        <div className="text-4xl font-semibold mt-[14px]">838</div>
         <div className="text-base mt-[60px]">
           Thanks for your time on Telegram
         </div>
