@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import BabyDogPointDetail from "./components/baby-dog-point-detail";
 
-export default function HomePage() {
+export default function MainPage() {
   return (
     <>
       <div className="mt-[60px] px-[23px]">
