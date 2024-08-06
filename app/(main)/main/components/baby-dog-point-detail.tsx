@@ -145,7 +145,7 @@ export default function BabyDogPointDetail() {
                 <TableCell className="px-0 w-[30px]">
                   {reward.headerIcon()}
                 </TableCell>
-                <TableCell className="px-2 gap-[3px] text-muted-foreground text-[16px] leading-6">
+                <TableCell className="px-2 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium">
                   {reward.mission}
                 </TableCell>
                 <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end">
