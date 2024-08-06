@@ -24,7 +24,7 @@ export default function LandingPage() {
           alt={"image-baby-dog"}
         />
       </section>
-      <section className="flex flex-col text-primary text-lg leading-7 items-center justify-center text-center font-bold mt-[54px] mb-[60px]">
+      <section className="flex flex-col text-primary text-[18px] leading-7 items-center justify-center text-center mt-[54px] mb-[60px]">
         <div>{`👋 Hey!`}</div>
         <div>
           {`You've been in Telegram for a while,`}
