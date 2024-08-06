@@ -5,7 +5,7 @@ import WebApp from "@twa-dev/sdk";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { VerifiedIcon } from "lucide-react";
+import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import { cn } from "@/lib/utils";
 
 interface UserData {
@@ -58,15 +58,14 @@ export default function AccountCheckPage() {
   if (!userData) return <div>No User Data</div>;
 
   return (
-    <main className="flex min-h-dvh flex-col py-16 gap-10 px-4">
-      <>
-        <section className="flex justify-center text-center">
-          <h1 className="text-3xl font-bold">
-            Checking <br />
-            your account
-          </h1>
-        </section>
-        {/* <ul>
+    <main className="flex flex-col justify-end min-h-svh gap-[60px] pt-[80px] pb-[90px] px-[23px]">
+      <section>
+        <h1 className="text-3xl font-semibold">
+          Checking <br />
+          your account
+        </h1>
+      </section>
+      {/* <ul>
           <li>ID : {userData.id}</li>
           <li>First Name : {userData.first_name}</li>
           <li>Last Name : {userData.last_name}</li>
@@ -75,31 +74,42 @@ export default function AccountCheckPage() {
           <li>Is Premium : {userData.is_premium ? "YES" : "NO"}</li>
         </ul> */}
 
+      <section className="text-lg leading-6 flex flex-col gap-10">
         <div>
           <div className="flex justify-between">
             Account Age Verified
-            <VerifiedIcon
+            <CheckCircleIcon
+              width={18}
+              height={18}
               className={cn(
-                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+                linkDisabled
+                  ? "text-muted-foreground"
+                  : "fill-customOrange-deep",
+                "transition-all duration-300"
               )}
             />
           </div>
           <Progress
-            className={cn("h-3 mt-3")}
+            className={cn("h-2 mt-3")}
             value={accountAgeChecked ? 100 : 0}
           />
         </div>
         <div>
           <div className="flex justify-between">
             Acitivy Level Analyzed{" "}
-            <VerifiedIcon
+            <CheckCircleIcon
+              width={18}
+              height={18}
               className={cn(
-                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+                linkDisabled
+                  ? "text-muted-foreground"
+                  : "fill-customOrange-deep",
+                "transition-all duration-300"
               )}
             />
           </div>
           <Progress
-            className="h-3 mt-3"
+            className={cn("h-2 mt-3")}
             defaultValue={0}
             value={activityLevelChecked ? 100 : 0}
           />
@@ -107,14 +117,19 @@ export default function AccountCheckPage() {
         <div>
           <div className="flex justify-between">
             Telegram Premium Checked
-            <VerifiedIcon
+            <CheckCircleIcon
+              width={18}
+              height={18}
               className={cn(
-                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+                linkDisabled
+                  ? "text-muted-foreground"
+                  : "fill-customOrange-deep",
+                "transition-all duration-300"
               )}
             />
           </div>
           <Progress
-            className="h-3 mt-3"
+            className={cn("h-2 mt-3")}
             defaultValue={0}
             value={isPremiumChecked ? 100 : 0}
           />
@@ -122,27 +137,35 @@ export default function AccountCheckPage() {
         <div>
           <div className="flex justify-between">
             OG Status Confirmed
-            <VerifiedIcon
+            <CheckCircleIcon
+              width={18}
+              height={18}
               className={cn(
-                linkDisabled ? "text-muted-foreground" : "text-customGreen"
+                linkDisabled
+                  ? "text-muted-foreground"
+                  : "fill-customOrange-deep",
+                "transition-all duration-300"
               )}
             />
           </div>
           <Progress
-            className="h-3 mt-3"
+            className={cn("h-2 mt-3")}
             defaultValue={0}
             value={ogStatusChecked ? 100 : 0}
           />
         </div>
+      </section>
 
-        <Link
-          href={"/account-score"}
-          className={cn(buttonVariants({ variant: "blue" }))}
-          aria-disabled={linkDisabled}
-        >
-          Continue
-        </Link>
-      </>
+      <Link
+        href={"/account-score"}
+        className={cn(
+          buttonVariants({ variant: "orange", size: "xl" }),
+          "font-semibold text-xl leading-6"
+        )}
+        aria-disabled={linkDisabled}
+      >
+        Continue
+      </Link>
     </main>
   );
 }

@@ -5,7 +5,6 @@ import WebApp from "@twa-dev/sdk";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { VerifiedIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
@@ -62,26 +61,37 @@ export default function AccountScorePage() {
   if (!userData) return <div>No User Data</div>;
 
   return (
-    <main className="flex min-h-dvh flex-col justify-between pt-4 pb-16 gap-10 px-4">
-      <div className="flex gap-2">
-        <Progress className="h-2" value={currentPhase >= 1 ? 100 : 0} />
-        <Progress className="h-2" value={currentPhase >= 2 ? 100 : 0} />
-      </div>
-      <section className="flex justify-center text-center">
-        {currentPhase === 1 ? <Phase1 /> : <Phase2 />}
+    <main className="flex flex-col justify-end min-h-svh gap-[60px] pt-[20px] pb-[90px] px-[23px]">
+      <section className="flex-1">
+        <div className="flex gap-2">
+          <Progress
+            className="h-2"
+            value={currentPhase >= 1 ? 100 : 0}
+            onClick={() => setCurrentPhase(1)}
+          />
+          <Progress className="h-2" value={currentPhase >= 2 ? 100 : 0} />
+        </div>
+        <div className="text-center flex-1">
+          {currentPhase === 1 ? <Phase1 /> : <Phase2 />}
+        </div>
       </section>
 
       {isLastPhase ? (
         <Link
           href={"/main"}
-          className={cn(buttonVariants({ variant: "blue" }))}
+          className={cn(
+            buttonVariants({ variant: "orange", size: "xl" }),
+            "font-semibold text-xl leading-6"
+          )}
           aria-disabled={linkDisabled}
         >
           Continue
         </Link>
       ) : (
         <Button
-          variant="blue"
+          variant="orange"
+          size="xl"
+          className={cn("font-semibold text-xl leading-6")}
           onClick={() => setCurrentPhase((prev) => (prev + 1) as 1 | 2)}
         >
           Continue

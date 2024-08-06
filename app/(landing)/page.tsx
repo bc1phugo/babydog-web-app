@@ -1,8 +1,9 @@
 "use client";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 import WebApp from "@twa-dev/sdk";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -12,22 +13,31 @@ export default function LandingPage() {
       WebApp.expand();
     }
   }, []);
+
   return (
-    <main className="flex flex-col min-h-svh justify-end gap-20 py-12 px-4">
-      <section>
-        <Skeleton className="w-full h-[200px] rounded-full" />
+    <main className="flex flex-col justify-end min-h-svh pt-[80px] pb-[90px] px-[23px]">
+      <section className="flex justify-center">
+        <Image
+          src="/images/babydog-1.png"
+          width={218}
+          height={316}
+          alt={"image-baby-dog"}
+        />
       </section>
-      <section className="flex flex-col items-center justify-center">
-        <div className="font-bold text-lg">{`👋 Hey!`}</div>
-        <div className="text-muted-foreground mt-3">
-          {`You've been in Telegram for a`}
+      <section className="flex flex-col text-primary text-lg leading-7 items-center justify-center text-center font-bold mt-[54px] mb-[60px]">
+        <div>{`👋 Hey!`}</div>
+        <div>
+          {`You've been in Telegram for a while,`}
           <br />
-          {` while, it's time to get rewarded!`}
+          {`it's time to get rewarded!`}
         </div>
       </section>
       <Link
         href={"/account-check"}
-        className={buttonVariants({ variant: "blue" })}
+        className={cn(
+          buttonVariants({ variant: "orange" }),
+          "font-semibold h-[60px] text-xl leading-6"
+        )}
       >
         {"Wow, let's go!"}
       </Link>

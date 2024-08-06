@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,53 +7,65 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
+import BabyDogPointDetail from "./components/baby-dog-point-detail";
 
 export default function HomePage() {
   return (
-    <div className="py-8 px-4">
-      <section className="flex flex-col items-center gap-8">
-        <Skeleton className="w-full h-[200px] rounded-full" />
-        <div className="flex flex-col items-center gap-4">
-          <div className="text-3xl font-bold">600 CATS</div>
-          <div className="flex justify-between gap-4">
-            <div>
-              <div className="text-muted-foreground">Rewards</div>
-              <span className="text-center">+ 600</span>
-            </div>
-            <div>
-              <div className="text-muted-foreground">Tasks</div>
-              <span className="text-center">+ 0</span>
-            </div>
-            <div>
-              <div className="text-muted-foreground">Invites</div>
-              <span className="text-center">+ 0</span>
+    <>
+      <div className="mt-[60px] px-[23px]">
+        <section className="flex flex-col items-center">
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/babydog-2.png"
+              width={190}
+              height={154}
+              alt={"image-baby-dog"}
+              className="m-auto"
+            />
+            <div className="text-3xl font-semibold mt-[10px]">838 CATS</div>
+          </div>
+          <div className="mt-[30px]">
+            <div className="flex justify-between gap-4">
+              <div>
+                <div className="text-muted-foreground">Rewards</div>
+                <span className="text-center">+ 600</span>
+              </div>
+              <div>
+                <div className="text-muted-foreground">Tasks</div>
+                <span className="text-center">+ 0</span>
+              </div>
+              <div>
+                <div className="text-muted-foreground">Invites</div>
+                <span className="text-center">+ 0</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section>
-        <div>Tasks</div>
-        <div className="grid grid-cols-2 gap-2 mt-4">
-          <Card className="flex flex-col items-center">
-            <CardHeader>
-              <CardDescription>
-                Subscribe to <br />
-                Channel
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button variant="secondary">Join</Button>
-            </CardContent>
-            <CardFooter>100 CATS</CardFooter>
-          </Card>
-          <Card>
-            <CardDescription></CardDescription>
-          </Card>
-          <Card>
-            <CardDescription></CardDescription>
-          </Card>
-        </div>
-      </section>
-    </div>
+        </section>
+        <section className="mt-20 flex flex-col gap-[15px]">
+          <Link
+            href={"/main"}
+            className={cn(
+              buttonVariants({ variant: "orange", size: "xl" }),
+              "font-semibold text-xl leading-6 w-full"
+            )}
+          >
+            Join Baby dog channel
+          </Link>
+          <Link
+            href={"/main"}
+            className={cn(
+              buttonVariants({ variant: "orange", size: "xl" }),
+              "font-semibold text-xl leading-6 w-full"
+            )}
+          >
+            Follow Baby dog X.COM
+          </Link>
+        </section>
+      </div>
+      <BabyDogPointDetail />
+    </>
   );
 }

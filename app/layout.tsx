@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: "./font/PretendardVariable.woff2",
+  display: "swap",
+  style: "normal",
+  weight: "100 1000",
+});
 
 export const metadata: Metadata = {
   title: "Telegram Mini App",
@@ -25,7 +32,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className={cn(inter.className, "min-h-screen")}>
+      <body className={cn(pretendard.className, "min-h-screen")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

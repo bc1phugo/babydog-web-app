@@ -1,6 +1,4 @@
 import NavBar from "@/components/nav-bar";
-import { HomeIcon, TrophyIcon, UsersIcon } from "lucide-react";
-import Link from "next/link";
 import { PropsWithChildren } from "react";
 
 export default function MainPageLayout({ children }: PropsWithChildren) {

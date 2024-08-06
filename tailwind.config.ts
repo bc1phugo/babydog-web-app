@@ -10,6 +10,18 @@ const config = {
   ],
   prefix: "",
   theme: {
+    fontSize: {
+      xs: ["12px", "16px"],
+      sm: ["14px", "20px"],
+      base: ["16px", "22px"],
+      lg: ["20px", "24px"],
+      xl: ["24px", "32px"],
+      "2xl": ["24px", "32px"],
+      "3xl": ["24px", "32px"],
+      "4xl": ["38px", "46px"],
+      "5xl": ["48px", "1"],
+      "6xl": ["60px", "1"],
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -54,6 +66,10 @@ const config = {
         },
         customGreen: {
           DEFAULT: "hsl(var(--chart-2))",
+        },
+        customOrange: {
+          DEFAULT: "hsla(30, 100%, 64%, 1)",
+          deep: "hsla(30, 100%, 50%, 1)",
         },
       },
       borderRadius: {

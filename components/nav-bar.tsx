@@ -1,7 +1,9 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { HomeIcon, TrophyIcon, UsersIcon } from "lucide-react";
+import HomeIcon from "/public/icons/icon_home.svg";
+import TrophyIcon from "/public/icons/icon_trophy.svg";
+import UsersIcon from "/public/icons/icon_users.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { HTMLProps } from "react";
@@ -13,28 +15,101 @@ export default function NavBar() {
     {
       title: "Home",
       href: "/main",
-      iconWithProps: (props: HTMLProps<SVGSVGElement>) => (
-        <HomeIcon {...props} />
+      iconWithProps: ({ isActive }: { isActive: boolean }) => (
+        <svg
+          width="31"
+          height="34"
+          viewBox="0 0 31 34"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.81034 34C2.7625 34 1.8658 33.6198 1.12024 32.8595C0.373413 32.0979 0 31.1829 0 30.1143V12.6286C0 12.0133 0.135267 11.4305 0.405801 10.88C0.675066 10.3295 1.04785 9.87619 1.52414 9.52L12.9552 0.777143C13.3045 0.518095 13.6696 0.323809 14.0506 0.194286C14.4317 0.0647617 14.8286 0 15.2414 0C15.6542 0 16.0511 0.0647617 16.4321 0.194286C16.8131 0.323809 17.1783 0.518095 17.5276 0.777143L28.9586 9.52C29.4349 9.87619 29.8083 10.3295 30.0789 10.88C30.3481 11.4305 30.4828 12.0133 30.4828 12.6286V30.1143C30.4828 31.1829 30.11 32.0979 29.3644 32.8595C28.6176 33.6198 27.7203 34 26.6724 34H19.0517V20.4H11.431V34H3.81034Z"
+            fill={isActive ? "url(#gradient_active)" : "#777777"}
+          />
+          <defs>
+            <linearGradient
+              id="gradient_active"
+              x1="15.947"
+              y1="9.25885e-07"
+              x2="15.947"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#FFA347" />
+              <stop offset="1" stop-color="#FF8000" />
+            </linearGradient>
+          </defs>
+        </svg>
       ),
     },
     {
       title: "Leaderboard",
       href: "/main/leaderboard",
-      iconWithProps: (props: HTMLProps<SVGSVGElement>) => (
-        <TrophyIcon {...props} />
+      iconWithProps: ({ isActive }: { isActive: boolean }) => (
+        <svg
+          width="34"
+          height="34"
+          viewBox="0 0 34 34"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.55556 14.7333V7.55556H3.77778V9.44444C3.77778 10.6407 4.12407 11.719 4.81667 12.6792C5.50926 13.6394 6.42222 14.3241 7.55556 14.7333ZM26.4444 14.7333C27.5778 14.3241 28.4907 13.6394 29.1833 12.6792C29.8759 11.719 30.2222 10.6407 30.2222 9.44444V7.55556H26.4444V14.7333ZM15.1111 30.2222V24.3667C13.5685 24.0204 12.1912 23.3671 10.9792 22.4069C9.76713 21.4468 8.87778 20.2426 8.31111 18.7944C5.95 18.5111 3.97454 17.4801 2.38472 15.7014C0.794907 13.9227 0 11.837 0 9.44444V7.55556C0 6.51667 0.369907 5.62732 1.10972 4.8875C1.84954 4.14769 2.73889 3.77778 3.77778 3.77778H7.55556C7.55556 2.73889 7.92546 1.84954 8.66528 1.10972C9.40509 0.369907 10.2944 0 11.3333 0H22.6667C23.7056 0 24.5949 0.369907 25.3347 1.10972C26.0745 1.84954 26.4444 2.73889 26.4444 3.77778H30.2222C31.2611 3.77778 32.1505 4.14769 32.8903 4.8875C33.6301 5.62732 34 6.51667 34 7.55556V9.44444C34 11.837 33.2051 13.9227 31.6153 15.7014C30.0255 17.4801 28.05 18.5111 25.6889 18.7944C25.1222 20.2426 24.2329 21.4468 23.0208 22.4069C21.8088 23.3671 20.4315 24.0204 18.8889 24.3667V30.2222H24.5556C25.0907 30.2222 25.5394 30.4032 25.9014 30.7653C26.2634 31.1273 26.4444 31.5759 26.4444 32.1111C26.4444 32.6463 26.2634 33.0949 25.9014 33.4569C25.5394 33.819 25.0907 34 24.5556 34H9.44444C8.90926 34 8.46065 33.819 8.09861 33.4569C7.73657 33.0949 7.55556 32.6463 7.55556 32.1111C7.55556 31.5759 7.73657 31.1273 8.09861 30.7653C8.46065 30.4032 8.90926 30.2222 9.44444 30.2222H15.1111Z"
+            fill={isActive ? "url(#gradient_active)" : "#777777"}
+            className="transition-all duration-300"
+          />
+          <defs>
+            <linearGradient
+              id="paint0_linear_8_89"
+              x1="17.787"
+              y1="9.25885e-07"
+              x2="17.787"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#FFA347" />
+              <stop offset="1" stop-color="#FF8000" />
+            </linearGradient>
+          </defs>
+        </svg>
       ),
     },
     {
       title: "Friends",
       href: "/main/friends",
-      iconWithProps: (props: HTMLProps<SVGSVGElement>) => (
-        <UsersIcon {...props} />
+      iconWithProps: ({ isActive }: { isActive: boolean }) => (
+        <svg
+          width="47"
+          height="34"
+          viewBox="0 0 47 34"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2.11483 34C1.51563 34 1.01371 33.796 0.609072 33.388C0.203024 32.9814 0 32.4771 0 31.875V28.05C0 26.8458 0.308765 25.7387 0.926297 24.7286C1.54242 23.72 2.36156 22.95 3.38373 22.4188C5.56906 21.3208 7.78963 20.497 10.0455 19.9474C12.3013 19.3991 14.5923 19.125 16.9187 19.125C19.245 19.125 21.536 19.3991 23.7919 19.9474C26.0477 20.497 28.2683 21.3208 30.4536 22.4188C31.4758 22.95 32.2949 23.72 32.911 24.7286C33.5286 25.7387 33.8373 26.8458 33.8373 28.05V31.875C33.8373 32.4771 33.6343 32.9814 33.2282 33.388C32.8236 33.796 32.3217 34 31.7225 34H2.11483ZM37.0624 34C37.3797 33.7521 37.6264 33.4418 37.8026 33.0693C37.9789 32.6981 38.067 32.2823 38.067 31.8219V27.625C38.067 26.0667 37.6356 24.57 36.7727 23.1349C35.9084 21.7012 34.6833 20.4708 33.0971 19.4437C34.8947 19.6562 36.5866 20.0189 38.1727 20.5317C39.7588 21.046 41.2392 21.675 42.6139 22.4188C43.8828 23.1271 44.8521 23.9147 45.5218 24.7817C46.1915 25.6502 46.5263 26.5979 46.5263 27.625V31.875C46.5263 32.4771 46.3233 32.9814 45.9172 33.388C45.5126 33.796 45.0107 34 44.4115 34H37.0624ZM16.9187 17C14.5923 17 12.6009 16.1677 10.9443 14.5031C9.28764 12.8385 8.45933 10.8375 8.45933 8.5C8.45933 6.1625 9.28764 4.16146 10.9443 2.49688C12.6009 0.832292 14.5923 0 16.9187 0C19.245 0 21.2364 0.832292 22.8931 2.49688C24.5497 4.16146 25.378 6.1625 25.378 8.5C25.378 10.8375 24.5497 12.8385 22.8931 14.5031C21.2364 16.1677 19.245 17 16.9187 17ZM38.067 8.5C38.067 10.8375 37.2387 12.8385 35.5821 14.5031C33.9254 16.1677 31.934 17 29.6077 17C29.2199 17 28.7265 16.9561 28.1273 16.8682C27.5281 16.779 27.0346 16.6812 26.6469 16.575C27.5986 15.4417 28.3296 14.1844 28.84 12.8031C29.3518 11.4219 29.6077 9.9875 29.6077 8.5C29.6077 7.0125 29.3518 5.57812 28.84 4.19687C28.3296 2.81562 27.5986 1.55833 26.6469 0.425C27.1404 0.247916 27.6338 0.132459 28.1273 0.0786254C28.6207 0.0262087 29.1142 0 29.6077 0C31.934 0 33.9254 0.832292 35.5821 2.49688C37.2387 4.16146 38.067 6.1625 38.067 8.5Z"
+            fill={isActive ? "url(#gradient_active)" : "#777777"}
+          />
+          <defs>
+            <linearGradient
+              id="gradient_active"
+              x1="23.2632"
+              y1="0"
+              x2="23.2632"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#FFA347" />
+              <stop offset="1" stop-color="#FF8000" />
+            </linearGradient>
+          </defs>
+        </svg>
       ),
     },
   ];
 
   return (
-    <section className="flex justify-between bg-primary-foreground px-10 py-8 fixed inset-x-0 bottom-0">
+    <section className="flex justify-between bg-background px-10 pt-[29px] pb-[28px] fixed inset-x-0 bottom-0 rounded-t-[50px]">
       {targetInfo.map((target) => {
         const isActive = pathname === target.href;
 
@@ -44,15 +119,13 @@ export default function NavBar() {
               href={target.href}
               className="flex flex-col items-center gap-2"
             >
-              {target.iconWithProps({
-                className: cn(
-                  isActive ? "text-foreground" : "text-muted-foreground"
-                ),
-              })}
+              {target.iconWithProps({ isActive })}
               <span
                 className={cn(
-                  isActive ? "text-foreground" : "text-muted-foreground",
-                  "text-sm"
+                  isActive
+                    ? "bg-gradient-to-b from-customOrange to-customOrange-deep"
+                    : "bg-muted-foreground",
+                  "text-base leading-[24px] font-semibold inline-block text-transparent bg-clip-text"
                 )}
               >
                 {target.title}
