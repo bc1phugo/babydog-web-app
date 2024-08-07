@@ -56,7 +56,7 @@ export default function AccountCheckPage() {
   }, []);
 
   return (
-    <main className="flex flex-col pt-[60px] px-[23px] overflow-hidden">
+    <main className="flex flex-col pt-[60px] px-[23px]">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />
