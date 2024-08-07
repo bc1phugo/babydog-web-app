@@ -41,8 +41,12 @@ export const TelegramProvider = ({
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
-      WebApp.ready();
       setWebApp(WebApp);
+      WebApp.expand();
+
+      setTimeout(() => {
+        WebApp.ready();
+      }, 1000);
     }
   }, []);
 
@@ -51,7 +55,7 @@ export const TelegramProvider = ({
 
     const handleEvent = (payload: { isStateStable: boolean }) => {
       if (payload.isStateStable) {
-        webApp?.ready();
+        // webApp?.ready();
       }
     };
 
@@ -63,7 +67,6 @@ export const TelegramProvider = ({
   useEffect(() => {
     const goBack = () => router.back();
     if (webApp) {
-      webApp.expand();
       webApp.setHeaderColor("#ffffff");
       webApp.setBackgroundColor("#ffffff");
 
