@@ -113,10 +113,14 @@ export default function LeaderboardPage() {
               </AvatarFallback>
             </Avatar>
             <div className="text-start">
-              <div>Inv5521</div>
-              <div>838 BABY DOGS</div>
+              <div className="text-[16px] leading-6 tracking-tight font-medium">
+                Inv5521
+              </div>
+              <div className="text-md font-semibold tracking-tight text-primary">
+                838 BABY DOGS
+              </div>
             </div>
-            <div className="ml-auto">#25091751</div>
+            <div className="ml-auto text-md font-medium">#25091751</div>
           </div>
         </section>
       </div>
@@ -144,8 +148,10 @@ export default function LeaderboardPage() {
                       </span>
                     </div>
                   </TableCell>
-                  <TableCell className="px-0 text-[24px] leading-6">
-                    {getRankingCellContent(ranker.ranking)}
+                  <TableCell className="px-0 text-[24px] leading-6 justify-end ">
+                    <span className="flex justify-end">
+                      {getRankingCellContent(ranker.ranking)}
+                    </span>
                   </TableCell>
                 </TableRow>
               ))}
