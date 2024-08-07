@@ -13,7 +13,7 @@ export default function MainPage() {
             <Image
               src="/images/babydog-4.png"
               width={190}
-              height={148}
+              height={154}
               alt={"image-baby-dog"}
               className="m-auto"
             />

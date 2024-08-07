@@ -35,7 +35,7 @@ export default function AccountScorePage() {
   const isLastPhase = currentPhase === 2;
 
   return (
-    <main className="flex flex-col pt-[20px] px-[23px]">
+    <main className="h-full overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
       <section>
         <div className="flex gap-2">
           <Progress

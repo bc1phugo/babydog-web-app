@@ -10,7 +10,7 @@ export default function LandingPage() {
   return (
     <main
       className={cn(
-        "relative h-full overflow-scroll overflow-x-hidden flex flex-col pt-[96px] px-[23px] before:bg-landing before:bg-center before:absolute before:w-[444px] before:h-[940px] before:top-[-116px] before:left-[0px] before:z-[-1]"
+        "h-full overflow-auto overflow-x-hidden flex flex-col pt-[96px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
       )}
     >
       <section className="flex justify-center">
@@ -32,7 +32,7 @@ export default function LandingPage() {
       <Link
         href={"/account-check"}
         className={cn(
-          buttonVariants({ variant: "orange" }),
+          buttonVariants({ variant: "orange", size: "xl" }),
           "font-semibold h-[60px] text-xl leading-6"
         )}
       >

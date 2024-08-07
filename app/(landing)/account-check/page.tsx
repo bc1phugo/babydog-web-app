@@ -25,7 +25,7 @@ export default function AccountCheckPage() {
   const [linkDisabled, setLinkDisabled] = useState<boolean>(false);
 
   return (
-    <main className="flex flex-col pt-[60px] px-[23px]">
+    <main className="h-full overflow-auto overflow-x-hidden flex flex-col pt-[60px] px-[23px]">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />
