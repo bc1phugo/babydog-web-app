@@ -24,14 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         {/* <Script
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="beforeInteractive"
         /> */}
       </head>
-      <body className={cn(pretendard.className)}>
+      <body className={cn(pretendard.className, "h-full", "overflow-hidden")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
