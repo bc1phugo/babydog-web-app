@@ -30,7 +30,7 @@ export default function AccountScorePage() {
         }
       : null;
 
-  const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
+  const [linkDisabled, setLinkDisabled] = useState<boolean>(false);
   const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
   const isLastPhase = currentPhase === 2;
 

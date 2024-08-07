@@ -22,7 +22,7 @@ export default function AccountCheckPage() {
     useState<boolean>(false);
   const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
   const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
-  const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
+  const [linkDisabled, setLinkDisabled] = useState<boolean>(false);
 
   return (
     <main className="flex flex-col pt-[60px] px-[23px]">
