@@ -4,11 +4,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { isBrowser } from "react-device-detect";
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col pt-[96px] px-[23px]">
+    <main className={cn("flex flex-col pt-[96px] px-[23px]")}>
       <section className="flex justify-center">
+        {`${isBrowser}`}
         <Image
           src="/images/babydog-3.png"
           width={250}
