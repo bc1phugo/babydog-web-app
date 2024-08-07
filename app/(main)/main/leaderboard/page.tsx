@@ -68,14 +68,12 @@ export default function LeaderboardPage() {
         );
       }
       default: {
-        return `# ${targetRank}`;
+        return `#${targetRank}`;
       }
     }
   };
 
   const getInitials = (userName: string) => {
-    if (!userName) return ""; // Return empty if no name is provided
-
     const words = userName.trim().split(/\s+/); // Split the name by whitespace
 
     if (words.length === 1) {
