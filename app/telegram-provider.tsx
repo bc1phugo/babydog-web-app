@@ -21,8 +21,18 @@ export const TelegramProvider = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  useEffect(function handleWebAppInit() {
-    if (WebApp) {
+  const value = useMemo(() => {
+    return webApp
+      ? {
+          webApp,
+          unsafeData: webApp.initDataUnsafe,
+          user: webApp.initDataUnsafe.user,
+        }
+      : {};
+  }, [webApp]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && WebApp) {
       WebApp.expand();
       // set header color
       WebApp.setHeaderColor("#ffffff");
@@ -33,41 +43,31 @@ export const TelegramProvider = ({
   }, []);
 
   useEffect(() => {
-    if (!WebApp) return;
+    if (!webApp) return;
     const handleEvent = (payload: { isStateStable: boolean }) => {
       if (payload.isStateStable) {
-        WebApp.ready();
+        webApp.ready();
       }
     };
 
-    WebApp.onEvent("viewportChanged", handleEvent);
-    return () => WebApp.offEvent("viewportChanged", handleEvent);
+    webApp.onEvent("viewportChanged", handleEvent);
+    return () => webApp.offEvent("viewportChanged", handleEvent);
   }, [webApp]);
 
   useEffect(
     function handleTelegramButton() {
       if (webApp) {
         // initial page setup
-        WebApp.BackButton.onClick(router.back);
+        webApp.BackButton.onClick(router.back);
         if (pathname === "/") {
-          WebApp.BackButton.hide();
+          webApp.BackButton.hide();
         } else {
-          WebApp.BackButton.show();
+          webApp.BackButton.show();
         }
       }
     },
     [webApp, pathname, router.back]
   );
-
-  const value = useMemo(() => {
-    return webApp
-      ? {
-          webApp,
-          unsafeData: webApp.initDataUnsafe,
-          user: webApp.initDataUnsafe.user,
-        }
-      : {};
-  }, [webApp]);
 
   return (
     <TelegramContext.Provider value={value}>

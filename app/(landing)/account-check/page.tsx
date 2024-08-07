@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import WebApp from "@twa-dev/sdk";
+import { useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -18,42 +17,12 @@ interface UserData {
 }
 
 export default function AccountCheckPage() {
-  const testerUser =
-    process.env.NODE_ENV === "development"
-      ? {
-          id: 123123,
-          first_name: "Hugo",
-          last_name: "oh",
-          username: "Hugooh",
-          language_code: "en",
-          is_premium: true,
-        }
-      : null;
-
-  const [userData, setUserData] = useState<UserData | null>(testerUser);
   const [accountAgeChecked, setAccountAgeChecked] = useState<boolean>(false);
   const [activityLevelChecked, setActivityLevelChecked] =
     useState<boolean>(false);
   const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
   const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
   const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (WebApp.initDataUnsafe.user) {
-      setUserData(WebApp.initDataUnsafe.user as UserData);
-    }
-
-    setTimeout(() => {
-      setAccountAgeChecked(true);
-      setActivityLevelChecked(true);
-      setIsPremiumChecked(true);
-      setOgStatusChecked(true);
-    }, 500);
-
-    setTimeout(() => {
-      setLinkDisabled(false);
-    }, 3500);
-  }, []);
 
   return (
     <main className="flex flex-col pt-[60px] px-[23px]">

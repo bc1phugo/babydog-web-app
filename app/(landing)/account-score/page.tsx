@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import WebApp from "@twa-dev/sdk";
+import { useState } from "react";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -31,32 +30,9 @@ export default function AccountScorePage() {
         }
       : null;
 
-  const [userData, setUserData] = useState<UserData | null>(testerUser);
-  const [accountAgeChecked, setAccountAgeChecked] = useState<boolean>(false);
-  const [activityLevelChecked, setActivityLevelChecked] =
-    useState<boolean>(false);
-  const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
-  const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
   const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
   const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
   const isLastPhase = currentPhase === 2;
-
-  useEffect(() => {
-    if (WebApp.initDataUnsafe.user) {
-      setUserData(WebApp.initDataUnsafe.user as UserData);
-    }
-
-    setTimeout(() => {
-      setAccountAgeChecked(true);
-      setActivityLevelChecked(true);
-      setIsPremiumChecked(true);
-      setOgStatusChecked(true);
-    }, 500);
-
-    setTimeout(() => {
-      setLinkDisabled(false);
-    }, 3500);
-  }, []);
 
   return (
     <main className="flex flex-col pt-[20px] px-[23px]">

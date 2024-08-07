@@ -3,7 +3,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 
 interface IWinner {
   point: number;
