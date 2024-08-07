@@ -46,7 +46,7 @@ export const TelegramProvider = ({
 
       setTimeout(() => {
         WebApp.ready();
-      }, 1000);
+      }, 2000);
     }
   }, []);
 
