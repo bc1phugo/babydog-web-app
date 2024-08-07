@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-dvh">
+    <html lang="en" className="h-full">
       <head>
         <Script
           src="https://telegram.org/js/telegram-web-app.js"

@@ -89,7 +89,6 @@ export const TelegramProvider = ({
 
   return (
     <TelegramContext.Provider value={value}>
-      {`isExpanded: ${isExpanded}`}
       {children}
     </TelegramContext.Provider>
   );
