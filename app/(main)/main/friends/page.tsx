@@ -1,4 +1,14 @@
 import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +21,7 @@ export default function FriendsPage() {
           <div className="flex flex-col items-center">
             <div className="font-semibold ">
               <span className="block text-4xl">Invite friends</span>
-              <span className="block text-3xl ">and get more BABY DOGS</span>
+              <span className="block text-3xl">and get more BABY DOGS</span>
             </div>
             <Image
               src="/images/babydog-4.png"
@@ -27,13 +37,46 @@ export default function FriendsPage() {
           </div>
         </section>
         <section className="mt-[60px] flex flex-col gap-[15px]">
-          <Button
-            className={cn("font-semibold text-xl leading-6 w-full")}
-            variant="orange"
-            size="xl"
-          >
-            Invite friends
-          </Button>
+          <Drawer>
+            <DrawerTrigger asChild>
+              <Button
+                className={cn("font-semibold text-xl leading-6 w-full")}
+                variant="orange"
+                size="xl"
+              >
+                Invite friends
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent className="bg-[#FFB061]">
+              <DrawerHeader className="bg-gradient-to-b from-customOrange to-customOrange-deep rounded-t-full">
+                <DrawerTitle className="text-lg text-background font-semibold">
+                  Invite friends
+                </DrawerTitle>
+              </DrawerHeader>
+              <DrawerFooter className="gap-[15px] py-10 px-[23px]">
+                <Link
+                  href="#"
+                  className={cn(
+                    buttonVariants({ variant: "gray", size: "xl" }),
+                    "rounded-full",
+                    "text-lg"
+                  )}
+                >
+                  Copy invite link
+                </Link>
+                <Link
+                  href="#"
+                  className={cn(
+                    buttonVariants({ variant: "gray", size: "xl" }),
+                    "rounded-full",
+                    "text-lg"
+                  )}
+                >
+                  Share invite link
+                </Link>
+              </DrawerFooter>
+            </DrawerContent>
+          </Drawer>
         </section>
       </div>
     </>
