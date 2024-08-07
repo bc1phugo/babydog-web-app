@@ -26,6 +26,7 @@ export const TelegramProvider = ({
   children: React.ReactNode;
 }) => {
   const [webApp, setWebApp] = useState<IWebApp | null>(null);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -41,21 +42,24 @@ export const TelegramProvider = ({
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
-      setWebApp(WebApp);
+      WebApp.ready();
       WebApp.expand();
-
-      setTimeout(() => {
-        WebApp.ready();
-      }, 2000);
+      setWebApp(WebApp);
     }
   }, []);
+
+  useEffect(() => {
+    if (webApp) {
+      // setTimeout(() => webApp.expand(), 3000);
+    }
+  }, [webApp, isExpanded]);
 
   useEffect(() => {
     if (!webApp) return;
 
     const handleEvent = (payload: { isStateStable: boolean }) => {
       if (payload.isStateStable) {
-        // webApp?.ready();
+        setIsExpanded(webApp.isExpanded);
       }
     };
 
@@ -85,10 +89,7 @@ export const TelegramProvider = ({
 
   return (
     <TelegramContext.Provider value={value}>
-      <Script
-        src="https://telegram.org/js/telegram-web-app.js"
-        strategy="beforeInteractive"
-      />
+      {`isExpanded: ${isExpanded}`}
       {children}
     </TelegramContext.Provider>
   );
