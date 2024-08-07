@@ -10,7 +10,6 @@ export default function LandingPage() {
   return (
     <main className={cn("flex flex-col pt-[96px] px-[23px]")}>
       <section className="flex justify-center">
-        {`${isBrowser}`}
         <Image
           src="/images/babydog-3.png"
           width={250}
