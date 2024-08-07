@@ -5,6 +5,7 @@ import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
+import { TelegramProvider } from "./telegram-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 const pretendard = localFont({
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="max-h-[100px]">
       <head>
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
@@ -38,7 +39,7 @@ export default function RootLayout({
           defaultTheme="light"
           disableTransitionOnChange
         >
-          {children}
+          <TelegramProvider>{children}</TelegramProvider>
         </ThemeProvider>
       </body>
     </html>

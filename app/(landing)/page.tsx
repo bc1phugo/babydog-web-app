@@ -2,18 +2,10 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import WebApp from "@twa-dev/sdk";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export default function LandingPage() {
-  useEffect(() => {
-    if (WebApp) {
-      WebApp.expand();
-    }
-  }, []);
-
   return (
     <main className="flex flex-col pt-[96px] px-[23px]">
       <section className="flex justify-center">
