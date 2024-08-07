@@ -32,7 +32,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className={cn(pretendard.className, "min-h-screen")}>
+      <body className={cn(pretendard.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
