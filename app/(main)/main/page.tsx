@@ -7,13 +7,13 @@ import BabyDogPointDetail from "./components/baby-dog-point-detail";
 export default function MainPage() {
   return (
     <>
-      <div className="mt-[60px] px-[23px]">
+      <div className="mt-[67px] px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <Image
-              src="/images/babydog-2.png"
-              width={249}
-              height={202}
+              src="/images/babydog-4.png"
+              width={190}
+              height={148}
               alt={"image-baby-dog"}
               className="m-auto"
             />
