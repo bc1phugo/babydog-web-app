@@ -23,10 +23,6 @@ export const TelegramProvider = ({
 
   useEffect(function handleWebAppInit() {
     if (WebApp) {
-      setTimeout(() => {
-        WebApp.ready();
-      }, 3000);
-
       WebApp.expand();
       // set header color
       WebApp.setHeaderColor("#ffffff");
@@ -35,6 +31,18 @@ export const TelegramProvider = ({
       setWebApp(WebApp);
     }
   }, []);
+
+  useEffect(() => {
+    if (!WebApp) return;
+    const handleEvent = (payload: { isStateStable: boolean }) => {
+      if (payload.isStateStable) {
+        WebApp.ready();
+      }
+    };
+
+    WebApp.onEvent("viewportChanged", handleEvent);
+    return () => WebApp.offEvent("viewportChanged", handleEvent);
+  }, [webApp]);
 
   useEffect(
     function handleTelegramButton() {
