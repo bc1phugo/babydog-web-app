@@ -8,7 +8,11 @@ import { isBrowser } from "react-device-detect";
 
 export default function LandingPage() {
   return (
-    <main className={cn("flex flex-col pt-[96px] px-[23px]")}>
+    <main
+      className={cn(
+        "flex flex-col pt-[96px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
+      )}
+    >
       <section className="flex justify-center">
         <Image
           src="/images/babydog-3.png"
