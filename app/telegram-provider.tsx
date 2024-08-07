@@ -67,14 +67,15 @@ export const TelegramProvider = ({
   useEffect(() => {
     const goBack = () => router.back();
     if (webApp) {
-      webApp.setHeaderColor("#ffffff");
       webApp.setBackgroundColor("#ffffff");
 
       webApp.onEvent("backButtonClicked", goBack);
 
       if (pathname === "/") {
+        webApp.setHeaderColor("#faf5f2");
         webApp.BackButton.hide();
       } else {
+        webApp.setHeaderColor("#ffffff");
         webApp.BackButton.show();
       }
 
