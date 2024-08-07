@@ -15,7 +15,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <main className="flex flex-col pt-[96px] px-[23px]">
+    <main className="flex flex-col pt-[96px] px-[23px] overflow-hidden">
       <section className="flex justify-center">
         <Image
           src="/images/babydog-3.png"
