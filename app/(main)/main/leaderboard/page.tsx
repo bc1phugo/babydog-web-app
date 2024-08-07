@@ -147,7 +147,7 @@ export default function LeaderboardPage() {
                     </div>
                   </TableCell>
                   <TableCell className="px-0 text-[24px] leading-6 justify-end ">
-                    <span className="flex justify-end">
+                    <span className="flex justify-end font-semibold">
                       {getRankingCellContent(ranker.ranking)}
                     </span>
                   </TableCell>
