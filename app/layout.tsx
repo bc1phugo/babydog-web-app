@@ -26,10 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="max-h-[100px]">
       <head>
-        <Script
+        {/* <Script
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="beforeInteractive"
-        />
+        /> */}
       </head>
       <body className={cn(pretendard.className)}>
         <ThemeProvider
