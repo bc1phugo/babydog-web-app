@@ -59,7 +59,7 @@ export default function AccountScorePage() {
   }, []);
 
   return (
-    <main className="flex flex-col min-h-svh pt-[20px] pb-[90px] px-[23px]">
+    <main className="flex flex-col min-h-svh pt-[20px] pb-[10px] px-[23px]">
       <section>
         <div className="flex gap-2">
           <Progress
