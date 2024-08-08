@@ -2,11 +2,18 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import WebApp from "@twa-dev/sdk";
 import Image from "next/image";
 import Link from "next/link";
-import { isBrowser } from "react-device-detect";
+import { useEffect } from "react";
 
 export default function LandingPage() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && WebApp) {
+      // WebApp.expand();
+    }
+  }, []);
+
   return (
     <main
       className={cn(

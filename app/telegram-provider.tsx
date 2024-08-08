@@ -43,7 +43,6 @@ export const TelegramProvider = ({
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
       WebApp.ready();
-      WebApp.expand();
       setWebApp(WebApp);
     }
   }, []);
