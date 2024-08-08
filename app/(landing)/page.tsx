@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function LandingPage() {
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
-      // WebApp.expand();
+      WebApp.expand();
     }
   }, []);
 

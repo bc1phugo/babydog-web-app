@@ -30,6 +30,10 @@ export default function RootLayout({
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="beforeInteractive"
         />
+        {/* <meta
+          name="viewport"
+          content="user-scalable=no, width=device-width initial-scale=1.0"
+        /> */}
       </head>
       <body className={cn(pretendard.className, "h-full", "overflow-hidden")}>
         <ThemeProvider

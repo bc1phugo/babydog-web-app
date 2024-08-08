@@ -49,7 +49,9 @@ export const TelegramProvider = ({
 
   useEffect(() => {
     if (webApp) {
-      // setTimeout(() => webApp.expand(), 3000);
+      if (window.scrollY === 0) {
+        window.scrollTo(0, 1);
+      }
     }
   }, [webApp, isExpanded]);
 
@@ -71,15 +73,16 @@ export const TelegramProvider = ({
     const goBack = () => router.back();
     if (webApp) {
       webApp.setBackgroundColor("#ffffff");
+      webApp.BackButton.onClick(goBack);
 
       webApp.onEvent("backButtonClicked", goBack);
 
       if (pathname === "/") {
         webApp.setHeaderColor("#faf5f2");
-        webApp.BackButton.hide();
+        // webApp.BackButton.hide();
       } else {
         webApp.setHeaderColor("#ffffff");
-        webApp.BackButton.show();
+        // webApp.BackButton.show();
       }
 
       return () => webApp.offEvent("backButtonClicked", goBack);
