@@ -26,7 +26,7 @@ export default function FriendsPage() {
             <Image
               src="/images/babydog-4.png"
               width={259}
-              height={208}
+              height={211}
               alt={"image-baby-dog"}
               className="m-auto mt-[52px]"
             />
