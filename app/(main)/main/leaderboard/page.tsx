@@ -39,6 +39,7 @@ export default function LeaderboardPage() {
       case 1: {
         return (
           <Image
+            priority
             src="/images/image_medal_gold.png"
             width={24.25}
             height={40}
@@ -49,6 +50,7 @@ export default function LeaderboardPage() {
       case 2: {
         return (
           <Image
+            priority
             src="/images/image_medal_silver.png"
             width={24.25}
             height={40}
@@ -59,6 +61,7 @@ export default function LeaderboardPage() {
       case 3: {
         return (
           <Image
+            priority
             src="/images/image_medal_copper.png"
             width={24.25}
             height={40}
