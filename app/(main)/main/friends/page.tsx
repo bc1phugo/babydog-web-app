@@ -24,6 +24,7 @@ export default function FriendsPage() {
               <span className="block text-3xl">and get more BABY DOGS</span>
             </div>
             <Image
+              priority
               src="/images/babydog-4.png"
               width={259}
               height={211}

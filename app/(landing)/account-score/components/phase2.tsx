@@ -9,6 +9,7 @@ export default function Phase2() {
       </div>
       <div className="mt-[60px] mb-[25px]">
         <Image
+          priority
           src="/images/babydog-2.png"
           width={249}
           height={202}

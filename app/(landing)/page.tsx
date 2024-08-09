@@ -22,6 +22,7 @@ export default function LandingPage() {
     >
       <section className="flex justify-center">
         <Image
+          priority
           src="/images/babydog-3.png"
           width={250}
           height={297}

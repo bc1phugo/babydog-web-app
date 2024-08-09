@@ -11,6 +11,7 @@ export default function MainPage() {
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <Image
+              priority
               src="/images/babydog-4.png"
               width={190}
               height={154}
@@ -32,6 +33,7 @@ export default function MainPage() {
                     + 600
                   </span>
                   <Image
+                    priority
                     src="/images/three-puppies.svg"
                     alt="three-puppies-image"
                     width={36}
@@ -49,6 +51,7 @@ export default function MainPage() {
                       + 0
                     </span>
                     <Image
+                      priority
                       src="/images/three-puppies.svg"
                       alt="three-puppies-image"
                       width={36}
@@ -66,6 +69,7 @@ export default function MainPage() {
                     + 0
                   </span>
                   <Image
+                    priority
                     src="/images/three-puppies.svg"
                     alt="three-puppies-image"
                     width={36}
