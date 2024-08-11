@@ -14,15 +14,15 @@ const config = {
       tight: "-0.01em",
     },
     fontSize: {
-      xs: ["12px", "16px"],
-      sm: ["14px", "20px"],
-      base: ["16px", "22px"],
-      md: ["18px", "24px"],
-      lg: ["20px", "24px"],
-      xl: ["24px", "32px"],
-      "2xl": ["24px", "32px"],
-      "3xl": ["28px", "46px"],
-      "4xl": ["38px", "46px"],
+      xs: ["0.75rem", "1rem"], // 12px, 16px
+      sm: ["0.875rem", "1.25rem"], // 14px, 20px
+      base: ["1rem", "1.375rem"], // 16px, 22px
+      md: ["1.125rem", "1.5rem"], // 18px, 24px
+      lg: ["1.25rem", "1.5rem"], // 20px, 24px
+      xl: ["1.5rem", "2rem"], // 24px, 32px
+      "2xl": ["1.5rem", "2rem"], // 24px, 32px
+      "3xl": ["1.75rem", "2.875rem"], // 28px, 46px
+      "4xl": ["2.375rem", "2.875rem"],
       "5xl": ["48px", "1"],
       "6xl": ["60px", "1"],
     },
