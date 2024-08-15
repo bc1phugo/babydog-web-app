@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
+import { useTelegram } from "@/app/telegram-provider";
 
 interface UserData {
   id: number;
@@ -30,12 +31,15 @@ export default function AccountScorePage() {
         }
       : null;
 
-  const [linkDisabled, setLinkDisabled] = useState<boolean>(false);
   const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
   const isLastPhase = currentPhase === 2;
 
+  const { user, webApp } = useTelegram();
+
+  if (!user) return;
+
   return (
-    <main className="h-full overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
+    <main className="h-full pb-[10px] overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
       <section>
         <div className="flex gap-2">
           <Progress
@@ -46,7 +50,7 @@ export default function AccountScorePage() {
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
         <div className="text-center flex-1">
-          {currentPhase === 1 ? <Phase1 /> : <Phase2 />}
+          {currentPhase === 1 ? <Phase1 telegramId={user.id} /> : <Phase2 />}
         </div>
       </section>
 
@@ -57,7 +61,6 @@ export default function AccountScorePage() {
             buttonVariants({ variant: "orange", size: "xl" }),
             "font-semibold text-xl leading-6"
           )}
-          aria-disabled={linkDisabled}
         >
           Continue
         </Link>

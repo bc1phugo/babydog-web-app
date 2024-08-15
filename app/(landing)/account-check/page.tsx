@@ -6,6 +6,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import { cn } from "@/lib/utils";
+import WebApp from "@twa-dev/sdk";
+import { useTelegram } from "@/app/telegram-provider";
 
 interface UserData {
   id: number;
@@ -27,7 +29,9 @@ export default function AccountCheckPage() {
     activityLevelChecked &&
     isPremiumChecked &&
     ogStatusChecked;
-  console.log(isAllStatusChecked);
+
+  const { user } = useTelegram();
+  console.log(user);
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,7 +49,7 @@ export default function AccountCheckPage() {
   }, []);
 
   return (
-    <main className="h-full overflow-auto overflow-x-hidden flex flex-col pt-[60px] px-[23px]">
+    <main className="h-full overflow-auto pb-[10px] overflow-x-hidden flex flex-col pt-[60px] px-[23px]">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />
