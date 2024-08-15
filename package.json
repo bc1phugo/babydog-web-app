@@ -1,6 +1,6 @@
 {
-  "name": "telegram-web-app",
-  "version": "0.1.0",
+  "name": "babydog-telegram-web-app",
+  "version": "0.1.0-beta",
   "private": true,
   "scripts": {
     "dev": "next dev",

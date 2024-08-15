@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -22,7 +22,27 @@ export default function AccountCheckPage() {
     useState<boolean>(false);
   const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
   const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
-  const [linkDisabled, setLinkDisabled] = useState<boolean>(false);
+  const isAllStatusChecked =
+    accountAgeChecked &&
+    activityLevelChecked &&
+    isPremiumChecked &&
+    ogStatusChecked;
+  console.log(isAllStatusChecked);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAccountAgeChecked(true);
+    }, 100);
+    setTimeout(() => {
+      setActivityLevelChecked(true);
+    }, 150);
+    setTimeout(() => {
+      setIsPremiumChecked(true);
+    }, 400);
+    setTimeout(() => {
+      setOgStatusChecked(true);
+    }, 300);
+  }, []);
 
   return (
     <main className="h-full overflow-auto overflow-x-hidden flex flex-col pt-[60px] px-[23px]">
@@ -40,10 +60,10 @@ export default function AccountCheckPage() {
               width={18}
               height={18}
               className={cn(
-                linkDisabled
-                  ? "text-muted-foreground"
-                  : "fill-customOrange-deep",
-                "transition-all duration-300"
+                accountAgeChecked
+                  ? "fill-customOrange-deep"
+                  : "text-muted-foreground",
+                "transition-all duration-300 delay-3000"
               )}
             />
           </div>
@@ -59,10 +79,10 @@ export default function AccountCheckPage() {
               width={18}
               height={18}
               className={cn(
-                linkDisabled
-                  ? "text-muted-foreground"
-                  : "fill-customOrange-deep",
-                "transition-all duration-300"
+                activityLevelChecked
+                  ? "fill-customOrange-deep"
+                  : "text-muted-foreground",
+                "transition-all duration-300 delay-3000"
               )}
             />
           </div>
@@ -79,10 +99,10 @@ export default function AccountCheckPage() {
               width={18}
               height={18}
               className={cn(
-                linkDisabled
-                  ? "text-muted-foreground"
-                  : "fill-customOrange-deep",
-                "transition-all duration-300"
+                isPremiumChecked
+                  ? "fill-customOrange-deep"
+                  : "text-muted-foreground",
+                "transition-all duration-300 delay-3000"
               )}
             />
           </div>
@@ -99,10 +119,10 @@ export default function AccountCheckPage() {
               width={18}
               height={18}
               className={cn(
-                linkDisabled
-                  ? "text-muted-foreground"
-                  : "fill-customOrange-deep",
-                "transition-all duration-300"
+                ogStatusChecked
+                  ? "fill-customOrange-deep"
+                  : "text-muted-foreground",
+                "transition-all duration-300 delay-3000"
               )}
             />
           </div>
@@ -118,9 +138,10 @@ export default function AccountCheckPage() {
         href={"/account-score"}
         className={cn(
           buttonVariants({ variant: "orange", size: "xl" }),
-          "font-semibold text-xl leading-6 mt-[94px]"
+          "font-semibold text-xl leading-6 mt-[94px]",
+          "delay-3000"
         )}
-        aria-disabled={linkDisabled}
+        aria-disabled={!isAllStatusChecked}
       >
         Continue
       </Link>

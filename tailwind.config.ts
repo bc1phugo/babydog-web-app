@@ -98,6 +98,9 @@ const config = {
       backgroundImage: {
         landing: "url('../public/images/image_background_landing.png')",
       },
+      transitionDelay: {
+        3000: "3000ms",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
