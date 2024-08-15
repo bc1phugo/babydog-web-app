@@ -17,7 +17,7 @@ export default function LandingPage() {
   return (
     <main
       className={cn(
-        "h-full overflow-auto overflow-x-hidden flex flex-col pt-[96px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
+        "h-full overflow-auto overflow-x-hidden flex flex-col pt-[96px] pb-[10px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
       )}
     >
       <section className="flex justify-center">

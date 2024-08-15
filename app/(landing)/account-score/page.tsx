@@ -36,8 +36,6 @@ export default function AccountScorePage() {
 
   const { user, webApp } = useTelegram();
 
-  if (!user) return;
-
   return (
     <main className="h-full pb-[10px] overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
       <section>
@@ -50,7 +48,11 @@ export default function AccountScorePage() {
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
         <div className="text-center flex-1">
-          {currentPhase === 1 ? <Phase1 telegramId={user.id} /> : <Phase2 />}
+          {currentPhase === 1 ? (
+            <Phase1 telegramId={user?.id ?? 0} />
+          ) : (
+            <Phase2 />
+          )}
         </div>
       </section>
 
