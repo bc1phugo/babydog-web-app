@@ -39,63 +39,46 @@ export default function BabyDogPointDetail() {
       buttonType: "start",
     },
     {
-      headerIcon: () => <LinkIcon width={30} height={30} />,
-      mission: "Subscribe to Youtube",
-      point: 100,
-      buttonType: "start",
-    },
-    {
       headerIcon: () => <XIcon width={30} height={30} />,
       mission: "Subscribe to Baby dog X.com",
       point: 1000,
       buttonType: "start",
     },
     {
-      headerIcon: () => <AddFriendsIcon width={30} height={30} />,
-      mission: "Invite 5 friends to BABY DOG",
-      point: 20000,
-      buttonType: "check",
-    },
-    {
-      headerIcon: () => <BoneIcon width={30} height={30} />,
-      mission: "Send 🐕 to Binance X.com",
-      point: 100,
-      buttonType: "check",
-    },
-    {
-      headerIcon: () => <BoneIcon width={30} height={30} />,
-      mission: "Send 🐕 to OKX X.com",
-      point: 100,
-      buttonType: "start",
-    },
-    {
-      headerIcon: () => <BoneIcon width={30} height={30} />,
-      mission: "Send 🐕 to Bybit X.com",
+      headerIcon: () => <XIcon width={30} height={30} />,
+      mission: "Subscribe to Dog X.com",
       point: 1000,
       buttonType: "start",
+    },
+    {
+      headerIcon: () => <LinkIcon width={30} height={30} />,
+      mission: "Subscribe to Baby Dog Youtube",
+      point: 1000,
+      buttonType: "start",
+    },
+    {
+      headerIcon: () => <AddFriendsIcon width={30} height={30} />,
+      mission: "Invite friends to BABY DOG",
+      point: 20000,
+      buttonType: "check",
     },
   ];
 
   const rewards: Array<IReward> = [
     {
-      headerIcon: () => <CheckCircleIcon width={30} height={30} />,
-      mission: "Be a good dog 🐶",
-      point: 50,
-    },
-    {
       headerIcon: () => <LinkIcon width={30} height={30} />,
       mission: "Account age",
-      point: 3000,
+      point: 300,
     },
     {
       headerIcon: () => <XIcon width={30} height={30} />,
       mission: "Telegram Premium",
-      point: 300,
+      point: 10000,
     },
     {
       headerIcon: () => <AddFriendsIcon width={30} height={30} />,
       mission: "Invited friends",
-      point: 1042,
+      point: 3000,
     },
   ];
 
