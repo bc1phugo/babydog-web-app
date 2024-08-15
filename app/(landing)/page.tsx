@@ -5,19 +5,22 @@ import { cn } from "@/lib/utils";
 import WebApp from "@twa-dev/sdk";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function LandingPage() {
+  const [shouldShowPage, setShouldShowPage] = useState<boolean>(false);
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
       WebApp.expand();
     }
   }, []);
 
+  if (!shouldShowPage) return null;
+
   return (
     <main
       className={cn(
-        "h-full overflow-auto overflow-x-hidden flex flex-col pt-[96px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
+        "h-full overflow-auto overflow-x-hidden flex flex-col pt-[96px] pb-[10px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]"
       )}
     >
       <section className="flex justify-center">
@@ -27,6 +30,7 @@ export default function LandingPage() {
           width={250}
           height={297}
           alt={"image-baby-dog"}
+          onLoad={() => setShouldShowPage(true)}
         />
       </section>
       <section className="flex flex-col text-primary text-[18px] leading-7 items-center justify-center text-center mt-[57px] mb-[60px]">
