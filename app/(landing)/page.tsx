@@ -41,7 +41,9 @@ export default function LandingPage() {
           photo_url: user.photo_url,
           referral_code: referral,
         }),
-      }).then((res) => alert(res));
+      })
+        .then((res) => alert(res))
+        .catch((err) => alert(err));
     } catch (err) {
       alert(err);
     }
