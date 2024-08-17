@@ -27,7 +27,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const res = await req.json();
   try {
-    const response = await fetch(`http://43.203.236.52:13000/api/user`, {
+    const response = await fetch(`${process.env.API_URL}/api/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
