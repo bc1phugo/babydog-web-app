@@ -24,6 +24,8 @@ export default function LandingPage() {
   useEffect(() => {
     if (!user) return;
 
+    alert(user.is_premium);
+
     try {
       fetch(`/api/user`, {
         method: "POST",
