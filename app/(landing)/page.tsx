@@ -22,8 +22,7 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    if (!user) return;
-    alert(user.id);
+    // alert(user.id);
 
     try {
       fetch(`/api/user`, {
@@ -32,14 +31,14 @@ export default function LandingPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          telegram_id: user.id,
-          username: user.username,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          language_code: user.language_code,
-          is_premium: user.is_premium,
-          photo_url: user.photo_url,
-          referral_code: referral,
+          telegram_id: 2213,
+          username: "testuser",
+          first_name: "Test",
+          last_name: "User",
+          language_code: "en",
+          is_premium: false,
+          photo_url: "http://example.com/photo.jpg",
+          referral_code: null,
         }),
       })
         .then((res) => {
