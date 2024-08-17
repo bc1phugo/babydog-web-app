@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/telegram-provider";
+import { useQuery } from "@tanstack/react-query";
 
 interface UserData {
   id: number;
@@ -34,7 +35,7 @@ export default function AccountScorePage() {
   const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
   const isLastPhase = currentPhase === 2;
 
-  const { user, webApp } = useTelegram();
+  const { user } = useTelegram();
 
   return (
     <main className="h-full pb-[10px] overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
@@ -55,7 +56,6 @@ export default function AccountScorePage() {
           )}
         </div>
       </section>
-
       {isLastPhase ? (
         <Link
           href={"/main"}
@@ -76,6 +76,7 @@ export default function AccountScorePage() {
           Continue
         </Button>
       )}
+      telegram-web-app-eight-beta.vercel.app
     </main>
   );
 }
