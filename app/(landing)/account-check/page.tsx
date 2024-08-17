@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import { cn } from "@/lib/utils";
 import WebApp from "@twa-dev/sdk";
-import { useTelegram } from "@/app/telegram-provider";
+import { useTelegram } from "@/app/providers/telegram-provider";
 
 interface UserData {
   id: number;

@@ -7,7 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
-import { useTelegram } from "@/app/telegram-provider";
+import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
 
 interface UserData {
@@ -36,6 +36,14 @@ export default function AccountScorePage() {
   const isLastPhase = currentPhase === 2;
 
   const { user } = useTelegram();
+  const { data: userData } = useQuery({
+    queryKey: ["userInfo", user?.id],
+    queryFn: async () =>
+      await fetch(
+        `${process.env.NEXT_PUBLIC_NEXT_PUBLIC_API_URL}/api/user/${user?.id}`
+      ),
+    enabled: !!user && !!user.id,
+  });
 
   return (
     <main className="h-full pb-[10px] overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">

@@ -4,7 +4,8 @@ import "./globals.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import { TelegramProvider } from "./telegram-provider";
+import Providers from "./providers/providers";
+import { Suspense } from "react";
 
 const pretendard = localFont({
   src: "./font/PretendardVariable.woff2",
@@ -30,10 +31,6 @@ export default function RootLayout({
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="beforeInteractive"
         />
-        {/* <meta
-          name="viewport"
-          content="user-scalable=no, width=device-width initial-scale=1.0"
-        /> */}
       </head>
       <body className={cn(pretendard.className, "h-full", "overflow-hidden")}>
         <ThemeProvider
@@ -41,7 +38,9 @@ export default function RootLayout({
           defaultTheme="light"
           disableTransitionOnChange
         >
-          <TelegramProvider>{children}</TelegramProvider>
+          <Providers>
+            <Suspense>{children}</Suspense>
+          </Providers>
         </ThemeProvider>
       </body>
     </html>

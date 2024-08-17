@@ -7,7 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useTelegram } from "../telegram-provider";
+import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 
 export default function LandingPage() {
