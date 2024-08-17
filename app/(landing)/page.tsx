@@ -24,7 +24,7 @@ export default function LandingPage() {
   useEffect(() => {
     alert(`${process.env.NEXT_PUBLIC_API_URL}/api/user`);
     try {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
+      fetch(`/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
