@@ -22,6 +22,7 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
+    alert(`${process.env.NEXT_PUBLIC_API_URL}/api/user`);
     if (!user) return;
 
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
@@ -37,7 +38,6 @@ export default function LandingPage() {
         referral_code: referral,
       }),
     });
-    alert("user has been made!");
   }, [user, referral]);
 
   return (
