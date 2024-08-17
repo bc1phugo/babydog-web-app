@@ -29,7 +29,7 @@ export default function LandingPage() {
       fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
         method: "POST",
         headers: {
-          "content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           telegram_id: user.id,
@@ -42,10 +42,26 @@ export default function LandingPage() {
           referral_code: referral,
         }),
       })
-        .then((res) => alert(res))
-        .catch((err) => alert(err));
-    } catch (err) {
-      alert(err);
+        .then((res) => {
+          if (!res.ok) {
+            return res.text().then((text) => {
+              throw new Error(
+                `Server responded with status ${res.status}: ${text}`
+              );
+            });
+          }
+          return res.json(); // assuming your server returns JSON
+        })
+        .then((data) => {
+          alert("User created successfully: " + JSON.stringify(data));
+        })
+        .catch((err) => {
+          console.error("Error in fetch:", err);
+          alert("Error: " + err.message);
+        });
+    } catch (err: any) {
+      console.error("Unexpected error:", err);
+      alert("Unexpected error: " + err.message);
     }
   }, [user, referral]);
 
