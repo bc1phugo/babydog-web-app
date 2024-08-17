@@ -76,7 +76,6 @@ export default function AccountScorePage() {
           Continue
         </Button>
       )}
-      telegram-web-app-eight-beta.vercel.app
     </main>
   );
 }
