@@ -24,8 +24,6 @@ export default function LandingPage() {
   useEffect(() => {
     if (!user) return;
 
-    alert(user.is_premium);
-
     try {
       fetch(`/api/user`, {
         method: "POST",
@@ -38,31 +36,31 @@ export default function LandingPage() {
           first_name: user.first_name,
           last_name: user.last_name,
           language_code: user.language_code,
-          is_premium: user.is_premium,
+          is_premium: user.is_premium || false,
           photo_url: user.photo_url,
           referral_code: referral,
         }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            return res.text().then((text) => {
-              throw new Error(
-                `Server responded with status ${res.status}: ${text}`
-              );
-            });
-          }
-          return res.json(); // assuming your server returns JSON
-        })
-        .then((data) => {
-          alert("User created successfully: " + JSON.stringify(data));
-        })
-        .catch((err) => {
-          console.error("Error in fetch:", err);
-          alert("Error: " + err.message);
-        });
+      });
+      // .then((res) => {
+      //   if (!res.ok) {
+      //     return res.text().then((text) => {
+      //       throw new Error(
+      //         `Server responded with status ${res.status}: ${text}`
+      //       );
+      //     });
+      //   }
+      //   return res.json(); // assuming your server returns JSON
+      // })
+      // .then((data) => {
+      //   alert("User created successfully: " + JSON.stringify(data));
+      // })
+      // .catch((err) => {
+      //   console.error("Error in fetch:", err);
+      //   alert("Error: " + err.message);
+      // });
     } catch (err: any) {
       console.error("Unexpected error:", err);
-      alert("Unexpected error: " + err.message);
+      // alert("Unexpected error: " + err.message);
     }
   }, [user, referral]);
 
