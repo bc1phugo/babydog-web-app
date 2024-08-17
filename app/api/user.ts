@@ -15,6 +15,7 @@ export default async function handler(
       });
 
       const data = await response.json();
+      console.log("🚀 ~ data:", data);
       res.status(response.status).json(data);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch data from the API" });
