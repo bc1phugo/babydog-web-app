@@ -22,22 +22,29 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    alert(`${process.env.NEXT_PUBLIC_API_URL}/api/user`);
     if (!user) return;
+    alert(user.id);
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-      method: "POST",
-      body: JSON.stringify({
-        telegram_id: user.id,
-        username: user.username,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        language_code: user.language_code,
-        is_premium: user.is_premium,
-        photo_url: user.photo_url,
-        referral_code: referral,
-      }),
-    });
+    try {
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          telegram_id: user.id,
+          username: user.username,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          language_code: user.language_code,
+          is_premium: user.is_premium,
+          photo_url: user.photo_url,
+          referral_code: referral,
+        }),
+      }).then((res) => alert(res));
+    } catch (err) {
+      alert(err);
+    }
   }, [user, referral]);
 
   return (
