@@ -23,8 +23,14 @@ export interface IUserInfo {
     visible: boolean;
     icon_type: "link" | "friends" | "twitterX" | "check";
   }>;
-  reward: any[]; // Adjust the type if you know the exact structure of the rewards
+  reward: IReward[]; // Adjust the type if you know the exact structure of the rewards
   userExist: boolean;
+}
+
+interface IReward {
+  awarded_at: Date;
+  task_name: string;
+  points: number;
 }
 
 export default function useUserInfoQuery() {

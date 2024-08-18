@@ -105,15 +105,15 @@ export default function BabyDogPointDetail({
         <Table className="w-full">
           <TableBody>
             {userInfo.reward.map((reward) => (
-              <TableRow key={reward.mission}>
+              <TableRow key={reward.task_name + reward.awarded_at}>
                 <TableCell className="px-0 w-[30px]">
-                  {reward.headerIcon()}
+                  <CheckCircleIcon width={30} height={30} />,
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium tracking-tight">
-                  {reward.mission}
+                  {reward.task_name}
                 </TableCell>
                 <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end tracking-tight">
-                  + {reward.point} BABY DOG
+                  + {reward.points} BABY DOG
                 </TableCell>
               </TableRow>
             ))}
