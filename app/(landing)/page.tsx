@@ -9,8 +9,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
 import useUserInfoQuery from "@/hooks/useUserInfo";
+import useUserRankingsQuery from "@/hooks/useUserRankings";
 
 export default function LandingPage() {
   const { user } = useTelegram();
@@ -18,6 +18,7 @@ export default function LandingPage() {
   const referral = searchParams.get("startapp");
 
   const { data: userData } = useUserInfoQuery();
+  useUserRankingsQuery();
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
