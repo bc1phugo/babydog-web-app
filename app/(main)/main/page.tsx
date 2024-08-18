@@ -1,13 +1,10 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import BabyDogPointDetail from "./components/baby-dog-point-detail";
-import { IDbUserData } from "@/app/(landing)/account-score/page";
 import { useTelegram } from "@/app/providers/telegram-provider";
-import { useQuery } from "@tanstack/react-query";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 
 export interface IDBUserAvailableTask {
@@ -21,6 +18,7 @@ export interface IDBUserAvailableTask {
 
 export default function MainPage() {
   const { data: userInfo } = useUserInfoQuery();
+  const { webApp } = useTelegram();
 
   return (
     <>
@@ -98,24 +96,30 @@ export default function MainPage() {
           </div>
         </section>
         <section className="mt-20 flex flex-col gap-[15px]">
-          <Link
-            href={"https://www.youtube.com/"}
+          <Button
             className={cn(
               buttonVariants({ variant: "orange", size: "xl" }),
               "font-semibold text-xl leading-6 w-full"
             )}
+            onClick={() => {
+              const url = "https://x.com";
+              if (webApp) {
+                webApp.openLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+            }}
           >
             Join Baby dog channel
-          </Link>
-          <Link
-            href={"https://www.youtube.com/"}
+          </Button>
+          <Button
             className={cn(
               buttonVariants({ variant: "gray", size: "xl" }),
               "text-xl leading-6 w-full"
             )}
           >
             Follow Baby dog X.COM
-          </Link>
+          </Button>
         </section>
       </div>
       {userInfo && <BabyDogPointDetail userInfo={userInfo} />}
