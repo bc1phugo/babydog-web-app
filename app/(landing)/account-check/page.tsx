@@ -49,14 +49,14 @@ export default function AccountCheckPage() {
   }, []);
 
   return (
-    <main className="h-full overflow-auto pb-[10px] overflow-x-hidden flex flex-col pt-[60px] px-[23px]">
+    <main className="h-full overflow-auto pb-[20px] overflow-x-hidden flex flex-col pt-[60px] px-[23px] justify-between">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />
           your account
         </h1>
       </section>
-      <section className="text-lg leading-6 flex flex-col gap-10 mt-[60px]">
+      <section className="text-lg leading-6 flex flex-col gap-10 mt-[10px]">
         <div>
           <div className="flex justify-between tracking-tight">
             Account Age Verified
@@ -142,7 +142,7 @@ export default function AccountCheckPage() {
         href={"/account-score"}
         className={cn(
           buttonVariants({ variant: "orange", size: "xl" }),
-          "font-semibold text-xl leading-6 mt-[94px]",
+          "font-semibold text-xl leading-6 mt-[34px]",
           "delay-3000"
         )}
         aria-disabled={!isAllStatusChecked}

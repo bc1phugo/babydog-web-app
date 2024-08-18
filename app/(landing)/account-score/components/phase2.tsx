@@ -11,7 +11,7 @@ export default function Phase2({ dogPoint }: Phase2Props) {
       <Head>
         <link rel="preload" href="/images/babydog-2.png" as="image" />
       </Head>
-      <h1 className="text-4xl font-semibold mt-[60px]">You are amazing!</h1>
+      <h1 className="text-4xl font-semibold mt-[20px]">You are amazing!</h1>
       <div className="mt-[10px] text-muted-foreground tracking-tight">
         Here is your DOGS reward
       </div>

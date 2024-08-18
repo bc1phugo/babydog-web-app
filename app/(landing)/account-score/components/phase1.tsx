@@ -4,7 +4,7 @@ interface Phase1Props {
 export default function Phase1({ telegramId }: Phase1Props) {
   return (
     <>
-      <h1 className="text-4xl font-semibold mt-[60px]">We are DOG Army!</h1>
+      <h1 className="text-4xl font-semibold mt-[20px]">We are DOG Army!</h1>
       <div className="mt-[10px] text-muted-foreground text-md tracking-tight">
         You have joined Telegram
       </div>
