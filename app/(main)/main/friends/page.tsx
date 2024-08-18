@@ -1,3 +1,5 @@
+"use client";
+
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -16,9 +18,10 @@ import Link from "next/link";
 export default function FriendsPage() {
   const { webApp } = useTelegram();
   const { data: userData } = useUserInfoQuery();
-  const telegramUrl = process.env.PUBLIC_URL;
+  const telegramUrl = process.env.NEXT_PUBLIC_URL;
+  console.log("telegramUrl", telegramUrl);
 
-  function copyToClipboard(text: string) {
+  const copyToClipboard = (text: string) => {
     console.log("🚀 ~ copyToClipboard ~ text:", text);
 
     const tempInput = document.createElement("textarea");
@@ -33,7 +36,7 @@ export default function FriendsPage() {
     } else {
       alert("Referral code copied to clipboard!");
     }
-  }
+  };
 
   return (
     <>
