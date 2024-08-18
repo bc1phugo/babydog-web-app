@@ -28,7 +28,7 @@ export default function FriendsPage() {
 
     setIsInviteDrawerOpen(false);
     toast({
-      description: "Referral link copied to clipboard",
+      title: "Referral link copied to clipboard",
     });
 
     // if (webApp) {
