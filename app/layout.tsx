@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import Providers from "./providers/providers";
 import { Suspense } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 const pretendard = localFont({
   src: "./font/PretendardVariable.woff2",
@@ -40,6 +41,7 @@ export default function RootLayout({
         >
           <Providers>
             <Suspense>{children}</Suspense>
+            <Toaster />
           </Providers>
         </ThemeProvider>
       </body>
