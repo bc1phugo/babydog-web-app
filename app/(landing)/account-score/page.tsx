@@ -35,7 +35,7 @@ export default function AccountScorePage() {
 
   useEffect(() => {
     if (userData) {
-      alert(userData);
+      console.log("userData", userData);
     }
   }, [userData]);
 
