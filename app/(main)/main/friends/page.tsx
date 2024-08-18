@@ -14,28 +14,36 @@ import { useToast } from "@/components/ui/use-toast";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 
 export default function FriendsPage() {
   const { toast } = useToast();
+  const { webApp } = useTelegram();
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.NEXT_PUBLIC_URL;
   const [isInviteDrawerOpen, setIsInviteDrawerOpen] = useState<boolean>(false);
+  const referalUrl = `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`;
+
+  const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
+    referalUrl
+  )}&text=${encodeURIComponent("Join me on this platform!")}`;
 
   const onClickCopy = (text: string) => {
     window.navigator.clipboard.writeText(text);
-
     setIsInviteDrawerOpen(false);
+
     toast({
       title: "Referral link copied to clipboard",
     });
+  };
 
-    // if (webApp) {
-    //   webApp.showAlert("Referral code copied to clipboard!");
-    // } else {
-    //   alert("Referral code copied to clipboard!");
-    // }
+  const onClickShare = () => {
+    setIsInviteDrawerOpen(false);
+    if (webApp) {
+      webApp.openTelegramLink(shareUrl);
+    } else {
+      window.open(shareUrl, "_blank");
+    }
   };
 
   return (
@@ -92,16 +100,12 @@ export default function FriendsPage() {
                     "text-lg"
                   )}
                   disabled={!userData || !telegramUrl}
-                  onClick={() =>
-                    onClickCopy(
-                      `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`
-                    )
-                  }
+                  onClick={() => onClickCopy(referalUrl)}
                 >
                   Copy invite link
                 </Button>
-                <Link
-                  href="#"
+                <Button
+                  onClick={onClickShare}
                   className={cn(
                     buttonVariants({ variant: "gray", size: "xl" }),
                     "rounded-full",
@@ -109,7 +113,7 @@ export default function FriendsPage() {
                   )}
                 >
                   Share invite link
-                </Link>
+                </Button>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>

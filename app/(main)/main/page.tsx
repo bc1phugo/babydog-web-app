@@ -10,7 +10,6 @@ import useUserInfoQuery from "@/hooks/useUserInfo";
 export default function MainPage() {
   const { data: userInfo } = useUserInfoQuery();
   const { webApp } = useTelegram();
-  console.log(webApp);
 
   return (
     <>
