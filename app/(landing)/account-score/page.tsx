@@ -29,7 +29,10 @@ export default function AccountScorePage() {
   const { user } = useTelegram();
   const { data: userData } = useQuery({
     queryKey: ["userInfo", user?.id],
-    queryFn: async () => await fetch(`/api/user/${user?.id}`),
+    queryFn: async () => {
+      const response = await fetch(`/api/user/${user?.id}`);
+      return response.json();
+    },
     enabled: !!user && !!user.id,
   });
 
