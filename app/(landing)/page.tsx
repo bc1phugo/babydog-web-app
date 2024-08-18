@@ -17,7 +17,7 @@ export default function LandingPage() {
   const searchParams = useSearchParams();
   const referral = searchParams.get("startapp");
 
-  const { data: userData } = useUserInfoQuery();
+  const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
   useUserRankingsQuery();
 
   useEffect(() => {
@@ -49,6 +49,8 @@ export default function LandingPage() {
     } catch (err: any) {
       console.error("Unexpected error:", err);
       // alert("Unexpected error: " + err.message);
+    } finally {
+      refetchUserInfo();
     }
   }, [user, referral, userData]);
 
