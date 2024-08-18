@@ -14,6 +14,8 @@ export interface IDBUserAvailableTask {
   task_name: string;
   description: string;
   points: number;
+  icon_type: string;
+  visible: boolean;
 }
 
 export default function MainPage() {
@@ -38,6 +40,7 @@ export default function MainPage() {
     enabled: !!user && !!user.id,
   });
 
+  console.log("🚀 ~ MainPage ~ userAvailableTasks:", userAvailableTasks);
   return (
     <>
       <div className="mt-[67px] px-[23px]">
