@@ -6,38 +6,8 @@ import useUserRankingsQuery from "@/hooks/useUserRankings";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-interface IWinner {
-  point: number;
-  username: string;
-  ranking: number;
-}
-
-const rankers: Array<IWinner> = [
-  {
-    point: 259010999,
-    username: "hugo",
-    ranking: 1,
-  },
-  {
-    point: 13278438,
-    username: "elkanadi",
-    ranking: 2,
-  },
-  {
-    point: 100,
-    username: "glebtma",
-    ranking: 3,
-  },
-  {
-    point: 1000,
-    username: "Eslant Tory",
-    ranking: 4,
-  },
-];
-
 export default function LeaderboardPage() {
   const { data: userRankings } = useUserRankingsQuery();
-  console.log("🚀 ~ LeaderboardPage ~  userRankings:", userRankings);
 
   const getRankingCellContent = (targetRank: number) => {
     switch (targetRank) {
@@ -170,7 +140,7 @@ export default function LeaderboardPage() {
                   </TableCell>
                   <TableCell className="px-0 text-[24px] leading-6 justify-end ">
                     <span className="flex justify-end font-semibold">
-                      {getRankingCellContent(ranker.rank)}
+                      {getRankingCellContent(Number(ranker.rank))}
                     </span>
                   </TableCell>
                 </TableRow>
