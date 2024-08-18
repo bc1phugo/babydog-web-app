@@ -2,20 +2,20 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: { telegramId: string } }
 ) {
-  const { userId } = params;
+  const { telegramId } = params;
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/user/${userId}/tasks`,
+      `${process.env.API_URL}/api/user/${telegramId}`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
         next: {
-          tags: ["availableUserTask"],
           revalidate: 60,
+          tags: ["userInfo", telegramId],
         },
       }
     );
