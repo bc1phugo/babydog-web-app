@@ -14,7 +14,8 @@ export async function GET(
           "Content-Type": "application/json",
         },
         next: {
-          tags: ["userInfo", telegramId],
+          tags: ["userRankings", telegramId],
+          revalidate: 1 * 60 * 5,
         },
       }
     );

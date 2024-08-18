@@ -98,6 +98,9 @@ export default function LeaderboardPage() {
     return initials;
   };
 
+  //TODO: 나중에 Skeleton으로 바꾸셈
+  if (!userRankings) return null;
+
   return (
     <>
       <div className="mt-[60px] px-[23px]">
@@ -115,34 +118,36 @@ export default function LeaderboardPage() {
             <Avatar className="mr-[10px]">
               <AvatarFallback className="bg-purple-600 text-background text-[18px] leading-4 tracking-tight ">
                 {getInitials(
-                  userRankings?.userRank.username ??
-                    userRankings?.userRank.first_name ??
+                  userRankings.userRank.username ??
+                    userRankings.userRank.first_name ??
                     "John Doe"
                 )}
               </AvatarFallback>
             </Avatar>
             <div className="text-start">
               <div className="text-[16px] leading-6 tracking-tight font-medium">
-                {userRankings?.userRank.username ??
-                  userRankings?.userRank.first_name ??
+                {userRankings.userRank.username ??
+                  userRankings.userRank.first_name ??
                   "John Doe"}
               </div>
               <div className="text-md font-semibold tracking-tight text-primary">
-                {userRankings?.userRank.baby_dog_points} BABY DOGS
+                {userRankings.userRank.baby_dog_points} BABY DOGS
               </div>
             </div>
             <div className="ml-auto text-md font-medium">
-              #{userRankings?.userRank.rank ?? "-"}
+              #{userRankings.userRank.rank ?? "-"}
             </div>
           </div>
         </section>
       </div>
       <section className="flex flex-col items-center mt-[80px] pb-[140px]">
-        <h2 className="text-4xl font-semibold">29.4M holders</h2>
+        <h2 className="text-4xl font-semibold">
+          {userRankings.userCount ?? "-"} holders
+        </h2>
         <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
           <Table className="">
             <TableBody>
-              {userRankings?.top20.map((ranker) => (
+              {userRankings.top20.map((ranker) => (
                 <TableRow key={ranker.username}>
                   <TableCell className="px-0 w-[40px]">
                     <Avatar>
