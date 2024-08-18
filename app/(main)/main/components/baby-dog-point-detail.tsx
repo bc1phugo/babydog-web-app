@@ -52,7 +52,7 @@ export default function BabyDogPointDetail({
                   {/* {task.headerIcon()} */}
                   {iconMap[task.icon_type] ?? (
                     <BoneIcon width={30} height={30} />
-                  )}{" "}
+                  )}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                   <div className="flex flex-col">
@@ -71,7 +71,7 @@ export default function BabyDogPointDetail({
                     onClick={async () => {
                       try {
                         const response = await fetch(
-                          `/api/user/${userInfo.user.telegram_id}`,
+                          `/api/user/${userInfo.user.telegram_id}/task`,
                           {
                             method: "POST",
                             headers: {
