@@ -1,10 +1,38 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import BabyDogPointDetail from "./components/baby-dog-point-detail";
+import { IDbUserData } from "@/app/(landing)/account-score/page";
+import { useTelegram } from "@/app/providers/telegram-provider";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MainPage() {
+  const { user } = useTelegram();
+  const { data: userData } = useQuery({
+    queryKey: ["userInfo", user?.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/user/${user?.id}`);
+      const data = await response.json();
+      return data as IDbUserData;
+    },
+    enabled: !!user && !!user.id,
+  });
+
+  const { data: userAvailableTasks } = useQuery({
+    queryKey: ["userTasks", user?.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/user/${user?.id}/tasks`);
+      const data = await response.json();
+      return data as IDbUserData;
+    },
+    enabled: !!user && !!user.id,
+  });
+
+  console.log(userAvailableTasks);
+
   return (
     <>
       <div className="mt-[67px] px-[23px]">
@@ -19,7 +47,7 @@ export default function MainPage() {
               className="m-auto"
             />
             <div className="font-semibold text-4xl mt-[10px]">
-              838 BABY DOGS
+              {userData?.baby_dog_points} BABY DOGS
             </div>
           </div>
           <div className="mt-[30px]">

@@ -1,21 +1,15 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 import XIcon from "/public/icons/icon_x.svg";
 import LinkIcon from "/public/icons/icon_link.svg";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
-import BoneIcon from "/public/icons/icon_bone.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import { ReactElement, ReactSVGElement } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useTelegram } from "@/app/providers/telegram-provider";
 
 interface ITask {
   headerIcon: () => ReactElement;
