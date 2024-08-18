@@ -19,7 +19,6 @@ export default function FriendsPage() {
   const { webApp } = useTelegram();
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.NEXT_PUBLIC_URL;
-  console.log("telegramUrl", telegramUrl);
 
   const copyToClipboard = (text: string) => {
     console.log("🚀 ~ copyToClipboard ~ text:", text);
@@ -30,6 +29,8 @@ export default function FriendsPage() {
     tempInput.select();
     document.execCommand("copy");
     document.body.removeChild(tempInput);
+
+    window.navigator.clipboard.writeText(text);
 
     if (webApp) {
       webApp.showAlert("Referral code copied to clipboard!");
