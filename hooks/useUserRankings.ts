@@ -15,7 +15,11 @@ interface IUserRanking {
   userCount: number;
 }
 
-export default function useUserRankingsQuery() {
+export default function useUserRankingsQuery({
+  customEnabled = true,
+}: {
+  customEnabled: boolean;
+}) {
   const { user } = useTelegram();
   const query = useQuery({
     queryKey: ["userRankings", user?.id],
@@ -24,7 +28,7 @@ export default function useUserRankingsQuery() {
       const data = await response.json();
       return data as IUserRanking;
     },
-    enabled: !!user && !!user.id,
+    enabled: !!user && !!user.id && customEnabled,
   });
 
   query.data &&

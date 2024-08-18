@@ -18,7 +18,10 @@ export default function LandingPage() {
   const referral = searchParams.get("startapp");
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
-  useUserRankingsQuery();
+
+  const { refetch: refetchUserRankings } = useUserRankingsQuery({
+    customEnabled: !!userData?.userExist,
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
@@ -28,6 +31,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!user || userData?.userExist) return;
+    console.log("🚀 ~ useEffect ~ user:", user);
 
     try {
       fetch(`/api/user`, {
@@ -48,9 +52,9 @@ export default function LandingPage() {
       });
     } catch (err: any) {
       console.error("Unexpected error:", err);
-      // alert("Unexpected error: " + err.message);
     } finally {
       refetchUserInfo();
+      refetchUserRankings();
     }
   }, [user, referral, userData]);
 
