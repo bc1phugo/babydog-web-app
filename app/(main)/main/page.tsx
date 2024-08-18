@@ -7,15 +7,6 @@ import BabyDogPointDetail from "./components/baby-dog-point-detail";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 
-export interface IDBUserAvailableTask {
-  id: number;
-  task_name: string;
-  description: string | null;
-  points: number;
-  icon_type: "link" | "friends" | "twitterX" | "check";
-  visible: boolean;
-}
-
 export default function MainPage() {
   const { data: userInfo } = useUserInfoQuery();
   const { webApp } = useTelegram();

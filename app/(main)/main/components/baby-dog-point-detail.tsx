@@ -8,8 +8,7 @@ import LinkIcon from "/public/icons/icon_link.svg";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
-import { ReactElement, ReactSVGElement } from "react";
-import { IDBUserAvailableTask } from "../page";
+import { ReactElement } from "react";
 import useUserInfoQuery, { IUserInfo } from "@/hooks/useUserInfo";
 
 interface ITask {
