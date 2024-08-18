@@ -9,11 +9,22 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 export default function LandingPage() {
   const { user } = useTelegram();
   const searchParams = useSearchParams();
   const referral = searchParams.get("startapp");
+
+  const { data: userExists } = useQuery({
+    queryKey: ["userExists", user?.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/user/${user?.id}/exist`);
+      const data = await response.json();
+      return data as boolean;
+    },
+    enabled: !!user && !!user.id,
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
@@ -22,7 +33,7 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || userExists) return;
 
     try {
       fetch(`/api/user`, {
@@ -41,28 +52,11 @@ export default function LandingPage() {
           referral_code: referral,
         }),
       });
-      // .then((res) => {
-      //   if (!res.ok) {
-      //     return res.text().then((text) => {
-      //       throw new Error(
-      //         `Server responded with status ${res.status}: ${text}`
-      //       );
-      //     });
-      //   }
-      //   return res.json(); // assuming your server returns JSON
-      // })
-      // .then((data) => {
-      //   alert("User created successfully: " + JSON.stringify(data));
-      // })
-      // .catch((err) => {
-      //   console.error("Error in fetch:", err);
-      //   alert("Error: " + err.message);
-      // });
     } catch (err: any) {
       console.error("Unexpected error:", err);
       // alert("Unexpected error: " + err.message);
     }
-  }, [user, referral]);
+  }, [user, referral, userExists]);
 
   return (
     <>
