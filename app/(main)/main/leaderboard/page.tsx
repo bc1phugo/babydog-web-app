@@ -9,6 +9,11 @@ import Image from "next/image";
 export default function LeaderboardPage() {
   const { data: userRankings } = useUserRankingsQuery();
 
+  const userName =
+    userRankings?.userRank.username ??
+    userRankings?.userRank.first_name ??
+    "Mr.Unknown";
+
   const getRankingCellContent = (targetRank: number) => {
     switch (targetRank) {
       case 1: {
@@ -87,25 +92,19 @@ export default function LeaderboardPage() {
           >
             <Avatar className="mr-[10px]">
               <AvatarFallback className="bg-purple-600 text-background text-[18px] leading-4 tracking-tight ">
-                {getInitials(
-                  userRankings.userRank.username ??
-                    userRankings.userRank.first_name ??
-                    "John Doe"
-                )}
+                {getInitials(userName)}
               </AvatarFallback>
             </Avatar>
             <div className="text-start">
               <div className="text-[16px] leading-6 tracking-tight font-medium">
-                {userRankings.userRank.username ??
-                  userRankings.userRank.first_name ??
-                  "John Doe"}
+                {userName}
               </div>
               <div className="text-md font-semibold tracking-tight text-primary">
                 {userRankings.userRank.baby_dog_points} BABY DOGS
               </div>
             </div>
             <div className="ml-auto text-md font-medium">
-              #{userRankings.userRank.rank ?? "-"}
+              {getRankingCellContent(Number(userRankings.userRank.rank)) ?? "-"}
             </div>
           </div>
         </section>
@@ -117,34 +116,36 @@ export default function LeaderboardPage() {
         <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
           <Table className="">
             <TableBody>
-              {userRankings.top20.map((ranker) => (
-                <TableRow key={ranker.username}>
-                  <TableCell className="px-0 w-[40px]">
-                    <Avatar>
-                      <AvatarFallback className="bg-red-600 text-background text-[18px] leading-4 tracking-tight">
-                        {getInitials(
-                          ranker.username ?? ranker.first_name ?? "Mr.Unkown"
-                        )}
-                      </AvatarFallback>
-                    </Avatar>
-                  </TableCell>
-                  <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
-                    <div className="flex flex-col">
-                      <span className="text-muted-foreground font-medium text-[16px] leading-6 tracking-tight">
-                        {ranker.username ?? ranker.first_name ?? "Mr.Unkown"}
+              {userRankings.top20.map((ranker) => {
+                const userName =
+                  ranker.username ?? ranker.first_name ?? "Mr.Unkown";
+                return (
+                  <TableRow key={ranker.username}>
+                    <TableCell className="px-0 w-[40px]">
+                      <Avatar>
+                        <AvatarFallback className="bg-red-600 text-background text-[18px] leading-4 tracking-tight">
+                          {getInitials(userName)}
+                        </AvatarFallback>
+                      </Avatar>
+                    </TableCell>
+                    <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
+                      <div className="flex flex-col">
+                        <span className="text-muted-foreground font-medium text-[16px] leading-6 tracking-tight">
+                          {ranker.username ?? ranker.first_name ?? "Mr.Unkown"}
+                        </span>
+                        <span className="text-[18px] leading-6 font-semibold tracking-tight">
+                          + {ranker.baby_dog_points} BABY DOGS
+                        </span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="px-0 text-[24px] leading-6 justify-end ">
+                      <span className="flex justify-end font-semibold">
+                        {getRankingCellContent(Number(ranker.rank))}
                       </span>
-                      <span className="text-[18px] leading-6 font-semibold tracking-tight">
-                        + {ranker.baby_dog_points} BABY DOGS
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="px-0 text-[24px] leading-6 justify-end ">
-                    <span className="flex justify-end font-semibold">
-                      {getRankingCellContent(Number(ranker.rank))}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </div>
