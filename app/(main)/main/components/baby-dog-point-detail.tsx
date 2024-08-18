@@ -10,6 +10,7 @@ import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement } from "react";
 import useUserInfoQuery, { IUserInfo } from "@/hooks/useUserInfo";
+import { useToast } from "@/components/ui/use-toast";
 
 interface ITask {
   headerIcon: () => ReactElement;
@@ -32,6 +33,7 @@ export default function BabyDogPointDetail({
   userInfo,
 }: BabyDogPointDetailProps) {
   const { refetch } = useUserInfoQuery();
+  const { toast } = useToast();
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
     twitterX: <XIcon width={30} height={30} />,
@@ -51,7 +53,6 @@ export default function BabyDogPointDetail({
               userInfo.tasks.map((task) => (
                 <TableRow key={task.id}>
                   <TableCell className="px-0 w-[30px]">
-                    {/* {task.headerIcon()} */}
                     {iconMap[task.icon_type] ?? (
                       <BoneIcon width={30} height={30} />
                     )}
@@ -87,8 +88,17 @@ export default function BabyDogPointDetail({
                           );
                           const data = response.json();
                           console.log(data);
+                          toast({
+                            title: "Mission Success",
+                            description: `${task.task_name} + ${task.points}`,
+                          });
                         } catch (error) {
                           console.log("POST COMPLETE TASK FAILED: ", error);
+                          toast({
+                            title: "Something went wrong...",
+                            description: `${task.task_name} + ${task.points}`,
+                            variant: "destructive",
+                          });
                         } finally {
                           refetch();
                         }

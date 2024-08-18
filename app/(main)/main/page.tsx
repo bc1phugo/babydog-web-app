@@ -104,6 +104,14 @@ export default function MainPage() {
             Join Baby dog channel
           </Button>
           <Button
+            onClick={() => {
+              const url = "https://x.com";
+              if (webApp) {
+                webApp.openLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+            }}
             className={cn(
               buttonVariants({ variant: "gray", size: "xl" }),
               "text-xl leading-6 w-full"
