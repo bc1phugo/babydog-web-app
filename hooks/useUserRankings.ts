@@ -18,7 +18,7 @@ interface IUserRanking {
 export default function useUserRankingsQuery() {
   const { user } = useTelegram();
   const query = useQuery({
-    queryKey: ["userInfo", user?.id],
+    queryKey: ["userRankings", user?.id],
     queryFn: async () => {
       const response = await fetch(`/api/user/${user?.id}/rankings`);
       const data = await response.json();
