@@ -9,6 +9,13 @@ import { IDbUserData } from "@/app/(landing)/account-score/page";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
 
+export interface IDBUserAvailableTask {
+  id: number;
+  task_name: string;
+  description: string;
+  points: number;
+}
+
 export default function MainPage() {
   const { user } = useTelegram();
   const { data: userData } = useQuery({
@@ -26,12 +33,10 @@ export default function MainPage() {
     queryFn: async () => {
       const response = await fetch(`/api/user/${user?.id}/tasks`);
       const data = await response.json();
-      return data as IDbUserData;
+      return data as IDBUserAvailableTask[];
     },
     enabled: !!user && !!user.id,
   });
-
-  console.log(userAvailableTasks);
 
   return (
     <>
@@ -129,7 +134,7 @@ export default function MainPage() {
           </Link>
         </section>
       </div>
-      <BabyDogPointDetail />
+      <BabyDogPointDetail userAvailableTasks={userAvailableTasks ?? []} />
     </>
   );
 }

@@ -8,8 +8,7 @@ import LinkIcon from "/public/icons/icon_link.svg";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import { ReactElement, ReactSVGElement } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useTelegram } from "@/app/providers/telegram-provider";
+import { IDBUserAvailableTask } from "../page";
 
 interface ITask {
   headerIcon: () => ReactElement;
@@ -24,7 +23,13 @@ interface IReward {
   point: number;
 }
 
-export default function BabyDogPointDetail() {
+interface BabyDogPointDetailProps {
+  userAvailableTasks: IDBUserAvailableTask[];
+}
+
+export default function BabyDogPointDetail({
+  userAvailableTasks,
+}: BabyDogPointDetailProps) {
   const tasks: Array<ITask> = [
     {
       headerIcon: () => <CheckCircleIcon width={30} height={30} />,
@@ -82,31 +87,25 @@ export default function BabyDogPointDetail() {
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table className="">
           <TableBody>
-            {tasks.map((task) => (
-              <TableRow key={task.mission}>
+            {userAvailableTasks.map((task) => (
+              <TableRow key={task.id}>
                 <TableCell className="px-0 w-[30px]">
-                  {task.headerIcon()}
+                  {/* {task.headerIcon()} */}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                   <div className="flex flex-col">
                     <span className="text-muted-foreground font-medium text-[16px] leading-6">
-                      {task.mission}
+                      {task.task_name}
                     </span>
                     <span className="text-[18px] leading-6 font-semibold">
-                      + {task.point} BABY DOGS
+                      + {task.points} BABY DOGS
                     </span>
                   </div>
                 </TableCell>
                 <TableCell className="px-0 flex justify-end">
-                  {task.buttonType === "start" ? (
-                    <Button variant={"gray"} className="w-20 tracking-tight">
-                      Start
-                    </Button>
-                  ) : (
-                    <Button variant={"orange"} className="w-20 tracking-tight">
-                      Check
-                    </Button>
-                  )}
+                  <Button variant={"orange"} className="w-20 tracking-tight">
+                    Start
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
