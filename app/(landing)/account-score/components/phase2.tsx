@@ -1,8 +1,16 @@
+import Head from "next/head";
 import Image from "next/image";
 
-export default function Phase2() {
+interface Phase2Props {
+  dogPoint: number | undefined;
+}
+
+export default function Phase2({ dogPoint }: Phase2Props) {
   return (
     <>
+      <Head>
+        <link rel="preload" href="/images/babydog-2.png" as="image" />
+      </Head>
       <h1 className="text-4xl font-semibold mt-[60px]">You are amazing!</h1>
       <div className="mt-[10px] text-muted-foreground tracking-tight">
         Here is your DOGS reward
@@ -16,7 +24,7 @@ export default function Phase2() {
           alt={"image-baby-dog"}
           className="m-auto"
         />
-        <div className="text-4xl font-semibold mt-[14px]">838</div>
+        <div className="text-4xl font-semibold mt-[14px]">{dogPoint ?? 0}</div>
         <div className="text-base mt-[60px] tracking-tight">
           Thanks for your time on Telegram
         </div>

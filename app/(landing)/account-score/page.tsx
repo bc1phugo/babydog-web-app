@@ -10,6 +10,20 @@ import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
 
+export interface IDbUserData {
+  id: number;
+  telegram_id: string;
+  baby_dog_points: number;
+  created_at: Date;
+  first_name: string;
+  is_premium: false;
+  language_code: string;
+  last_name: string;
+  photo_url: string | null;
+  referral_code: string;
+  username: string;
+}
+
 export default function AccountScorePage() {
   const testerUser =
     process.env.NODE_ENV === "development"
@@ -31,7 +45,8 @@ export default function AccountScorePage() {
     queryKey: ["userInfo", user?.id],
     queryFn: async () => {
       const response = await fetch(`/api/user/${user?.id}`);
-      return response.json();
+      const data = await response.json();
+      return data as IDbUserData;
     },
     enabled: !!user && !!user.id,
   });
@@ -57,7 +72,7 @@ export default function AccountScorePage() {
           {currentPhase === 1 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (
-            <Phase2 />
+            <Phase2 dogPoint={userData?.baby_dog_points} />
           )}
         </div>
       </section>
