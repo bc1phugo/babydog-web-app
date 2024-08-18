@@ -13,6 +13,10 @@ export async function GET(
         headers: {
           "Content-Type": "application/json",
         },
+        next: {
+          tags: ["availableUserTask"],
+          revalidate: 60,
+        },
       }
     );
     const data = await response.json();
