@@ -15,7 +15,7 @@ export async function GET(
         },
         next: {
           tags: ["userRankings", telegramId],
-          revalidate: 1 * 60 * 5,
+          revalidate: 1 * 60 * 10,
         },
       }
     );

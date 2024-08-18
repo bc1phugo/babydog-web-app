@@ -44,59 +44,63 @@ export default function BabyDogPointDetail({
     <section className="flex flex-col items-center rounded-t-[50px] bg-[#FFF8F2] mt-[80px] pb-[140px]">
       <h2 className="text-4xl font-semibold mt-[44px]">Task</h2>
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
-        <Table className="">
+        <Table>
           <TableBody>
-            {userInfo.tasks.map((task) => (
-              <TableRow key={task.id}>
-                <TableCell className="px-0 w-[30px]">
-                  {/* {task.headerIcon()} */}
-                  {iconMap[task.icon_type] ?? (
-                    <BoneIcon width={30} height={30} />
-                  )}
-                </TableCell>
-                <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
-                  <div className="flex flex-col">
-                    <span className="text-muted-foreground font-medium text-[16px] leading-6">
-                      {task.task_name}
-                    </span>
-                    <span className="text-[18px] leading-6 font-semibold">
-                      + {task.points} BABY DOGS
-                    </span>
-                  </div>
-                </TableCell>
-                <TableCell className="px-0 flex justify-end">
-                  <Button
-                    variant={"orange"}
-                    className="w-20 tracking-tight"
-                    onClick={async () => {
-                      try {
-                        const response = await fetch(
-                          `/api/user/${userInfo.user.telegram_id}/task`,
-                          {
-                            method: "POST",
-                            headers: {
-                              "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                              task_id: task.id,
-                              telegram_id: userInfo.user.telegram_id,
-                            }),
-                          }
-                        );
-                        const data = response.json();
-                        console.log(data);
-                      } catch (error) {
-                        console.log("POST COMPLETE TASK FAILED: ", error);
-                      } finally {
-                        refetch();
-                      }
-                    }}
-                  >
-                    Start
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            {userInfo.tasks.length === 0 ? (
+              <div></div>
+            ) : (
+              userInfo.tasks.map((task) => (
+                <TableRow key={task.id}>
+                  <TableCell className="px-0 w-[30px]">
+                    {/* {task.headerIcon()} */}
+                    {iconMap[task.icon_type] ?? (
+                      <BoneIcon width={30} height={30} />
+                    )}
+                  </TableCell>
+                  <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
+                    <div className="flex flex-col">
+                      <span className="text-muted-foreground font-medium text-[16px] leading-6">
+                        {task.task_name}
+                      </span>
+                      <span className="text-[18px] leading-6 font-semibold">
+                        + {task.points} BABY DOGS
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="px-0 flex justify-end">
+                    <Button
+                      variant={"orange"}
+                      className="w-20 tracking-tight"
+                      onClick={async () => {
+                        try {
+                          const response = await fetch(
+                            `/api/user/${userInfo.user.telegram_id}/task`,
+                            {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                              body: JSON.stringify({
+                                task_id: task.id,
+                                telegram_id: userInfo.user.telegram_id,
+                              }),
+                            }
+                          );
+                          const data = response.json();
+                          console.log(data);
+                        } catch (error) {
+                          console.log("POST COMPLETE TASK FAILED: ", error);
+                        } finally {
+                          refetch();
+                        }
+                      }}
+                    >
+                      Start
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
           </TableBody>
         </Table>
       </div>

@@ -29,13 +29,19 @@ export const TelegramProvider = ({
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const pathname = usePathname();
   const router = useRouter();
-
   const value = useMemo(() => {
     return webApp
       ? {
           webApp,
           unsafeData: webApp.initDataUnsafe,
-          user: webApp.initDataUnsafe.user,
+          user:
+            process.env.NODE_ENV === "production"
+              ? webApp.initDataUnsafe.user
+              : {
+                  id: 5300650441,
+                  first_name: "Hugo",
+                  username: "Hugo_Oh",
+                },
         }
       : {};
   }, [webApp]);

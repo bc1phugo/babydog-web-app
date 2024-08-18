@@ -44,8 +44,10 @@ export default function FriendsPage() {
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold ">
-              <span className="block text-4xl">Invite friends</span>
-              <span className="block text-3xl">and get more BABY DOGS</span>
+              <span className="block text-4xl tracking-tight">
+                Invite friends
+              </span>
+              <span className="block text-3xl">and get more BABY DOG</span>
             </div>
             <Image
               priority
@@ -78,7 +80,7 @@ export default function FriendsPage() {
             </DrawerTrigger>
             <DrawerContent className="bg-[#FFB061]">
               <DrawerHeader className="bg-gradient-to-b from-customOrange to-customOrange-deep rounded-t-full">
-                <DrawerTitle className="text-lg text-background font-semibold">
+                <DrawerTitle className="text-lg text-background font-semibold text-center">
                   Invite friends
                 </DrawerTitle>
               </DrawerHeader>

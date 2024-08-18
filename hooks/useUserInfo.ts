@@ -35,6 +35,7 @@ interface IReward {
 
 export default function useUserInfoQuery() {
   const { user } = useTelegram();
+
   const query = useQuery({
     queryKey: ["userInfo", user?.id],
     queryFn: async () => {
