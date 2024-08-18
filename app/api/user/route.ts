@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const telegramId = body.telegramId;
+  const telegramId = body.telegram_id;
   console.log("🚀 ~ POST ~ telegramId:", telegramId);
 
   try {
@@ -18,6 +18,7 @@ export async function POST(req: Request) {
       },
     });
     const data = await response.json();
+    console.log("🚀 ~ POST ~ data:", data);
 
     revalidateTag(`userInfo-${telegramId}`);
 
