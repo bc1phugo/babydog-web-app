@@ -7,7 +7,7 @@ export async function GET(
   const { userId } = params;
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/user/${userId}/exists`,
+      `${process.env.API_URL}/api/user/${userId}/exist`,
       {
         method: "GET",
         headers: {
