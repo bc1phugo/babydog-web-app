@@ -57,7 +57,7 @@ export default function AccountCheckPage() {
   }, [isAllStatusChecked]);
 
   return (
-    <main className="h-full overflow-auto pb-[20px] overflow-x-hidden flex flex-col pt-[60px] px-[23px] justify-between">
+    <main className="h-full overflow-auto pb-[30px] overflow-x-hidden flex flex-col pt-[60px] px-[23px] justify-between">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />

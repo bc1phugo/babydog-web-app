@@ -45,7 +45,7 @@ export default function AccountScorePage() {
   const { data: userInfo } = useUserInfoQuery();
 
   return (
-    <main className="h-full pt-[20px] pb-[20px] overflow-auto overflow-x-hidden flex flex-col px-[23px] justify-between">
+    <main className="h-full pt-[20px] pb-[30px] overflow-auto overflow-x-hidden flex flex-col px-[23px] justify-between">
       <section>
         <div className="flex gap-2">
           <Progress

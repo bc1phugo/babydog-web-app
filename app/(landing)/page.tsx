@@ -62,7 +62,7 @@ export default function LandingPage() {
       </Head>
       <main
         className={cn(
-          "h-full overflow-auto overflow-x-hidden flex flex-col pt-[40px] pb-[20px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]",
+          "h-full overflow-auto overflow-x-hidden flex flex-col pt-[40px] pb-[30px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]",
           "justify-between"
         )}
       >
