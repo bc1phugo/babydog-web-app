@@ -31,7 +31,6 @@ interface BabyDogPointDetailProps {
 export default function BabyDogPointDetail({
   userAvailableTasks,
 }: BabyDogPointDetailProps) {
-  console.log(userAvailableTasks);
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
     twitterX: <XIcon width={30} height={30} />,

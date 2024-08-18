@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import useUserInfoQuery from "@/hooks/useUserInfo";
 
 export default function LandingPage() {
   const { user } = useTelegram();
@@ -17,7 +18,7 @@ export default function LandingPage() {
   const referral = searchParams.get("startapp");
 
   const { data: userExists } = useQuery({
-    queryKey: ["userExists", user?.id],
+    queryKey: ["  ", user?.id],
     queryFn: async () => {
       const response = await fetch(`/api/user/${user?.id}/exist`);
       const data = await response.json();
@@ -25,6 +26,9 @@ export default function LandingPage() {
     },
     enabled: !!user && !!user.id,
   });
+
+  const { data: userData } = useUserInfoQuery();
+  console.log("🚀 ~ LandingPage ~ userData:", userData);
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {

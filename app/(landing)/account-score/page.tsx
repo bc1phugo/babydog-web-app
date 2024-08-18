@@ -51,6 +51,8 @@ export default function AccountScorePage() {
     enabled: !!user && !!user.id,
   });
 
+  console.log(userData);
+
   useEffect(() => {
     if (userData) {
       console.log("userData", userData);

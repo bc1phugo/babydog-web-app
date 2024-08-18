@@ -9,6 +9,9 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(res),
+      next: {
+        revalidate: 60,
+      },
     });
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });

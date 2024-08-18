@@ -5,16 +5,18 @@ export async function GET(
   { params }: { params: { telegramId: string } }
 ) {
   const { telegramId } = params;
+
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/user/${telegramId}`,
+      `${process.env.API_URL}/api/user/${telegramId}/rewards`,
       {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
         next: {
-          tags: ["userInfo", telegramId],
+          tags: ["userRewards", telegramId],
+          revalidate: 60,
         },
       }
     );
