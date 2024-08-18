@@ -10,7 +10,7 @@ import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement, ReactSVGElement } from "react";
 import { IDBUserAvailableTask } from "../page";
-import { IUserInfo } from "@/hooks/useUserInfo";
+import useUserInfoQuery, { IUserInfo } from "@/hooks/useUserInfo";
 
 interface ITask {
   headerIcon: () => ReactElement;
@@ -32,30 +32,13 @@ interface BabyDogPointDetailProps {
 export default function BabyDogPointDetail({
   userInfo,
 }: BabyDogPointDetailProps) {
+  const { refetch } = useUserInfoQuery();
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
     twitterX: <XIcon width={30} height={30} />,
     link: <LinkIcon width={30} height={30} />,
     friends: <AddFriendsIcon width={30} height={30} />,
   };
-
-  const rewards: Array<IReward> = [
-    {
-      headerIcon: () => <LinkIcon width={30} height={30} />,
-      mission: "Account age",
-      point: 300,
-    },
-    {
-      headerIcon: () => <XIcon width={30} height={30} />,
-      mission: "Telegram Premium",
-      point: 10000,
-    },
-    {
-      headerIcon: () => <AddFriendsIcon width={30} height={30} />,
-      mission: "Invited friends",
-      point: 3000,
-    },
-  ];
 
   return (
     <section className="flex flex-col items-center rounded-t-[50px] bg-[#FFF8F2] mt-[80px] pb-[140px]">
@@ -69,7 +52,7 @@ export default function BabyDogPointDetail({
                   {/* {task.headerIcon()} */}
                   {iconMap[task.icon_type] ?? (
                     <BoneIcon width={30} height={30} />
-                  )}
+                  )}{" "}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                   <div className="flex flex-col">
@@ -82,7 +65,33 @@ export default function BabyDogPointDetail({
                   </div>
                 </TableCell>
                 <TableCell className="px-0 flex justify-end">
-                  <Button variant={"orange"} className="w-20 tracking-tight">
+                  <Button
+                    variant={"orange"}
+                    className="w-20 tracking-tight"
+                    onClick={async () => {
+                      try {
+                        const response = await fetch(
+                          `/api/user/${userInfo.user.telegram_id}`,
+                          {
+                            method: "POST",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                              task_id: task.id,
+                              telegram_id: userInfo.user.telegram_id,
+                            }),
+                          }
+                        );
+                        const data = response.json();
+                        console.log(data);
+                      } catch (error) {
+                        console.log("POST COMPLETE TASK FAILED: ", error);
+                      } finally {
+                        refetch();
+                      }
+                    }}
+                  >
                     Start
                   </Button>
                 </TableCell>
