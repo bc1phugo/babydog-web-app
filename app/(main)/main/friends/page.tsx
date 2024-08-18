@@ -1,19 +1,21 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import useUserInfoQuery from "@/hooks/useUserInfo";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function FriendsPage() {
+  const { data: userData } = useUserInfoQuery();
+  const telegramUrl = process.env.PUBLIC_URL;
+
   return (
     <>
       <div className="mt-[60px] px-[23px] pb-[140px]">
@@ -55,16 +57,21 @@ export default function FriendsPage() {
                 </DrawerTitle>
               </DrawerHeader>
               <DrawerFooter className="gap-[15px] py-10 px-[23px]">
-                <Link
-                  href="#"
+                <Button
                   className={cn(
                     buttonVariants({ variant: "gray", size: "xl" }),
                     "rounded-full",
                     "text-lg"
                   )}
+                  disabled={!userData || !telegramUrl}
+                  onClick={() =>
+                    window.navigator.clipboard.writeText(
+                      `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`
+                    )
+                  }
                 >
                   Copy invite link
-                </Link>
+                </Button>
                 <Link
                   href="#"
                   className={cn(
