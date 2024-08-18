@@ -31,7 +31,7 @@ export default function AccountCheckPage() {
     ogStatusChecked;
 
   const { user } = useTelegram();
-  console.log(user);
+  const [linkDisabled, setLinkDisabled] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,6 +47,14 @@ export default function AccountCheckPage() {
       setOgStatusChecked(true);
     }, 300);
   }, []);
+
+  useEffect(() => {
+    if (isAllStatusChecked) {
+      setTimeout(() => {
+        setLinkDisabled(false);
+      }, 3000);
+    }
+  }, [isAllStatusChecked]);
 
   return (
     <main className="h-full overflow-auto pb-[20px] overflow-x-hidden flex flex-col pt-[60px] px-[23px] justify-between">
@@ -142,10 +150,9 @@ export default function AccountCheckPage() {
         href={"/account-score"}
         className={cn(
           buttonVariants({ variant: "orange", size: "xl" }),
-          "font-semibold text-xl leading-6 mt-[34px]",
-          "delay-3000"
+          "font-semibold text-xl leading-6 mt-[34px]"
         )}
-        aria-disabled={!isAllStatusChecked}
+        aria-disabled={linkDisabled}
       >
         Continue
       </Link>
