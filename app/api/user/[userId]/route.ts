@@ -11,7 +11,9 @@ export async function GET(
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-cache",
+      next: {
+        revalidate: 60,
+      },
     });
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });
