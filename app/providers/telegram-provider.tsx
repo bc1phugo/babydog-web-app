@@ -48,7 +48,7 @@ export const TelegramProvider = ({
   }, []);
 
   /**
-   * @description Telegram Expand시 타이밍 이슈로 인한 버그 픽스.
+   * @description Telegram WebApp Expand시 타이밍 이슈로 인한 버그 픽스.
    * @author Hugo
    * @updatedAt 2024. 08. 19
    *
