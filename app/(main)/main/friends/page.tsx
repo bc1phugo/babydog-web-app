@@ -1,3 +1,4 @@
+import { useTelegram } from "@/app/providers/telegram-provider";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Drawer,
@@ -13,8 +14,26 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function FriendsPage() {
+  const { webApp } = useTelegram();
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.PUBLIC_URL;
+
+  function copyToClipboard(text: string) {
+    console.log("🚀 ~ copyToClipboard ~ text:", text);
+
+    const tempInput = document.createElement("textarea");
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+
+    if (webApp) {
+      webApp.showAlert("Referral code copied to clipboard!");
+    } else {
+      alert("Referral code copied to clipboard!");
+    }
+  }
 
   return (
     <>
@@ -65,7 +84,7 @@ export default function FriendsPage() {
                   )}
                   disabled={!userData || !telegramUrl}
                   onClick={() =>
-                    window.navigator.clipboard.writeText(
+                    copyToClipboard(
                       `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`
                     )
                   }
