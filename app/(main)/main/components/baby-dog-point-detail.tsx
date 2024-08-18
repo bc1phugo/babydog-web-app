@@ -7,6 +7,7 @@ import XIcon from "/public/icons/icon_x.svg";
 import LinkIcon from "/public/icons/icon_link.svg";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
+import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement, ReactSVGElement } from "react";
 import { IDBUserAvailableTask } from "../page";
 
@@ -30,38 +31,13 @@ interface BabyDogPointDetailProps {
 export default function BabyDogPointDetail({
   userAvailableTasks,
 }: BabyDogPointDetailProps) {
-  const tasks: Array<ITask> = [
-    {
-      headerIcon: () => <CheckCircleIcon width={30} height={30} />,
-      mission: "Join Baby Dog channel",
-      point: 3000,
-      buttonType: "start",
-    },
-    {
-      headerIcon: () => <XIcon width={30} height={30} />,
-      mission: "Subscribe to Baby dog X.com",
-      point: 1000,
-      buttonType: "start",
-    },
-    {
-      headerIcon: () => <XIcon width={30} height={30} />,
-      mission: "Subscribe to Dog X.com",
-      point: 1000,
-      buttonType: "start",
-    },
-    {
-      headerIcon: () => <LinkIcon width={30} height={30} />,
-      mission: "Subscribe to Baby Dog Youtube",
-      point: 1000,
-      buttonType: "start",
-    },
-    {
-      headerIcon: () => <AddFriendsIcon width={30} height={30} />,
-      mission: "Invite friends to BABY DOG",
-      point: 20000,
-      buttonType: "check",
-    },
-  ];
+  console.log(userAvailableTasks);
+  const iconMap = {
+    check: <CheckCircleIcon width={30} height={30} />,
+    twitterX: <XIcon width={30} height={30} />,
+    link: <LinkIcon width={30} height={30} />,
+    friends: <AddFriendsIcon width={30} height={30} />,
+  };
 
   const rewards: Array<IReward> = [
     {
@@ -91,6 +67,9 @@ export default function BabyDogPointDetail({
               <TableRow key={task.id}>
                 <TableCell className="px-0 w-[30px]">
                   {/* {task.headerIcon()} */}
+                  {iconMap[task.icon_type] ?? (
+                    <BoneIcon width={30} height={30} />
+                  )}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                   <div className="flex flex-col">
