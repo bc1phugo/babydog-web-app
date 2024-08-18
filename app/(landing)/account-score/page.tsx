@@ -9,6 +9,7 @@ import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
+import useUserInfoQuery from "@/hooks/useUserInfo";
 
 export interface IDbUserData {
   id: number;
@@ -41,23 +42,7 @@ export default function AccountScorePage() {
   const isLastPhase = currentPhase === 2;
 
   const { user } = useTelegram();
-  const { data: userData } = useQuery({
-    queryKey: ["userInfo", user?.id],
-    queryFn: async () => {
-      const response = await fetch(`/api/user/${user?.id}`);
-      const data = await response.json();
-      return data as IDbUserData;
-    },
-    enabled: !!user && !!user.id,
-  });
-
-  console.log(userData);
-
-  useEffect(() => {
-    if (userData) {
-      console.log("userData", userData);
-    }
-  }, [userData]);
+  const { data: userInfo } = useUserInfoQuery();
 
   return (
     <main className="h-full pb-[10px] overflow-auto overflow-x-hidden flex flex-col pt-[20px] px-[23px]">
@@ -74,7 +59,7 @@ export default function AccountScorePage() {
           {currentPhase === 1 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (
-            <Phase2 dogPoint={userData?.baby_dog_points} />
+            <Phase2 dogPoint={userInfo?.user.baby_dog_points ?? 0} />
           )}
         </div>
       </section>

@@ -10,6 +10,7 @@ import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement, ReactSVGElement } from "react";
 import { IDBUserAvailableTask } from "../page";
+import { IUserInfo } from "@/hooks/useUserInfo";
 
 interface ITask {
   headerIcon: () => ReactElement;
@@ -25,11 +26,11 @@ interface IReward {
 }
 
 interface BabyDogPointDetailProps {
-  userAvailableTasks: IDBUserAvailableTask[];
+  userInfo: IUserInfo;
 }
 
 export default function BabyDogPointDetail({
-  userAvailableTasks,
+  userInfo,
 }: BabyDogPointDetailProps) {
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
@@ -62,7 +63,7 @@ export default function BabyDogPointDetail({
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table className="">
           <TableBody>
-            {userAvailableTasks.map((task) => (
+            {userInfo.tasks.map((task) => (
               <TableRow key={task.id}>
                 <TableCell className="px-0 w-[30px]">
                   {/* {task.headerIcon()} */}
@@ -94,7 +95,7 @@ export default function BabyDogPointDetail({
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table className="w-full">
           <TableBody>
-            {rewards.map((reward) => (
+            {userInfo.reward.map((reward) => (
               <TableRow key={reward.mission}>
                 <TableCell className="px-0 w-[30px]">
                   {reward.headerIcon()}

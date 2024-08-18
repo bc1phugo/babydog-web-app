@@ -17,18 +17,7 @@ export default function LandingPage() {
   const searchParams = useSearchParams();
   const referral = searchParams.get("startapp");
 
-  const { data: userExists } = useQuery({
-    queryKey: ["  ", user?.id],
-    queryFn: async () => {
-      const response = await fetch(`/api/user/${user?.id}/exist`);
-      const data = await response.json();
-      return data as boolean;
-    },
-    enabled: !!user && !!user.id,
-  });
-
   const { data: userData } = useUserInfoQuery();
-  console.log("🚀 ~ LandingPage ~ userData:", userData);
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
@@ -37,7 +26,7 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    if (!user || userExists) return;
+    if (!user || userData?.userExist) return;
 
     try {
       fetch(`/api/user`, {
@@ -60,7 +49,7 @@ export default function LandingPage() {
       console.error("Unexpected error:", err);
       // alert("Unexpected error: " + err.message);
     }
-  }, [user, referral, userExists]);
+  }, [user, referral, userData]);
 
   return (
     <>

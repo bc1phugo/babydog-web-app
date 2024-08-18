@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 interface Phase2Props {
-  dogPoint: number | undefined;
+  dogPoint: number;
 }
 
 export default function Phase2({ dogPoint }: Phase2Props) {
