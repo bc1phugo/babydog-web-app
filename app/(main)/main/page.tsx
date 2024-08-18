@@ -99,7 +99,7 @@ export default function MainPage() {
         </section>
         <section className="mt-20 flex flex-col gap-[15px]">
           <Link
-            href={"/main"}
+            href={"https://www.youtube.com/"}
             className={cn(
               buttonVariants({ variant: "orange", size: "xl" }),
               "font-semibold text-xl leading-6 w-full"
@@ -108,7 +108,7 @@ export default function MainPage() {
             Join Baby dog channel
           </Link>
           <Link
-            href={"/main"}
+            href={"https://www.youtube.com/"}
             className={cn(
               buttonVariants({ variant: "gray", size: "xl" }),
               "text-xl leading-6 w-full"

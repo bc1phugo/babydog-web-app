@@ -13,7 +13,7 @@ export default function Phase2({ dogPoint }: Phase2Props) {
       </Head>
       <h1 className="text-4xl font-semibold mt-[20px]">You are amazing!</h1>
       <div className="mt-[5px] text-muted-foreground tracking-tight">
-        Here is your DOGS reward
+        Here is your BABY DOGS reward
       </div>
       <div className="mt-[20px] mb-[10px]">
         <Image
