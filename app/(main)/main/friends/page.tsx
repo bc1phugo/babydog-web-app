@@ -15,15 +15,18 @@ import useUserInfoQuery from "@/hooks/useUserInfo";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function FriendsPage() {
   const { toast } = useToast();
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.NEXT_PUBLIC_URL;
+  const [isInviteDrawerOpen, setIsInviteDrawerOpen] = useState<boolean>(false);
 
-  const copyToClipboard = (text: string) => {
+  const onClickCopy = (text: string) => {
     window.navigator.clipboard.writeText(text);
 
+    setIsInviteDrawerOpen(false);
     toast({
       description: "Referral link copied to clipboard",
     });
@@ -59,12 +62,16 @@ export default function FriendsPage() {
           </div>
         </section>
         <section className="mt-[60px] flex flex-col gap-[15px]">
-          <Drawer>
+          <Drawer
+            open={isInviteDrawerOpen}
+            onOpenChange={setIsInviteDrawerOpen}
+          >
             <DrawerTrigger asChild>
               <Button
                 className={cn("font-semibold text-xl leading-6 w-full")}
                 variant="orange"
                 size="xl"
+                onClick={() => setIsInviteDrawerOpen(true)}
               >
                 Invite friends
               </Button>
@@ -84,7 +91,7 @@ export default function FriendsPage() {
                   )}
                   disabled={!userData || !telegramUrl}
                   onClick={() =>
-                    copyToClipboard(
+                    onClickCopy(
                       `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`
                     )
                   }
