@@ -1,6 +1,14 @@
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
 
+export interface ITargetTask {
+  id: number;
+  task_name: string;
+  description: string | null;
+  points: number;
+  visible: boolean;
+  icon_type: "link" | "friends" | "twitterX" | "check";
+}
 export interface IUserInfo {
   user: {
     id: number;
@@ -15,14 +23,7 @@ export interface IUserInfo {
     referral_code: string;
     created_at: string;
   };
-  tasks: Array<{
-    id: number;
-    task_name: string;
-    description: string | null;
-    points: number;
-    visible: boolean;
-    icon_type: "link" | "friends" | "twitterX" | "check";
-  }>;
+  tasks: Array<ITargetTask>;
   reward: IReward[]; // Adjust the type if you know the exact structure of the rewards
   userExist: boolean;
 }

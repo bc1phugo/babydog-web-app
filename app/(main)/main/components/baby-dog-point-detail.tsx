@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 import XIcon from "/public/icons/icon_x.svg";
@@ -9,8 +9,11 @@ import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement } from "react";
-import useUserInfoQuery, { IUserInfo } from "@/hooks/useUserInfo";
+import useUserInfoQuery, { ITargetTask, IUserInfo } from "@/hooks/useUserInfo";
 import { useToast } from "@/components/ui/use-toast";
+import { useTelegram } from "@/app/providers/telegram-provider";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface ITask {
   headerIcon: () => ReactElement;
@@ -33,12 +36,142 @@ export default function BabyDogPointDetail({
   userInfo,
 }: BabyDogPointDetailProps) {
   const { refetch: refetchUserInfo } = useUserInfoQuery();
+  const { webApp } = useTelegram();
   const { toast } = useToast();
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
     twitterX: <XIcon width={30} height={30} />,
     link: <LinkIcon width={30} height={30} />,
     friends: <AddFriendsIcon width={30} height={30} />,
+  };
+
+  const handleCompleteButton = (task: ITargetTask) => {
+    switch (task.task_name) {
+      case "Telegram Premium": {
+        return (
+          <Button
+            onClick={() => {
+              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              if (webApp) {
+                webApp.openTelegramLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+            }}
+            variant={"orange"}
+            className="w-20 tracking-tight"
+          >
+            Start
+          </Button>
+        );
+      }
+      case "Join Baby Dog channel": {
+        return (
+          <Button
+            variant={"orange"}
+            className="w-20 tracking-tight"
+            onClick={async () => {
+              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              if (webApp) {
+                webApp.openTelegramLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+              await executeCompleteTask(task);
+            }}
+          >
+            Start
+          </Button>
+        );
+      }
+      case "Subscribe to Baby Dog X.com": {
+        return (
+          <Button
+            onClick={async () => {
+              const url = "https://x.com";
+              if (webApp) {
+                webApp.openLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+              await executeCompleteTask(task);
+            }}
+            variant={"orange"}
+            className="w-20 tracking-tight"
+          >
+            Start
+          </Button>
+        );
+      }
+      case "Invite friends to Baby Dog": {
+        return (
+          <Link
+            className={cn(
+              buttonVariants({ variant: "orange" }),
+              "w-20 tracking-tight"
+            )}
+            href="/main/friends"
+          >
+            Start
+          </Link>
+        );
+      }
+      case "Subscribe to Baby Dog Youtube": {
+        return (
+          <Button
+            onClick={async () => {
+              const url = "https://youtube.com";
+              if (webApp) {
+                webApp.openLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+
+              await executeCompleteTask(task);
+            }}
+            variant={"orange"}
+            className="w-20 tracking-tight"
+          >
+            Start
+          </Button>
+        );
+      }
+    }
+  };
+
+  const executeCompleteTask = async (task: ITargetTask) => {
+    try {
+      const response = await fetch(
+        `/api/user/${userInfo.user.telegram_id}/task`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            task_id: task.id,
+            telegram_id: userInfo.user.telegram_id,
+          }),
+        }
+      );
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      refetchUserInfo();
+      toast({
+        title: "Mission Success",
+        description: `${task.task_name} + ${task.points}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Something went wrong...",
+        description: `${task.task_name}`,
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -68,46 +201,7 @@ export default function BabyDogPointDetail({
                     </div>
                   </TableCell>
                   <TableCell className="px-0 flex justify-end">
-                    <Button
-                      variant={"orange"}
-                      className="w-20 tracking-tight"
-                      onClick={async () => {
-                        try {
-                          const response = await fetch(
-                            `/api/user/${userInfo.user.telegram_id}/task`,
-                            {
-                              method: "POST",
-                              headers: {
-                                "Content-Type": "application/json",
-                              },
-                              body: JSON.stringify({
-                                task_id: task.id,
-                                telegram_id: userInfo.user.telegram_id,
-                              }),
-                            }
-                          );
-                          const data = await response.json();
-
-                          if (data.error) {
-                            throw new Error(data.error);
-                          }
-
-                          refetchUserInfo();
-                          toast({
-                            title: "Mission Success",
-                            description: `${task.task_name} + ${task.points}`,
-                          });
-                        } catch (error) {
-                          toast({
-                            title: "Something went wrong...",
-                            description: `${task.task_name}`,
-                            variant: "destructive",
-                          });
-                        }
-                      }}
-                    >
-                      Start
-                    </Button>
+                    {handleCompleteButton(task)}
                   </TableCell>
                 </TableRow>
               ))
