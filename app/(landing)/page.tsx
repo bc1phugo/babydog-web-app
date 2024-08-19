@@ -13,7 +13,7 @@ import useUserInfoQuery from "@/hooks/useUserInfo";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
 
 export default function LandingPage() {
-  const { user } = useTelegram();
+  const { user, webApp } = useTelegram();
   const searchParams = useSearchParams();
   const referral = searchParams.get("startapp");
   console.log("🚀 ~ LandingPage ~ referral:", referral);
@@ -33,7 +33,11 @@ export default function LandingPage() {
   useEffect(() => {
     const createUser = async () => {
       if (!userData || userData.userExist) return;
-      if (!user) return;
+      if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
+        return;
+
+      const referralFromApp = webApp?.initDataUnsafe.start_param;
+      console.log("🚀 ~ createUser ~ referralFromApp:", referralFromApp);
 
       try {
         const response = await fetch(`/api/user`, {
@@ -49,7 +53,7 @@ export default function LandingPage() {
             language_code: user.language_code,
             is_premium: user.is_premium || false,
             photo_url: user.photo_url,
-            referral_code: referral,
+            referral_code: referralFromApp,
           }),
         });
         const data = await response.json();
