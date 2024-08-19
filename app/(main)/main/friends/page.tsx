@@ -22,7 +22,9 @@ export default function FriendsPage() {
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.NEXT_PUBLIC_URL;
   const [isInviteDrawerOpen, setIsInviteDrawerOpen] = useState<boolean>(false);
-  const referalUrl = `${telegramUrl}?ref=${userData?.user.referral_code ?? ""}`;
+  const referalUrl = `${telegramUrl}?startapp=${
+    userData?.user.referral_code ?? ""
+  }`;
 
   const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
     referalUrl
