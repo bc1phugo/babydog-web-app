@@ -16,6 +16,7 @@ export default function LandingPage() {
   const { user } = useTelegram();
   const searchParams = useSearchParams();
   const referral = searchParams.get("startapp");
+  console.log("🚀 ~ LandingPage ~ referral:", referral);
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
 
