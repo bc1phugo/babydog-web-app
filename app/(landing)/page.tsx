@@ -23,7 +23,7 @@ export default function LandingPage() {
     if (!user || userData?.userExist) return;
 
     try {
-      const response = await fetch(`/api/user`, {
+      const response = await fetch(`/api/user/${user.id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,6 +40,7 @@ export default function LandingPage() {
         }),
       });
       const data = response.json();
+      console.log("🚀 ~ createUser ~ data:", data);
     } catch (err: any) {
       console.error("Unexpected error:", err);
     } finally {
