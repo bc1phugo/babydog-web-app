@@ -31,7 +31,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     const createUser = async () => {
-      console.log("🚀 ~ createUser ~ user:", user?.id);
       if (!userData || userData.userExist) return;
       if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
         return;

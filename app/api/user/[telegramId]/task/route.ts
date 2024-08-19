@@ -17,10 +17,18 @@ export async function POST(
       // cache: "no-cache",
     });
     const data = await response.json();
+
+    // Check if the backend returned an error in the data
+    if (data.error) {
+      throw new Error(data.error);
+    }
     revalidateTag(`userInfo-${telegramId}`);
-    console.log(`userInfo-${telegramId} Revalidated after completing tasks`);
+
     return NextResponse.json(data, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: error }, { status: 500 });
+  } catch (error: any) {
+    return NextResponse.json(
+      { error: error.message || "unknown error occured" },
+      { status: 500 }
+    );
   }
 }
