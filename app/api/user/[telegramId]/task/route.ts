@@ -18,6 +18,7 @@ export async function POST(
     });
     const data = await response.json();
     revalidateTag(`userInfo-${telegramId}`);
+    console.log(`userInfo-${telegramId} Revalidated after completing tasks`);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });

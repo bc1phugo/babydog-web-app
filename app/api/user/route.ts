@@ -23,10 +23,14 @@ export async function POST(req: Request) {
 
     // 유저 생성하고, 다시 userInfo를 불러와야 하므로 revalidate
     revalidateTag(`userInfo-${telegramId}`);
+    console.log(`userInfo-${telegramId} Revalidated after user created`);
 
     // 레퍼럴로 가입했으면, 레퍼럴한 유저의 포인트도 다시 불러와야하므로 revalidate
-    if (data.inviterTelegramId || data.inviterTelegramId === "") {
+    if (data.inviterTelegramId !== "" && data.inviterTelegramId) {
       revalidateTag(`userInfo-${data.inviterTelegramId}`);
+      console.log(
+        `userInfo-${data.inviterTelegramId} Revalidated after invited user created`
+      );
     }
 
     return NextResponse.json(data, { status: 200 });
