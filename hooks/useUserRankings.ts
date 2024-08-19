@@ -31,8 +31,5 @@ export default function useUserRankingsQuery({
     enabled: !!user && !!user.id && customEnabled,
   });
 
-  query.data &&
-    console.log("🚀 ~ useUserRankingsQuery ~ query.data:", query.data);
-
   return query;
 }

@@ -93,9 +93,9 @@ export default function MainPage() {
               "font-semibold text-xl leading-6 w-full"
             )}
             onClick={() => {
-              const url = "https://x.com";
+              const url = "https://t.me/+fNtW_O4vdwswYThl";
               if (webApp) {
-                webApp.openLink(url);
+                webApp.openTelegramLink(url);
               } else {
                 window.open(url, "_blank");
               }

@@ -98,7 +98,6 @@ export default function BabyDogPointDetail({
                             description: `${task.task_name} + ${task.points}`,
                           });
                         } catch (error) {
-                          console.log("🚀 ~ onClick={ ~ error:", error);
                           toast({
                             title: "Something went wrong...",
                             description: `${task.task_name}`,

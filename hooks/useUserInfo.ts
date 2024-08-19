@@ -46,7 +46,5 @@ export default function useUserInfoQuery() {
     enabled: !!user && !!user.id,
   });
 
-  query.data && console.log("🚀 ~ useUserInfoQuery ~ query.data:", query.data);
-
   return query;
 }
