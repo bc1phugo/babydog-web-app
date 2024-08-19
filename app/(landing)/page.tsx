@@ -18,36 +18,7 @@ export default function LandingPage() {
   const referral = searchParams.get("startapp");
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
-
-  const createUser = async () => {
-    if (!user || userData?.userExist) return;
-
-    try {
-      const response = await fetch(`/api/user/${user.id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          telegram_id: user.id,
-          username: user.username,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          language_code: user.language_code,
-          is_premium: user.is_premium || false,
-          photo_url: user.photo_url,
-          referral_code: referral,
-        }),
-      });
-      const data = response.json();
-      console.log("🚀 ~ createUser ~ data:", data);
-    } catch (err: any) {
-      console.error("Unexpected error:", err);
-    } finally {
-      refetchUserInfo();
-      refetchUserRankings();
-    }
-  };
+  console.log("🚀 ~ LandingPage ~ userData:", userData);
 
   const { refetch: refetchUserRankings } = useUserRankingsQuery({
     customEnabled: !!userData?.userExist,
@@ -60,8 +31,43 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
+    const createUser = async () => {
+      if (!userData || userData.userExist) return;
+      if (!user) return;
+
+      try {
+        const response = await fetch(`/api/user/${user.id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            telegram_id: user.id,
+            username: user.username,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            language_code: user.language_code,
+            is_premium: user.is_premium || false,
+            photo_url: user.photo_url,
+            referral_code: referral,
+          }),
+        });
+        const data = response.json();
+      } catch (err: any) {
+        console.error("Unexpected error:", err);
+      } finally {
+        refetchUserInfo();
+        refetchUserRankings();
+      }
+    };
     createUser();
-  }, [createUser]);
+  }, [
+    referral,
+    refetchUserInfo,
+    refetchUserRankings,
+    user,
+    userData?.userExist,
+  ]);
 
   return (
     <>

@@ -35,13 +35,13 @@ export const TelegramProvider = ({
           webApp,
           unsafeData: webApp.initDataUnsafe,
           user:
-            process.env.NODE_ENV === "production"
-              ? webApp.initDataUnsafe.user
-              : {
+            process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
+              ? {
                   id: 5300650441,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
-                },
+                }
+              : webApp.initDataUnsafe.user,
         }
       : {};
   }, [webApp]);

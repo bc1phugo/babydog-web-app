@@ -17,10 +17,9 @@ export async function POST(
       // cache: "no-cache",
     });
     const data = await response.json();
+    revalidateTag(`userInfo-${telegramId}`);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });
-  } finally {
-    revalidateTag(`userInfo-${telegramId}`);
   }
 }

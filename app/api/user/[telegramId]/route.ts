@@ -17,6 +17,7 @@ export async function GET(
         next: {
           tags: [`userInfo-${telegramId}`],
         },
+        cache: "default",
       }
     );
     const data = await response.json();
@@ -29,6 +30,7 @@ export async function GET(
 export async function POST(req: Request) {
   const body = await req.json();
   const telegramId = body.telegram_id;
+  console.log("🚀 ~ POST ~ telegramId:", telegramId);
 
   try {
     const response = await fetch(`${process.env.API_URL}/api/user`, {
@@ -37,13 +39,10 @@ export async function POST(req: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
-      next: {
-        revalidate: 60,
-      },
     });
     const data = await response.json();
 
-    revalidateTag(`userInfo-${telegramId}`);
+    // revalidateTag(`userInfo-${telegramId}`);
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
