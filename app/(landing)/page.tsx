@@ -61,7 +61,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     createUser();
-  }, [user, referral, userData]);
+  }, [createUser]);
 
   return (
     <>

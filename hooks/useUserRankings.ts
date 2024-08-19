@@ -18,7 +18,7 @@ interface IUserRanking {
 export default function useUserRankingsQuery({
   customEnabled = true,
 }: {
-  customEnabled: boolean;
+  customEnabled?: boolean;
 }) {
   const { user } = useTelegram();
   const query = useQuery({

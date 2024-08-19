@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export default function LeaderboardPage() {
-  const { data: userRankings } = useUserRankingsQuery();
+  const { data: userRankings } = useUserRankingsQuery({ customEnabled: true });
 
   const userName =
     userRankings?.userRank.username ??
