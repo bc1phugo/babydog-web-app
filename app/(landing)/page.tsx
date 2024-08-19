@@ -19,22 +19,11 @@ export default function LandingPage() {
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
 
-  const { refetch: refetchUserRankings } = useUserRankingsQuery({
-    customEnabled: !!userData?.userExist,
-  });
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && WebApp) {
-      WebApp.expand();
-    }
-  }, []);
-
-  useEffect(() => {
+  const createUser = async () => {
     if (!user || userData?.userExist) return;
-    console.log("🚀 ~ useEffect ~ user:", user);
 
     try {
-      fetch(`/api/user`, {
+      const response = await fetch(`/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,12 +39,27 @@ export default function LandingPage() {
           referral_code: referral,
         }),
       });
+      const data = response.json();
     } catch (err: any) {
       console.error("Unexpected error:", err);
     } finally {
       refetchUserInfo();
       refetchUserRankings();
     }
+  };
+
+  const { refetch: refetchUserRankings } = useUserRankingsQuery({
+    customEnabled: !!userData?.userExist,
+  });
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && WebApp) {
+      WebApp.expand();
+    }
+  }, []);
+
+  useEffect(() => {
+    createUser();
   }, [user, referral, userData]);
 
   return (
