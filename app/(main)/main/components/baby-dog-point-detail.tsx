@@ -32,7 +32,7 @@ interface BabyDogPointDetailProps {
 export default function BabyDogPointDetail({
   userInfo,
 }: BabyDogPointDetailProps) {
-  const { refetch } = useUserInfoQuery();
+  const { refetch: refetchUserInfo } = useUserInfoQuery();
   const { toast } = useToast();
   const iconMap = {
     check: <CheckCircleIcon width={30} height={30} />,
@@ -86,19 +86,24 @@ export default function BabyDogPointDetail({
                               }),
                             }
                           );
-                          const data = response.json();
+                          const data = await response.json();
+
+                          if (data.error) {
+                            throw new Error(data.error);
+                          }
+
+                          refetchUserInfo();
                           toast({
                             title: "Mission Success",
                             description: `${task.task_name} + ${task.points}`,
                           });
                         } catch (error) {
+                          console.log("🚀 ~ onClick={ ~ error:", error);
                           toast({
                             title: "Something went wrong...",
-                            description: `${task.task_name} + ${task.points}`,
+                            description: `${task.task_name}`,
                             variant: "destructive",
                           });
-                        } finally {
-                          refetch();
                         }
                       }}
                     >
