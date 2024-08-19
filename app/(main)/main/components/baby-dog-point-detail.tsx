@@ -7,6 +7,7 @@ import XIcon from "/public/icons/icon_x.svg";
 import LinkIcon from "/public/icons/icon_link.svg";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
+import StarSmileIcon from "/public/icons/icon_star_smile.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
 import { ReactElement } from "react";
 import useUserInfoQuery, { ITargetTask, IUserInfo } from "@/hooks/useUserInfo";
@@ -43,6 +44,7 @@ export default function BabyDogPointDetail({
     twitterX: <XIcon width={30} height={30} />,
     link: <LinkIcon width={30} height={30} />,
     friends: <AddFriendsIcon width={30} height={30} />,
+    star: <StarSmileIcon width={30} height={30} />,
   };
 
   const handleCompleteButton = (task: ITargetTask) => {
@@ -216,7 +218,9 @@ export default function BabyDogPointDetail({
             {userInfo.reward.map((reward) => (
               <TableRow key={reward.task_name + reward.awarded_at}>
                 <TableCell className="px-0 w-[30px]">
-                  <CheckCircleIcon width={30} height={30} />
+                  {iconMap[reward.icon_type] ?? (
+                    <BoneIcon width={30} height={30} />
+                  )}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium tracking-tight">
                   {reward.task_name}
