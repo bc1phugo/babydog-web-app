@@ -36,7 +36,7 @@ export default function LandingPage() {
       if (!user) return;
 
       try {
-        const response = await fetch(`/api/user/${user.id}`, {
+        const response = await fetch(`/api/user`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -66,6 +66,7 @@ export default function LandingPage() {
     refetchUserInfo,
     refetchUserRankings,
     user,
+    userData,
     userData?.userExist,
   ]);
 
