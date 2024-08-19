@@ -87,13 +87,11 @@ export default function BabyDogPointDetail({
                             }
                           );
                           const data = response.json();
-                          console.log(data);
                           toast({
                             title: "Mission Success",
                             description: `${task.task_name} + ${task.points}`,
                           });
                         } catch (error) {
-                          console.log("POST COMPLETE TASK FAILED: ", error);
                           toast({
                             title: "Something went wrong...",
                             description: `${task.task_name} + ${task.points}`,

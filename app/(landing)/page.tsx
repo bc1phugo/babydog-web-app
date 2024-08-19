@@ -18,7 +18,6 @@ export default function LandingPage() {
   const referral = searchParams.get("startapp");
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
-  console.log("🚀 ~ LandingPage ~ userData:", userData);
 
   const { refetch: refetchUserRankings } = useUserRankingsQuery({
     customEnabled: !!userData?.userExist,
@@ -52,7 +51,7 @@ export default function LandingPage() {
             referral_code: referral,
           }),
         });
-        const data = response.json();
+        const data = await response.json();
       } catch (err: any) {
         console.error("Unexpected error:", err);
       } finally {
