@@ -105,7 +105,7 @@ export default function MainPage() {
           </Button>
           <Button
             onClick={() => {
-              const url = "https://x.com";
+              const url = "https://x.com/BabydogrRunes";
               if (webApp) {
                 webApp.openLink(url);
               } else {
