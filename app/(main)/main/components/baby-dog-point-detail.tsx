@@ -53,7 +53,7 @@ export default function BabyDogPointDetail({
         return (
           <Button
             onClick={() => {
-              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              const url = "https://t.me/premium";
               if (webApp) {
                 webApp.openTelegramLink(url);
               } else {
@@ -90,7 +90,7 @@ export default function BabyDogPointDetail({
         return (
           <Button
             onClick={async () => {
-              const url = "https://x.com";
+              const url = "https://x.com/BabydogrRunes";
               if (webApp) {
                 webApp.openLink(url);
               } else {
@@ -122,7 +122,8 @@ export default function BabyDogPointDetail({
         return (
           <Button
             onClick={async () => {
-              const url = "https://youtube.com";
+              const url =
+                "https://www.youtube.com/channel/UC5aLROOknlQkNzsi9hLbrUQ";
               if (webApp) {
                 webApp.openLink(url);
               } else {
