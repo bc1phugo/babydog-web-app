@@ -38,11 +38,17 @@ export default function AccountScorePage() {
         }
       : null;
 
-  const [currentPhase, setCurrentPhase] = useState<1 | 2>(1);
+  const [currentPhase, setCurrentPhase] = useState<0 | 1 | 2>(0);
   const isLastPhase = currentPhase === 2;
 
   const { user } = useTelegram();
   const { data: userInfo } = useUserInfoQuery();
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentPhase(1);
+    }, 100);
+  }, []);
 
   return (
     <main className="h-full pt-[20px] pb-[30px] overflow-auto overflow-x-hidden flex flex-col px-[23px] justify-between">
