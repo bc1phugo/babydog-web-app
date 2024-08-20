@@ -9,46 +9,37 @@ import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import AddFriendsIcon from "/public/icons/icon_add_friends.svg";
 import StarSmileIcon from "/public/icons/icon_star_smile.svg";
 import BoneIcon from "/public/icons/icon_bone.svg";
-import { ReactElement } from "react";
-import useUserInfoQuery, { ITargetTask, IUserInfo } from "@/hooks/useUserInfo";
+import useUserInfoQuery, {
+  ITargetMission,
+  IUserInfo,
+} from "@/hooks/useUserInfo";
 import { useToast } from "@/components/ui/use-toast";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-interface ITask {
-  headerIcon: () => ReactElement;
-  mission: string;
-  point: number;
-  buttonType: "start" | "check";
-}
-
-interface IReward {
-  headerIcon: () => ReactElement;
-  mission: string;
-  point: number;
-}
-
 interface BabyDogPointDetailProps {
   userInfo: IUserInfo;
 }
 
-export default function BabyDogPointDetail({
+export default function BasbyDogPointDetail({
   userInfo,
 }: BabyDogPointDetailProps) {
   const { refetch: refetchUserInfo } = useUserInfoQuery();
   const { webApp } = useTelegram();
   const { toast } = useToast();
   const iconMap = {
-    check: <CheckCircleIcon width={30} height={30} />,
-    twitterX: <XIcon width={30} height={30} />,
-    link: <LinkIcon width={30} height={30} />,
-    friends: <AddFriendsIcon width={30} height={30} />,
-    star: <StarSmileIcon width={30} height={30} />,
+    icon_age: <CheckCircleIcon width={30} height={30} />,
+    icon_website: <LinkIcon width={30} height={30} />,
+    icon_youtube: <LinkIcon width={30} height={30} />,
+    icon_telegram: <LinkIcon width={30} height={30} />,
+    icon_invite: <AddFriendsIcon width={30} height={30} />,
+    icon_friends: <AddFriendsIcon width={30} height={30} />,
+    icon_premium: <StarSmileIcon width={30} height={30} />,
   };
 
-  const handleCompleteButton = (task: ITargetTask) => {
-    switch (task.task_name) {
+  const handleCompleteButton = (mission: ITargetMission) => {
+    switch (mission.mission_name) {
       case "Telegram Premium": {
         return (
           <Button
@@ -79,7 +70,7 @@ export default function BabyDogPointDetail({
               } else {
                 window.open(url, "_blank");
               }
-              await executeCompleteTask(task);
+              await executeCompleteMission(mission);
             }}
           >
             Start
@@ -96,7 +87,7 @@ export default function BabyDogPointDetail({
               } else {
                 window.open(url, "_blank");
               }
-              await executeCompleteTask(task);
+              await executeCompleteMission(mission);
             }}
             variant={"orange"}
             className="w-20 tracking-tight"
@@ -130,7 +121,7 @@ export default function BabyDogPointDetail({
                 window.open(url, "_blank");
               }
 
-              await executeCompleteTask(task);
+              await executeCompleteMission(mission);
             }}
             variant={"orange"}
             className="w-20 tracking-tight"
@@ -142,17 +133,17 @@ export default function BabyDogPointDetail({
     }
   };
 
-  const executeCompleteTask = async (task: ITargetTask) => {
+  const executeCompleteMission = async (mission: ITargetMission) => {
     try {
       const response = await fetch(
-        `/api/user/${userInfo.user.telegram_id}/task`,
+        `/api/user/${userInfo.user.telegram_id}/mission`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            task_id: task.id,
+            mission_id: mission.id,
             telegram_id: userInfo.user.telegram_id,
           }),
         }
@@ -166,12 +157,12 @@ export default function BabyDogPointDetail({
       refetchUserInfo();
       toast({
         title: "Mission Success",
-        description: `${task.task_name} + ${task.points}`,
+        description: `${mission.mission_name} + ${mission.points}`,
       });
     } catch (error) {
       toast({
         title: "Something went wrong...",
-        description: `${task.task_name}`,
+        description: `${mission.mission_name}`,
         variant: "destructive",
       });
     }
@@ -183,28 +174,28 @@ export default function BabyDogPointDetail({
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table>
           <TableBody>
-            {userInfo.tasks.length === 0 ? (
+            {userInfo.missions.length === 0 ? (
               <div></div>
             ) : (
-              userInfo.tasks.map((task) => (
-                <TableRow key={task.id}>
+              userInfo.missions.map((mission) => (
+                <TableRow key={mission.id}>
                   <TableCell className="px-0 w-[30px]">
-                    {iconMap[task.icon_type] ?? (
+                    {iconMap[mission.icon_type] ?? (
                       <BoneIcon width={30} height={30} />
                     )}
                   </TableCell>
                   <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
                     <div className="flex flex-col">
                       <span className="text-muted-foreground font-medium text-[16px] leading-6">
-                        {task.task_name}
+                        {mission.mission_name}
                       </span>
                       <span className="text-[18px] leading-6 font-semibold">
-                        + {task.points} BABY DOGS
+                        + {mission.points} BABY DOGS
                       </span>
                     </div>
                   </TableCell>
                   <TableCell className="px-0 flex justify-end">
-                    {handleCompleteButton(task)}
+                    {handleCompleteButton(mission)}
                   </TableCell>
                 </TableRow>
               ))
@@ -216,18 +207,20 @@ export default function BabyDogPointDetail({
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table className="w-full">
           <TableBody>
-            {userInfo.reward.map((reward) => (
-              <TableRow key={reward.task_name + reward.awarded_at}>
+            {userInfo.rewards.map((reward, index) => (
+              <TableRow
+                key={reward.mission_name + reward.mission_name + String(index)}
+              >
                 <TableCell className="px-0 w-[30px]">
                   {iconMap[reward.icon_type] ?? (
                     <BoneIcon width={30} height={30} />
                   )}
                 </TableCell>
                 <TableCell className="pl-2 pr-0 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium tracking-tight">
-                  {reward.task_name}
+                  {reward.mission_name}
                 </TableCell>
                 <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end tracking-tight">
-                  + {reward.points} BABY DOG
+                  + {reward.total_points} BABY DOG
                 </TableCell>
               </TableRow>
             ))}

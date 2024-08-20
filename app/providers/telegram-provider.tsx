@@ -37,7 +37,7 @@ export const TelegramProvider = ({
           user:
             process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
               ? {
-                  id: 5300650441,
+                  id: 10002,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
                   referral_code:

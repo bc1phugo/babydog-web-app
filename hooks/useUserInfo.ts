@@ -1,16 +1,15 @@
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
 
-export interface ITargetTask {
+export interface ITargetMission {
   id: number;
-  task_name: string;
+  mission_name: string;
   description: string | null;
   points: number;
   visible: boolean;
   icon_type: TIconType;
 }
 
-export type TIconType = "link" | "friends" | "twitterX" | "check" | "star";
 export interface IDBUser {
   id: number;
   telegram_id: string;
@@ -21,23 +20,37 @@ export interface IDBUser {
   is_premium: boolean;
   photo_url: string | null;
   baby_dog_points: number;
+  reward_points: number;
+  task_points: number;
+  invite_points: number;
   referral_code: string;
   created_at: string;
 }
 
 export interface IUserInfo {
   user: IDBUser;
-  tasks: Array<ITargetTask>;
-  reward: IReward[]; // Adjust the type if you know the exact structure of the rewards
+  missions: Array<ITargetMission>;
+  rewards: IReward[]; // Adjust the type if you know the exact structure of the rewards
   userExist: boolean;
 }
 
 interface IReward {
-  awarded_at: Date;
-  task_name: string;
-  points: number;
+  mission_name: string;
+  total_points: string;
   icon_type: TIconType;
+  mission_type: TMissionType;
 }
+
+export type TIconType =
+  | "icon_website"
+  | "icon_telegram"
+  | "icon_youtube"
+  | "icon_invite"
+  | "icon_age"
+  | "icon_premium"
+  | "icon_friends";
+
+export type TMissionType = "task" | "invite" | "reward";
 
 export default function useUserInfoQuery() {
   const { user } = useTelegram();

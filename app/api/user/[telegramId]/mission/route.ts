@@ -8,7 +8,7 @@ export async function POST(
   const res = await request.json();
   const { telegramId } = params;
   try {
-    const response = await fetch(`${process.env.API_URL}/api/task`, {
+    const response = await fetch(`${process.env.API_URL}/api/mission`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
