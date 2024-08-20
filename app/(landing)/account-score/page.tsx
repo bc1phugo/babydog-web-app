@@ -62,7 +62,7 @@ export default function AccountScorePage() {
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
         <div className="text-center flex-1">
-          {currentPhase === 1 ? (
+          {currentPhase === 1 || currentPhase === 0 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (
             <Phase2 dogPoint={userInfo?.user.baby_dog_points ?? 0} />
