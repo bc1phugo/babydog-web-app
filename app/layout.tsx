@@ -16,8 +16,8 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Telegram Mini App",
-  description: "A simple telegram mini app",
+  title: "Babydog Web App",
+  description: "Babydog To The Moon",
 };
 
 export default function RootLayout({
