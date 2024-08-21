@@ -3,7 +3,7 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import BabyDogPointDetail from "./components/baby-dog-point-detail";
+import BabyDogMissionBoard from "./components/baby-dog-mission-board";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 
@@ -24,8 +24,9 @@ export default function MainPage() {
               alt={"image-baby-dog"}
               className="m-auto"
             />
-            <div className="font-semibold text-4xl mt-[10px]">
-              {userInfo?.user.baby_dog_points ?? 0} BABY DOGS
+            <div className="font-semibold text-4xl mt-[10px] flex flex-wrap justify-center">
+              <span>{userInfo?.user.baby_dog_points ?? 0}</span>
+              &nbsp;BABY&nbsp;DOGS&nbsp;
             </div>
           </div>
           <div className="mt-[30px]">
@@ -121,7 +122,7 @@ export default function MainPage() {
           </Button>
         </section>
       </div>
-      {userInfo && <BabyDogPointDetail userInfo={userInfo} />}
+      {userInfo && <BabyDogMissionBoard userInfo={userInfo} />}
     </>
   );
 }

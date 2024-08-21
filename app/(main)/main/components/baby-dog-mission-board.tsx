@@ -22,7 +22,7 @@ interface BabyDogPointDetailProps {
   userInfo: IUserInfo;
 }
 
-export default function BasbyDogPointDetail({
+export default function BabyDogMissionBoard({
   userInfo,
 }: BabyDogPointDetailProps) {
   const { refetch: refetchUserInfo } = useUserInfoQuery();
@@ -214,8 +214,10 @@ export default function BasbyDogPointDetail({
                       </span>
                     </div>
                   </TableCell>
-                  <TableCell className="px-0 flex justify-end">
-                    {handleCompleteButton(mission)}
+                  <TableCell className="px-0">
+                    <div className="flex justify-end">
+                      {handleCompleteButton(mission)}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
