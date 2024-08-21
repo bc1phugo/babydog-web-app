@@ -24,7 +24,7 @@ export default function MainPage() {
               alt={"image-baby-dog"}
               className="m-auto"
             />
-            <div className="font-semibold text-4xl mt-[10px] flex flex-wrap justify-center">
+            <div className="mt-[10px] flex flex-wrap justify-center text-4xl font-semibold">
               <span>{userInfo?.user.baby_dog_points ?? 0}</span>
               &nbsp;BABY&nbsp;DOGS&nbsp;
             </div>
@@ -32,11 +32,11 @@ export default function MainPage() {
           <div className="mt-[30px]">
             <div className="flex justify-between gap-[30px]">
               <div>
-                <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
+                <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                   Rewards
                 </div>
                 <div className={cn("flex gap-[5px]")}>
-                  <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
+                  <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                     + {userInfo?.user.reward_points}
                   </span>
                   <Image
@@ -50,11 +50,11 @@ export default function MainPage() {
               </div>
               <div>
                 <div>
-                  <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
+                  <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                     Task
                   </div>
                   <div className={cn("flex gap-[5px]")}>
-                    <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
+                    <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                       + {userInfo?.user.task_points}
                     </span>
                     <Image
@@ -68,11 +68,11 @@ export default function MainPage() {
                 </div>
               </div>
               <div>
-                <div className="text-muted-foreground leading-[22px] font-normal tracking-tight">
+                <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                   Invites
                 </div>
                 <div className={cn("flex gap-[5px]")}>
-                  <span className="text-center text-[18px] leading-[22px] font-semibold tracking-tight">
+                  <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                     + {userInfo?.user.invite_points}
                   </span>
                   <Image
@@ -91,7 +91,7 @@ export default function MainPage() {
           <Button
             className={cn(
               buttonVariants({ variant: "orange", size: "xl" }),
-              "font-semibold text-xl leading-6 w-full"
+              "w-full text-xl font-semibold leading-6",
             )}
             onClick={() => {
               const url = "https://t.me/+fNtW_O4vdwswYThl";
@@ -115,7 +115,7 @@ export default function MainPage() {
             }}
             className={cn(
               buttonVariants({ variant: "gray", size: "xl" }),
-              "text-xl leading-6 w-full"
+              "w-full text-xl leading-6",
             )}
           >
             Follow Baby dog X.COM

@@ -87,8 +87,8 @@ export default function LandingPage() {
       </Head>
       <main
         className={cn(
-          "h-full overflow-auto overflow-x-hidden flex flex-col pt-[40px] pb-[30px] px-[23px] before:bg-landing before:bg-center before:absolute before:inset-0 before:z-[-1]",
-          "justify-between"
+          "flex h-full flex-col overflow-auto overflow-x-hidden px-[23px] pb-[30px] pt-[40px] before:absolute before:inset-0 before:z-[-1] before:bg-landing before:bg-center",
+          "justify-between",
         )}
       >
         <section className="flex justify-center">
@@ -100,7 +100,7 @@ export default function LandingPage() {
             alt={"image-baby-dog"}
           />
         </section>
-        <section className="flex flex-col text-primary text-[18px] leading-7 items-center justify-center text-center mt-[27px] mb-[60px]">
+        <section className="mb-[60px] mt-[27px] flex flex-col items-center justify-center text-center text-[18px] leading-7 text-primary">
           <div>{`👋 Hey!`}</div>
           <div>
             {`You've been in Telegram for a while,`}
@@ -112,7 +112,7 @@ export default function LandingPage() {
           href={"/account-check"}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
-            "font-semibold h-[60px] text-xl leading-6"
+            "h-[60px] text-xl font-semibold leading-6",
           )}
         >
           {"Wow, let's go!"}

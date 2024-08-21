@@ -57,14 +57,14 @@ export default function AccountCheckPage() {
   }, [isAllStatusChecked]);
 
   return (
-    <main className="h-full overflow-auto pb-[30px] overflow-x-hidden flex flex-col pt-[60px] px-[23px] justify-between">
+    <main className="flex h-full flex-col justify-between overflow-auto overflow-x-hidden px-[23px] pb-[30px] pt-[60px]">
       <section>
         <h1 className="text-4xl font-semibold">
           Checking <br />
           your account
         </h1>
       </section>
-      <section className="text-lg leading-6 flex flex-col gap-10 mt-[10px]">
+      <section className="mt-[10px] flex flex-col gap-10 text-lg leading-6">
         <div>
           <div className="flex justify-between tracking-tight">
             Account Age Verified
@@ -75,12 +75,12 @@ export default function AccountCheckPage() {
                 accountAgeChecked
                   ? "fill-customOrange-deep"
                   : "text-muted-foreground",
-                "transition-all duration-300 delay-3000"
+                "transition-all delay-3000 duration-300",
               )}
             />
           </div>
           <Progress
-            className={cn("h-2 mt-[10px]")}
+            className={cn("mt-[10px] h-2")}
             value={accountAgeChecked ? 100 : 0}
           />
         </div>
@@ -94,12 +94,12 @@ export default function AccountCheckPage() {
                 activityLevelChecked
                   ? "fill-customOrange-deep"
                   : "text-muted-foreground",
-                "transition-all duration-300 delay-3000"
+                "transition-all delay-3000 duration-300",
               )}
             />
           </div>
           <Progress
-            className={cn("h-2 mt-[10px]")}
+            className={cn("mt-[10px] h-2")}
             defaultValue={0}
             value={activityLevelChecked ? 100 : 0}
           />
@@ -114,12 +114,12 @@ export default function AccountCheckPage() {
                 isPremiumChecked
                   ? "fill-customOrange-deep"
                   : "text-muted-foreground",
-                "transition-all duration-300 delay-3000"
+                "transition-all delay-3000 duration-300",
               )}
             />
           </div>
           <Progress
-            className={cn("h-2 mt-[10px]")}
+            className={cn("mt-[10px] h-2")}
             defaultValue={0}
             value={isPremiumChecked ? 100 : 0}
           />
@@ -134,12 +134,12 @@ export default function AccountCheckPage() {
                 ogStatusChecked
                   ? "fill-customOrange-deep"
                   : "text-muted-foreground",
-                "transition-all duration-300 delay-3000"
+                "transition-all delay-3000 duration-300",
               )}
             />
           </div>
           <Progress
-            className={cn("h-2 mt-[10px]")}
+            className={cn("mt-[10px] h-2")}
             defaultValue={0}
             value={ogStatusChecked ? 100 : 0}
           />
@@ -150,7 +150,7 @@ export default function AccountCheckPage() {
         href={"/account-score"}
         className={cn(
           buttonVariants({ variant: "orange", size: "xl" }),
-          "font-semibold text-xl leading-6 mt-[34px]"
+          "mt-[34px] text-xl font-semibold leading-6",
         )}
         aria-disabled={linkDisabled}
       >

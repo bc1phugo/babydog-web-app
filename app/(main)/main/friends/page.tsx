@@ -27,7 +27,7 @@ export default function FriendsPage() {
   }`;
 
   const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
-    referalUrl
+    referalUrl,
   )}&text=${encodeURIComponent("Join me on this platform!")}`;
 
   const onClickCopy = (text: string) => {
@@ -53,7 +53,7 @@ export default function FriendsPage() {
       <div className="mt-[60px] px-[23px] pb-[140px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
-            <div className="font-semibold ">
+            <div className="font-semibold">
               <span className="block text-4xl tracking-tight">
                 Invite friends
               </span>
@@ -80,7 +80,7 @@ export default function FriendsPage() {
           >
             <DrawerTrigger asChild>
               <Button
-                className={cn("font-semibold text-xl leading-6 w-full")}
+                className={cn("w-full text-xl font-semibold leading-6")}
                 variant="orange"
                 size="xl"
                 onClick={() => setIsInviteDrawerOpen(true)}
@@ -89,17 +89,17 @@ export default function FriendsPage() {
               </Button>
             </DrawerTrigger>
             <DrawerContent className="bg-[#FFB061]">
-              <DrawerHeader className="bg-gradient-to-b from-customOrange to-customOrange-deep rounded-t-full">
-                <DrawerTitle className="text-lg text-background font-semibold text-center">
+              <DrawerHeader className="rounded-t-full bg-gradient-to-b from-customOrange to-customOrange-deep">
+                <DrawerTitle className="text-center text-lg font-semibold text-background">
                   Invite friends
                 </DrawerTitle>
               </DrawerHeader>
-              <DrawerFooter className="gap-[15px] py-10 px-[23px]">
+              <DrawerFooter className="gap-[15px] px-[23px] py-10">
                 <Button
                   className={cn(
                     buttonVariants({ variant: "gray", size: "xl" }),
                     "rounded-full",
-                    "text-lg"
+                    "text-lg",
                   )}
                   disabled={!userData || !telegramUrl}
                   onClick={() => onClickCopy(referalUrl)}
@@ -111,7 +111,7 @@ export default function FriendsPage() {
                   className={cn(
                     buttonVariants({ variant: "gray", size: "xl" }),
                     "rounded-full",
-                    "text-lg"
+                    "text-lg",
                   )}
                 >
                   Share invite link

@@ -80,23 +80,23 @@ export default function LeaderboardPage() {
     <>
       <div className="mt-[60px] px-[23px]">
         <section className="flex flex-col items-center text-center">
-          <div className="font-semibold text-4xl">
+          <div className="text-4xl font-semibold">
             Telegram <br />
             Wall of Fame
           </div>
           <div
             className={cn(
               buttonVariants({ variant: "gray" }),
-              "mt-[44px] w-full h-20 flex justify-start pl-5 pr-[14px]"
+              "mt-[44px] flex h-20 w-full justify-start pl-5 pr-[14px]",
             )}
           >
             <Avatar className="mr-[10px]">
-              <AvatarFallback className="bg-purple-600 text-background text-[18px] leading-4 tracking-tight ">
+              <AvatarFallback className="bg-purple-600 text-[18px] leading-4 tracking-tight text-background">
                 {getInitials(userName)}
               </AvatarFallback>
             </Avatar>
             <div className="text-start">
-              <div className="text-[16px] leading-6 tracking-tight font-medium">
+              <div className="text-[16px] font-medium leading-6 tracking-tight">
                 {userName}
               </div>
               <div className="text-md font-semibold tracking-tight text-primary">
@@ -109,11 +109,11 @@ export default function LeaderboardPage() {
           </div>
         </section>
       </div>
-      <section className="flex flex-col items-center mt-[80px] pb-[140px]">
+      <section className="mt-[80px] flex flex-col items-center pb-[140px]">
         <h2 className="text-4xl font-semibold">
           {userRankings.userCount ?? "-"} holders
         </h2>
-        <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
+        <div className="mt-10 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
           <Table className="">
             <TableBody>
               {userRankings.top20.map((ranker) => {
@@ -121,24 +121,24 @@ export default function LeaderboardPage() {
                   ranker.username ?? ranker.first_name ?? "Mr.Unkown";
                 return (
                   <TableRow key={ranker.username}>
-                    <TableCell className="px-0 w-[40px]">
+                    <TableCell className="w-[40px] px-0">
                       <Avatar>
-                        <AvatarFallback className="bg-red-600 text-background text-[18px] leading-4 tracking-tight">
+                        <AvatarFallback className="bg-red-600 text-[18px] leading-4 tracking-tight text-background">
                           {getInitials(userName)}
                         </AvatarFallback>
                       </Avatar>
                     </TableCell>
-                    <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
+                    <TableCell className="gap-[3px] pl-2 pr-0 tracking-tight">
                       <div className="flex flex-col">
-                        <span className="text-muted-foreground font-medium text-[16px] leading-6 tracking-tight">
+                        <span className="text-[16px] font-medium leading-6 tracking-tight text-muted-foreground">
                           {ranker.username ?? ranker.first_name ?? "Mr.Unkown"}
                         </span>
-                        <span className="text-[18px] leading-6 font-semibold tracking-tight">
+                        <span className="text-[18px] font-semibold leading-6 tracking-tight">
                           + {ranker.baby_dog_points} BABY DOGS
                         </span>
                       </div>
                     </TableCell>
-                    <TableCell className="px-0 text-[24px] leading-6 justify-end ">
+                    <TableCell className="justify-end px-0 text-[24px] leading-6">
                       <span className="flex justify-end font-semibold">
                         {getRankingCellContent(Number(ranker.rank))}
                       </span>

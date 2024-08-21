@@ -11,11 +11,11 @@ export default function Phase2({ dogPoint }: Phase2Props) {
       <Head>
         <link rel="preload" href="/images/babydog-2.png" as="image" />
       </Head>
-      <h1 className="text-4xl font-semibold mt-[20px]">You are amazing!</h1>
-      <div className="mt-[5px] text-muted-foreground tracking-tight">
+      <h1 className="mt-[20px] text-4xl font-semibold">You are amazing!</h1>
+      <div className="mt-[5px] tracking-tight text-muted-foreground">
         Here is your BABY DOGS reward
       </div>
-      <div className="mt-[20px] mb-[10px]">
+      <div className="mb-[10px] mt-[20px]">
         <Image
           priority
           src="/images/babydog-2.png"
@@ -24,8 +24,8 @@ export default function Phase2({ dogPoint }: Phase2Props) {
           alt={"image-baby-dog"}
           className="m-auto"
         />
-        <div className="text-4xl font-semibold mt-[14px]">{dogPoint ?? 0}</div>
-        <div className="text-base mt-[40px] tracking-tight">
+        <div className="mt-[14px] text-4xl font-semibold">{dogPoint ?? 0}</div>
+        <div className="mt-[40px] text-base tracking-tight">
           Thanks for your time on Telegram
         </div>
       </div>

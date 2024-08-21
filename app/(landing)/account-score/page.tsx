@@ -51,7 +51,7 @@ export default function AccountScorePage() {
   }, []);
 
   return (
-    <main className="h-full pt-[20px] pb-[30px] overflow-auto overflow-x-hidden flex flex-col px-[23px] justify-between">
+    <main className="flex h-full flex-col justify-between overflow-auto overflow-x-hidden px-[23px] pb-[30px] pt-[20px]">
       <section>
         <div className="flex gap-2">
           <Progress
@@ -61,7 +61,7 @@ export default function AccountScorePage() {
           />
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
-        <div className="text-center flex-1">
+        <div className="flex-1 text-center">
           {currentPhase === 1 || currentPhase === 0 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (
@@ -74,7 +74,7 @@ export default function AccountScorePage() {
           href={"/main"}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
-            "font-semibold text-xl leading-6"
+            "text-xl font-semibold leading-6",
           )}
         >
           Continue
@@ -83,7 +83,7 @@ export default function AccountScorePage() {
         <Button
           variant="orange"
           size="xl"
-          className={cn("font-semibold text-xl leading-6")}
+          className={cn("text-xl font-semibold leading-6")}
           onClick={() => setCurrentPhase((prev) => (prev + 1) as 1 | 2)}
         >
           Continue
