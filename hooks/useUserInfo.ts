@@ -8,7 +8,6 @@ export interface ITargetMission {
   points: number;
   visible: boolean;
   icon_type: TIconType;
-  mission_type: TMissionType;
 }
 
 export interface IDBUser {

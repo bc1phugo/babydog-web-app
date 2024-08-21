@@ -6,15 +6,14 @@ import WebApp from "@twa-dev/sdk";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
-import useUserInfoQuery, { ITargetMission } from "@/hooks/useUserInfo";
+import useUserInfoQuery from "@/hooks/useUserInfo";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
 
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
-  const [justRegistered, setJustRegistered] = useState(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
 
@@ -39,7 +38,7 @@ export default function LandingPage() {
       const referralFromApp = webApp?.initDataUnsafe.start_param;
 
       try {
-        await fetch(`/api/user`, {
+        const response = await fetch(`/api/user`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -58,6 +57,7 @@ export default function LandingPage() {
                 : referralFromApp,
           }),
         });
+        const data = await response.json();
       } catch (err: any) {
         console.error("Unexpected error:", err);
       } finally {
@@ -75,82 +75,6 @@ export default function LandingPage() {
     userData?.userExist,
     webApp,
   ]);
-
-  useEffect(() => {
-    if (!userData) return;
-
-    const executeCompleteRewardMission = async (mission: ITargetMission) => {
-      if (!userData) return;
-      try {
-        const response = await fetch(
-          `/api/user/${userData.user.telegram_id}/mission`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              mission_id: mission.id,
-              telegram_id: userData.user.telegram_id,
-            }),
-          },
-        );
-        const data = await response.json();
-
-        if (data.error) {
-          throw new Error(data.error);
-        }
-      } catch (error) {
-        console.warn("Error Completing Reward Mission");
-      }
-    };
-    const rewardMissions = userData.missions.filter(
-      (mission) => mission.mission_type === "reward",
-    );
-
-    /**
-     * TODO: creation Date 가지고 와서 계산하기
-     * @description 죄송합니다. 여기 조금 더 로직 수정해야해요.
-     * @author Hugo
-     */
-
-    const Year3ThreshHold = 1730650441;
-    const Year7ThreshHold = 280650441;
-    rewardMissions.forEach(async (rewardMission) => {
-      if (!user) return;
-      const telegramId = user.id;
-      switch (rewardMission.mission_name) {
-        case "Account age: 3 years or less": {
-          if (Number(telegramId) > Year3ThreshHold) {
-            await executeCompleteRewardMission(rewardMission);
-            break;
-          }
-        }
-        case "Account age: 4-6 years": {
-          if (
-            Number(telegramId) < Year3ThreshHold &&
-            Number(telegramId) > Year7ThreshHold
-          ) {
-            await executeCompleteRewardMission(rewardMission);
-            break;
-          }
-        }
-        case "Account age: 7 years or more": {
-          if (Number(telegramId) <= Year7ThreshHold) {
-            await executeCompleteRewardMission(rewardMission);
-            break;
-          }
-        }
-      }
-
-      // Telegram Id
-      if (rewardMission.mission_name === "Telegram Premium") {
-        if (user.is_premium) {
-          await executeCompleteRewardMission(rewardMission);
-        }
-      }
-    });
-  }, [user, userData]);
 
   return (
     <>
