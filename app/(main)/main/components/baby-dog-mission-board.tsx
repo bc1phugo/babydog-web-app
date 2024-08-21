@@ -120,7 +120,7 @@ export default function BabyDogMissionBoard({
           <Link
             className={cn(
               buttonVariants({ variant: "orange" }),
-              "w-20 tracking-tight"
+              "w-20 tracking-tight",
             )}
             href="/main/friends"
           >
@@ -165,7 +165,7 @@ export default function BabyDogMissionBoard({
             mission_id: mission.id,
             telegram_id: userInfo.user.telegram_id,
           }),
-        }
+        },
       );
       const data = await response.json();
 
@@ -190,26 +190,26 @@ export default function BabyDogMissionBoard({
   };
 
   return (
-    <section className="flex flex-col items-center rounded-t-[50px] bg-[#FFF8F2] mt-[80px] pb-[140px]">
-      <h2 className="text-4xl font-semibold mt-[44px]">Task</h2>
-      <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
+    <section className="mt-[80px] flex flex-col items-center rounded-t-[50px] bg-[#FFF8F2] pb-[140px]">
+      <h2 className="mt-[44px] text-4xl font-semibold">Task</h2>
+      <div className="mt-10 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
         <Table>
           <TableBody>
             {userInfo.missions
               .filter((mission) => mission.visible)
               .map((mission) => (
                 <TableRow key={mission.id}>
-                  <TableCell className="px-0 w-[30px]">
+                  <TableCell className="w-[30px] px-0">
                     {iconMap[mission.icon_type] ?? (
                       <BoneIcon width={30} height={30} />
                     )}
                   </TableCell>
-                  <TableCell className="pl-2 pr-0 gap-[3px] tracking-tight">
+                  <TableCell className="gap-[3px] pl-2 pr-0 tracking-tight">
                     <div className="flex flex-col">
-                      <span className="text-muted-foreground font-medium text-[16px] leading-6">
+                      <span className="text-[16px] font-medium leading-6 text-muted-foreground">
                         {mission.mission_name}
                       </span>
-                      <span className="text-[18px] leading-6 font-semibold">
+                      <span className="text-[18px] font-semibold leading-6">
                         + {mission.points} BABY DOGS
                       </span>
                     </div>
@@ -224,24 +224,24 @@ export default function BabyDogMissionBoard({
           </TableBody>
         </Table>
       </div>
-      <h2 className="text-4xl font-semibold mt-[44px]">Your rewards</h2>
-      <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
+      <h2 className="mt-[44px] text-4xl font-semibold">Your rewards</h2>
+      <div className="mt-10 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
         <Table className="w-full">
           <TableBody>
             {userInfo.rewards.map((reward, index) => (
               <TableRow
                 key={reward.mission_name + reward.mission_name + String(index)}
               >
-                <TableCell className="px-0 w-[30px]">
+                <TableCell className="w-[30px] px-0">
                   {iconMap[reward.icon_type] ?? (
                     <BoneIcon width={30} height={30} />
                   )}
                 </TableCell>
-                <TableCell className="pl-2 pr-0 gap-[3px] text-muted-foreground text-[16px] leading-6 font-medium tracking-tight">
+                <TableCell className="gap-[3px] pl-2 pr-0 text-[16px] font-medium leading-6 tracking-tight text-muted-foreground">
                   {reward.mission_name}
                 </TableCell>
-                <TableCell className="px-0 text-[18px] leading-6 font-semibold text-end tracking-tight">
-                  + {reward.total_points} BABY DOG
+                <TableCell className="px-0 text-end text-[18px] font-semibold leading-6 tracking-tight">
+                  <span>+ {reward.total_points}</span> <span>BABY DOG</span>
                 </TableCell>
               </TableRow>
             ))}
