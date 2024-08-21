@@ -35,7 +35,7 @@ const ParticlesBackground = () => {
 
   const options: ISourceOptions = useMemo(
     () => ({
-      fpsLimit: 60,
+      fpsLimit: 120,
       particles: {
         number: {
           value: 0,
@@ -55,7 +55,7 @@ const ParticlesBackground = () => {
           value: { min: 0, max: 1 },
           animation: {
             enable: true,
-            speed: 1,
+            speed: 0.8,
             startValue: "max",
             destroy: "min",
           },
@@ -66,7 +66,7 @@ const ParticlesBackground = () => {
         life: {
           duration: {
             sync: true,
-            value: 5,
+            value: 4,
           },
           count: 1,
         },
@@ -140,8 +140,8 @@ const ParticlesBackground = () => {
         {
           direction: "none",
           position: {
-            x: { min: 10, max: 90 }, // Random x position across the screen width
-            y: { min: -5, max: 35 }, // Random y position slightly above the top
+            x: { min: 8, max: 92 }, // Random x position across the screen width
+            y: { min: 8, max: 35 }, // Random y position slightly above the top
           },
           spawnColor: {
             value: "#ff0000",
