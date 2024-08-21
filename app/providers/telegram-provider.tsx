@@ -40,8 +40,7 @@ export const TelegramProvider = ({
                   id: 10002,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
-                  referral_code:
-                    "MjdkOGU2ODUtNTViMS00NGExLTk2NmUtOWEwZjU3ODIyMDJk",
+                  referral_code: "MTQzMzgxOGUt",
                 }
               : webApp.initDataUnsafe.user,
         }

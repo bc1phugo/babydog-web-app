@@ -15,7 +15,7 @@ import useUserRankingsQuery from "@/hooks/useUserRankings";
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
   const searchParams = useSearchParams();
-  const referral = searchParams.get("startapp");
+  const referralFromQuery = searchParams.get("startapp");
 
   const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
 
@@ -51,7 +51,10 @@ export default function LandingPage() {
             language_code: user.language_code,
             is_premium: user.is_premium || false,
             photo_url: user.photo_url,
-            referral_code: referralFromApp,
+            referral_code:
+              process.env.NODE_ENV === "development"
+                ? referralFromQuery
+                : referralFromApp,
           }),
         });
         const data = await response.json();
@@ -64,7 +67,7 @@ export default function LandingPage() {
     };
     createUser();
   }, [
-    referral,
+    referralFromQuery,
     refetchUserInfo,
     refetchUserRankings,
     user,

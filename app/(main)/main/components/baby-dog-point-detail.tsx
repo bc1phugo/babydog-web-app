@@ -77,6 +77,25 @@ export default function BasbyDogPointDetail({
           </Button>
         );
       }
+      case "Subscribe to Dog X.com": {
+        return (
+          <Button
+            variant={"orange"}
+            className="w-20 tracking-tight"
+            onClick={async () => {
+              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              if (webApp) {
+                webApp.openTelegramLink(url);
+              } else {
+                window.open(url, "_blank");
+              }
+              await executeCompleteMission(mission);
+            }}
+          >
+            Start
+          </Button>
+        );
+      }
       case "Subscribe to Baby Dog X.com": {
         return (
           <Button
@@ -154,11 +173,13 @@ export default function BasbyDogPointDetail({
         throw new Error(data.error);
       }
 
-      refetchUserInfo();
-      toast({
-        title: "Mission Success",
-        description: `${mission.mission_name} + ${mission.points}`,
-      });
+      setTimeout(() => {
+        refetchUserInfo();
+        toast({
+          title: "Mission Success",
+          description: `${mission.mission_name} + ${mission.points}`,
+        });
+      }, 3000);
     } catch (error) {
       toast({
         title: "Something went wrong...",
@@ -174,10 +195,9 @@ export default function BasbyDogPointDetail({
       <div className="flex flex-col gap-2 mt-10 w-full max-w-[700px] px-[23px]">
         <Table>
           <TableBody>
-            {userInfo.missions.length === 0 ? (
-              <div></div>
-            ) : (
-              userInfo.missions.map((mission) => (
+            {userInfo.missions
+              .filter((mission) => mission.visible)
+              .map((mission) => (
                 <TableRow key={mission.id}>
                   <TableCell className="px-0 w-[30px]">
                     {iconMap[mission.icon_type] ?? (
@@ -198,8 +218,7 @@ export default function BasbyDogPointDetail({
                     {handleCompleteButton(mission)}
                   </TableCell>
                 </TableRow>
-              ))
-            )}
+              ))}
           </TableBody>
         </Table>
       </div>
