@@ -1,7 +1,11 @@
+"use client";
+
 interface Phase1Props {
   telegramId: number;
 }
+
 export default function Phase1({ telegramId }: Phase1Props) {
+  // const {} = useWindow;
   return (
     <>
       <h1 className="mt-[20px] text-4xl font-semibold">We are DOG Army!</h1>

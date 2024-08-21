@@ -29,6 +29,7 @@ export default function useUserRankingsQuery({
       return data as IUserRanking;
     },
     enabled: !!user && !!user.id && customEnabled,
+    staleTime: 1000 * 60 * 5,
   });
 
   return query;

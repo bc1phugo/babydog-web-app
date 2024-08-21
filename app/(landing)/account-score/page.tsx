@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
-import { useQuery } from "@tanstack/react-query";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 
 export interface IDbUserData {

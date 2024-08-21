@@ -63,6 +63,7 @@ export default function useUserInfoQuery() {
       return data as IUserInfo;
     },
     enabled: !!user && !!user.id,
+    staleTime: 1000 * 60 * 10,
   });
 
   return query;
