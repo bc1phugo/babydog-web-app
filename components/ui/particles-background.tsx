@@ -140,7 +140,7 @@ const ParticlesBackground = () => {
         {
           direction: "none",
           position: {
-            x: { min: 8, max: 92 }, // Random x position across the screen width
+            x: { min: 17, max: 83 }, // Random x position across the screen width
             y: { min: 8, max: 35 }, // Random y position slightly above the top
           },
           spawnColor: {
