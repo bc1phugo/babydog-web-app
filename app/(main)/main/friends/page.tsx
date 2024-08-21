@@ -13,6 +13,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import { cn } from "@/lib/utils";
+import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -50,6 +51,9 @@ export default function FriendsPage() {
 
   return (
     <>
+      <Head>
+        <link rel="preload" href="/images/babydog-4.png" as="image" />
+      </Head>
       <div className="mt-[60px] px-[23px] pb-[140px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">

@@ -6,6 +6,7 @@ import Image from "next/image";
 import BabyDogMissionBoard from "./components/baby-dog-mission-board";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
+import Head from "next/head";
 
 export default function MainPage() {
   const { data: userInfo } = useUserInfoQuery();
@@ -13,6 +14,11 @@ export default function MainPage() {
 
   return (
     <>
+      <Head>
+        <link rel="preload" href="/images/babydog-4.png" as="image" />
+        <link rel="preload" href="/images/three-puppies.svg" as="image" />
+      </Head>
+
       <div className="mt-[67px] px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">

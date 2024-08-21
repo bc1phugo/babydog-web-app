@@ -79,9 +79,10 @@ export default function LandingPage() {
   return (
     <>
       <Head>
+        <link rel="preload" href="/images/babydog-3.png" as="image" />
         <link
           rel="preload"
-          href="../public/images/image_background_landing.png"
+          href="/images/image_background_landing.png"
           as="image"
         />
       </Head>

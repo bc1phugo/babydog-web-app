@@ -4,6 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
 import { cn } from "@/lib/utils";
+import Head from "next/head";
 import Image from "next/image";
 
 export default function LeaderboardPage() {
