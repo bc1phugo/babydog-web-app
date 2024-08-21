@@ -9,6 +9,7 @@ import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
+import ParticlesBackground from "@/components/ui/particles-background";
 
 export interface IDbUserData {
   id: number;
@@ -60,7 +61,8 @@ export default function AccountScorePage() {
           />
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
-        <div className="flex-1 text-center">
+        <div className="relative h-full w-full flex-1 text-center">
+          <ParticlesBackground />
           {currentPhase === 1 || currentPhase === 0 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Script from "next/script";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/app/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import Providers from "./providers/providers";
 import { Suspense } from "react";
