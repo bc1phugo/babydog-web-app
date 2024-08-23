@@ -16,10 +16,13 @@ export const verifyTelegramInitData = async (
   initData: string,
 ): Promise<boolean> => {
   const secretKey = new TextEncoder().encode(TELEGRAM_BOT_TOKEN);
+  console.log("🚀 ~ secretKey:", secretKey);
 
   const [hashString, ...params] = initData.split("&").sort();
+  console.log("🚀 ~ initData:", initData);
   console.log("🚀 ~ [hashString, ...params]:", [hashString, ...params]);
   const dataString = params.join("\n");
+  console.log("🚀 ~ dataString:", dataString);
 
   const key = await crypto.subtle.importKey(
     "raw",
@@ -39,6 +42,7 @@ export const verifyTelegramInitData = async (
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
   console.log("🚀 ~ hashHex:", hashHex);
+  console.log(hashString);
 
   return hashString === hashHex;
 };
