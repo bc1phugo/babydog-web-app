@@ -19,6 +19,7 @@ export const verifyTelegramInitData = async (
   const secretKey = new TextEncoder().encode(TELEGRAM_BOT_TOKEN);
 
   const [hashString, ...params] = initData.split("&").sort();
+  console.log("🚀 ~ [hashString, ...params]:", [hashString, ...params]);
   const dataString = params.join("\n");
 
   const key = await crypto.subtle.importKey(
