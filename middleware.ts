@@ -11,13 +11,12 @@ export async function middleware(req: NextRequest) {
   // const url = req.nextUrl.clone();
 
   const initData = req.headers.get("x-telegram-data");
-  console.log("🚀 ~ middleware ~ initData:", initData);
 
   /**
    * @description for developement, do not verify Web App data
    * @author Hugo
    */
-  if (process.env.NEXT_PUBLIC_NEXT_PUBLIC_ENV === "DEVELOPMENT") {
+  if (process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT") {
     return NextResponse.next();
   }
 
