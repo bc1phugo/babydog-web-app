@@ -17,7 +17,9 @@ export default function LandingPage() {
   const [justUserCreated, setJustUserCreated] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
-  const createUser = useCreateUser();
+  const createUser = useCreateUser({
+    onSuccess: () => setJustUserCreated(true),
+  });
   const { data: userData } = useUserInfoQuery();
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export default function LandingPage() {
       ...user,
       referral_code: referral_code,
     });
-    setJustUserCreated(true);
+    console.log(123321);
   }, [
     referralFromQuery,
     user,

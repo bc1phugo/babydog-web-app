@@ -6,7 +6,7 @@ interface CreateUserParams extends WebAppUser {
   referral_code?: string | null;
 }
 
-const useCreateUser = () => {
+const useCreateUser = ({ onSuccess }: { onSuccess?: () => void }) => {
   const { user, webApp } = useTelegram();
   const queryClient = useQueryClient();
   return useMutation({
@@ -30,6 +30,7 @@ const useCreateUser = () => {
       // Invalidate or refetch the queries after a successful mutation
       queryClient.invalidateQueries({ queryKey: ["userInfo", user?.id] });
       queryClient.invalidateQueries({ queryKey: ["userRankings", user?.id] });
+      onSuccess?.();
     },
     onError: (error: unknown) => {
       console.error("Unexpected error:", error);

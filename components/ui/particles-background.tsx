@@ -8,11 +8,13 @@ import {
 } from "@tsparticles/engine";
 // import { loadAll } from "@tsparticles/all"; // if you are going to use `loadAll`, install the "@tsparticles/all" package too.
 import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
+import useDebounce from "@/hooks/useDebounce";
 // import { loadSlim } from "@tsparticles/slim"; // if you are going to use `loadSlim`, install the "@tsparticles/slim" package too.
 // import { loadBasic } from "@tsparticles/basic"; // if you are going to use `loadBasic`, install the "@tsparticles/basic" package too.
 
 const ParticlesBackground = () => {
   const [init, setInit] = useState(false);
+  const debouncedInit = useDebounce(init, 500);
 
   // this should be run only once per application lifetime
   useEffect(() => {
@@ -63,13 +65,7 @@ const ParticlesBackground = () => {
         size: {
           value: { min: 3, max: 7 },
         },
-        life: {
-          duration: {
-            sync: true,
-            value: 4,
-          },
-          count: 1,
-        },
+
         move: {
           enable: true,
           gravity: {
@@ -140,8 +136,8 @@ const ParticlesBackground = () => {
         {
           direction: "none",
           position: {
-            x: { min: 17, max: 83 }, // Random x position across the screen width
-            y: { min: 8, max: 35 }, // Random y position slightly above the top
+            x: { min: 35, max: 65 }, // Random x position across the screen width
+            y: { min: 10, max: 35 }, // Random y position slightly above the top
           },
           spawnColor: {
             value: "#ff0000",
@@ -175,7 +171,7 @@ const ParticlesBackground = () => {
             },
           },
           life: {
-            count: 4,
+            count: 3,
             duration: 0.1,
             delay: 0.5,
           },
@@ -193,7 +189,7 @@ const ParticlesBackground = () => {
     [],
   );
 
-  if (init) {
+  if (debouncedInit) {
     return (
       <Particles
         className="absolute left-0 top-0 z-[-1] h-1/2 w-full"
