@@ -85,7 +85,7 @@ export default function BabyDogMissionBoard({
             onClick={async () => {
               const url = "https://x.com/We_are_dog_army";
               if (webApp) {
-                webApp.openTelegramLink(url);
+                webApp.openLink(url);
               } else {
                 window.open(url, "_blank");
               }
