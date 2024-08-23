@@ -7,16 +7,16 @@ export function cn(...inputs: ClassValue[]) {
 
 // Function to generate HMAC-SHA256 using Web Crypto API
 async function HMAC_SHA256(
-  value: string,
+  value: string | ArrayBuffer,
   key: CryptoKey,
 ): Promise<ArrayBuffer> {
-  const enc = new TextEncoder().encode(value);
+  const enc =
+    typeof value === "string" ? new TextEncoder().encode(value) : value;
   const signature = await crypto.subtle.sign("HMAC", key, enc);
-  console.log("🚀 ~ HMAC_SHA256 signature ArrayBuffer:", signature); // Log the raw ArrayBuffer
   return signature;
 }
 // Function to convert ArrayBuffer to hex string
-function hex(buffer: ArrayBuffer) {
+function hex(buffer: ArrayBuffer): string {
   return Array.from(new Uint8Array(buffer))
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
@@ -29,31 +29,32 @@ function hex(buffer: ArrayBuffer) {
 export const verifyTelegramInitData = async (
   initData: string,
 ): Promise<boolean> => {
-  // Parse query data
   const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-  console.log("🚀 ~ TELEGRAM_BOT_TOKEN:", TELEGRAM_BOT_TOKEN);
+  if (!TELEGRAM_BOT_TOKEN) {
+    throw new Error("Telegram bot token is missing.");
+  }
+
   const parsedData = Object.fromEntries(
     new URLSearchParams(initData).entries(),
   );
 
-  // Get Telegram hash
+  // Extract the hash from the parsed data
   const hash = parsedData.hash;
+  console.log("🚀 ~ hash:", hash);
   if (!hash) {
     throw new Error("Hash not found in initData");
   }
 
-  // Remove 'hash' value & Sort alphabetically
+  // Remove 'hash' from the parsed data and sort keys
   const data_keys = Object.keys(parsedData)
     .filter((v) => v !== "hash")
     .sort();
   console.log("🚀 ~ data_keys:", data_keys);
 
-  // Create line format key=<value>
-  const items = data_keys.map((key) => `${key}=${parsedData[key]}`);
-
-  console.log("🚀 ~ items:", items);
-  // Create check string with a line feed character ('\n', 0x0A) used as separator
-  const data_check_string = items.join("\n");
+  // Create check string from the sorted data
+  const data_check_string = data_keys
+    .map((key) => `${key}=${parsedData[key]}`)
+    .join("\n");
   console.log("🚀 ~ data_check_string:", data_check_string);
 
   // Step 1: Generate the secret key using "WebAppData" as the message and bot_token as the key
@@ -66,25 +67,11 @@ export const verifyTelegramInitData = async (
   );
   console.log("🚀 ~ botTokenKey:", botTokenKey);
 
-  const secretKeyBuffer = await HMAC_SHA256("WebAppData", botTokenKey);
-  console.log("🚀 ~ secretKeyBuffer:", secretKeyBuffer);
-  const secretKey = await crypto.subtle.importKey(
-    "raw",
-    secretKeyBuffer,
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"],
-  );
-  console.log("🚀 ~ secretKey:", secretKey);
+  // Step 2: Generate the hash with data_check_string and botTokenKey
+  const hashBuffer = await HMAC_SHA256(data_check_string, botTokenKey);
+  const generatedHash = hex(hashBuffer);
+  console.log("🚀 ~ generatedHash:", generatedHash);
 
-  // Step 2: Generate hash to validate using the secret key and data_check_string
-  const hashGeneratedBuffer = await HMAC_SHA256(data_check_string, secretKey);
-  console.log("🚀 ~ hashGeneratedBuffer:", hashGeneratedBuffer);
-  const hashGenerate = hex(hashGeneratedBuffer);
-
-  console.log("🚀 ~ Generated hash:", hashGenerate);
-  console.log("🚀 ~ Telegram hash:", hash);
-
-  // Step 3: Return whether the generated hash matches the provided hash
-  return hashGenerate === hash;
+  // Step 3: Compare the generated hash with the provided hash
+  return generatedHash === hash;
 };
