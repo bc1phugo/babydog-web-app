@@ -11,7 +11,6 @@ export async function middleware(req: NextRequest) {
   // const url = req.nextUrl.clone();
 
   const initData = req.headers.get("x-telegram-data");
-  console.log("🚀 ~ middleware ~ initData:", initData);
 
   /**
    * @description for developement, do not verify Web App data

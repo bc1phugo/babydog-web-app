@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import Providers from "./providers/providers";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const pretendard = localFont({
   src: "./font/PretendardVariable.woff2",
@@ -42,6 +43,7 @@ export default function RootLayout({
           <Providers>
             <Suspense>{children}</Suspense>
             <Toaster />
+            <SpeedInsights />
           </Providers>
         </ThemeProvider>
       </body>
