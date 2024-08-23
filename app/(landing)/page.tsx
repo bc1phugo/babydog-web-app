@@ -88,7 +88,7 @@ export default function LandingPage() {
           </div>
         </section>
         <Link
-          href={justUserCreated ? "/account-check" : "account-score"}
+          href={justUserCreated ? "/account-check" : "/main"}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "h-[60px] text-xl font-semibold leading-6",
