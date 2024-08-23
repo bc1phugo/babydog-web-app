@@ -11,18 +11,34 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN; // https://core.teleg
  * @description To Check user has come for sure via Telegram Web App
  * Make sure, that no malicious call has come, such as DDos-like attck through other server. etc...
  */
-
 export const verifyTelegramInitData = async (
   initData: string,
 ): Promise<boolean> => {
-  const secretKey = new TextEncoder().encode(TELEGRAM_BOT_TOKEN);
-  console.log("🚀 ~ secretKey:", secretKey);
+  if (!TELEGRAM_BOT_TOKEN) {
+    throw new Error("TELEGRAM_BOT_TOKEN is not set in environment variables.");
+  }
 
-  const [hashString, ...params] = initData.split("&").sort();
-  console.log("🚀 ~ initData:", initData);
-  console.log("🚀 ~ [hashString, ...params]:", [hashString, ...params]);
-  const dataString = params.join("\n");
-  console.log("🚀 ~ dataString:", dataString);
+  const secretKey = new TextEncoder().encode(TELEGRAM_BOT_TOKEN);
+
+  // Extract hash from the initData and decode the rest
+  const params = initData.split("&").map((param) => {
+    const [key, value] = param.split("=");
+    return { key, value: decodeURIComponent(value) };
+  });
+
+  const hashParam = params.find((p) => p.key === "hash");
+  if (!hashParam) {
+    throw new Error("Hash not found in initData");
+  }
+  const hashString = hashParam.value;
+
+  const dataParams = params
+    .filter((p) => p.key !== "hash")
+    .sort((a, b) => a.key.localeCompare(b.key))
+    .map((p) => `${p.key}=${p.value}`)
+    .join("\n");
+
+  console.log("🚀 ~ dataParams:", dataParams);
 
   const key = await crypto.subtle.importKey(
     "raw",
@@ -35,14 +51,14 @@ export const verifyTelegramInitData = async (
   const signature = await crypto.subtle.sign(
     "HMAC",
     key,
-    new TextEncoder().encode(dataString),
+    new TextEncoder().encode(dataParams),
   );
 
   const hashHex = Array.from(new Uint8Array(signature))
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
   console.log("🚀 ~ hashHex:", hashHex);
-  console.log(hashString);
+  console.log("🚀 ~ Expected hash:", hashString);
 
   return hashString === hashHex;
 };
