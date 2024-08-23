@@ -5,7 +5,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN; // https://core.telegram.org/bots#creating-a-new-bot
+// Function to generate HMAC-SHA256 using Web Crypto API
+async function HMAC_SHA256(
+  value: string,
+  key: CryptoKey,
+): Promise<ArrayBuffer> {
+  const enc = new TextEncoder().encode(value);
+  const signature = await crypto.subtle.sign("HMAC", key, enc);
+  console.log("🚀 ~ HMAC_SHA256 signature ArrayBuffer:", signature); // Log the raw ArrayBuffer
+  return signature;
+}
+// Function to convert ArrayBuffer to hex string
+function hex(buffer: ArrayBuffer) {
+  return Array.from(new Uint8Array(buffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 /**
  * @description To Check user has come for sure via Telegram Web App
@@ -14,51 +29,62 @@ const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN; // https://core.teleg
 export const verifyTelegramInitData = async (
   initData: string,
 ): Promise<boolean> => {
-  if (!TELEGRAM_BOT_TOKEN) {
-    throw new Error("TELEGRAM_BOT_TOKEN is not set in environment variables.");
-  }
+  // Parse query data
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  console.log("🚀 ~ TELEGRAM_BOT_TOKEN:", TELEGRAM_BOT_TOKEN);
+  const parsedData = Object.fromEntries(
+    new URLSearchParams(initData).entries(),
+  );
 
-  const secretKey = new TextEncoder().encode(TELEGRAM_BOT_TOKEN);
-
-  // Extract hash from the initData and decode the rest
-  const params = initData.split("&").map((param) => {
-    const [key, value] = param.split("=");
-    return { key, value: decodeURIComponent(value) };
-  });
-
-  const hashParam = params.find((p) => p.key === "hash");
-  if (!hashParam) {
+  // Get Telegram hash
+  const hash = parsedData.hash;
+  if (!hash) {
     throw new Error("Hash not found in initData");
   }
-  const hashString = hashParam.value;
 
-  const dataParams = params
-    .filter((p) => p.key !== "hash")
-    .sort((a, b) => a.key.localeCompare(b.key))
-    .map((p) => `${p.key}=${p.value}`)
-    .join("\n");
+  // Remove 'hash' value & Sort alphabetically
+  const data_keys = Object.keys(parsedData)
+    .filter((v) => v !== "hash")
+    .sort();
+  console.log("🚀 ~ data_keys:", data_keys);
 
-  console.log("🚀 ~ dataParams:", dataParams);
+  // Create line format key=<value>
+  const items = data_keys.map((key) => `${key}=${parsedData[key]}`);
 
-  const key = await crypto.subtle.importKey(
+  console.log("🚀 ~ items:", items);
+  // Create check string with a line feed character ('\n', 0x0A) used as separator
+  const data_check_string = items.join("\n");
+  console.log("🚀 ~ data_check_string:", data_check_string);
+
+  // Step 1: Generate the secret key using "WebAppData" as the message and bot_token as the key
+  const botTokenKey = await crypto.subtle.importKey(
     "raw",
-    secretKey,
-    { name: "HMAC", hash: { name: "SHA-256" } },
+    new TextEncoder().encode(TELEGRAM_BOT_TOKEN),
+    { name: "HMAC", hash: "SHA-256" },
     false,
     ["sign"],
   );
+  console.log("🚀 ~ botTokenKey:", botTokenKey);
 
-  const signature = await crypto.subtle.sign(
-    "HMAC",
-    key,
-    new TextEncoder().encode(dataParams),
+  const secretKeyBuffer = await HMAC_SHA256("WebAppData", botTokenKey);
+  console.log("🚀 ~ secretKeyBuffer:", secretKeyBuffer);
+  const secretKey = await crypto.subtle.importKey(
+    "raw",
+    secretKeyBuffer,
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
   );
+  console.log("🚀 ~ secretKey:", secretKey);
 
-  const hashHex = Array.from(new Uint8Array(signature))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-  console.log("🚀 ~ hashHex:", hashHex);
-  console.log("🚀 ~ Expected hash:", hashString);
+  // Step 2: Generate hash to validate using the secret key and data_check_string
+  const hashGeneratedBuffer = await HMAC_SHA256(data_check_string, secretKey);
+  console.log("🚀 ~ hashGeneratedBuffer:", hashGeneratedBuffer);
+  const hashGenerate = hex(hashGeneratedBuffer);
 
-  return hashString === hashHex;
+  console.log("🚀 ~ Generated hash:", hashGenerate);
+  console.log("🚀 ~ Telegram hash:", hash);
+
+  // Step 3: Return whether the generated hash matches the provided hash
+  return hashGenerate === hash;
 };
