@@ -11,6 +11,7 @@ import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import useCreateUser from "@/hooks/useCreateUser";
+import useUserRankingsQuery from "@/hooks/useUserRankings";
 
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
@@ -21,6 +22,7 @@ export default function LandingPage() {
     onSuccess: () => setJustUserCreated(true),
   });
   const { data: userData } = useUserInfoQuery();
+  useUserRankingsQuery({ customEnabled: userData && userData.userExist });
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
