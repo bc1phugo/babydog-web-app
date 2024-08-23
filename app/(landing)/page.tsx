@@ -6,7 +6,7 @@ import WebApp from "@twa-dev/sdk";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import useUserInfoQuery from "@/hooks/useUserInfo";
@@ -14,6 +14,7 @@ import useCreateUser from "@/hooks/useCreateUser";
 
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
+  const [justUserCreated, setJustUserCreated] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
   const createUser = useCreateUser();
@@ -40,6 +41,7 @@ export default function LandingPage() {
       ...user,
       referral_code: referral_code,
     });
+    setJustUserCreated(true);
   }, [
     referralFromQuery,
     user,
@@ -83,7 +85,7 @@ export default function LandingPage() {
           </div>
         </section>
         <Link
-          href={"/account-check"}
+          href={justUserCreated ? "/account-check" : "account-score"}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "h-[60px] text-xl font-semibold leading-6",
