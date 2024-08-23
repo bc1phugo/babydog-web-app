@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { telegramId: string } }
+  { params }: { params: { telegramId: string } },
 ) {
   const { telegramId } = params;
   try {
@@ -17,7 +17,7 @@ export async function GET(
           tags: [`userInfo-${telegramId}`],
         },
         cache: "default",
-      }
+      },
     );
     const data = await response.json();
     return NextResponse.json(data, { status: 200 });

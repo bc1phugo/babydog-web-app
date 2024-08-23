@@ -26,18 +26,6 @@ export interface IDbUserData {
 }
 
 export default function AccountScorePage() {
-  const testerUser =
-    process.env.NODE_ENV === "development"
-      ? {
-          id: 123123,
-          first_name: "Hugo",
-          last_name: "oh",
-          username: "Hugooh",
-          language_code: "en",
-          is_premium: true,
-        }
-      : null;
-
   const [currentPhase, setCurrentPhase] = useState<0 | 1 | 2>(0);
   const isLastPhase = currentPhase === 2;
 

@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     if (data.inviterTelegramId !== "" && data.inviterTelegramId) {
       revalidateTag(`userInfo-${data.inviterTelegramId}`);
       console.log(
-        `userInfo-${data.inviterTelegramId} Revalidated after invited user created`
+        `userInfo-${data.inviterTelegramId} Revalidated after invited user created`,
       );
     }
 

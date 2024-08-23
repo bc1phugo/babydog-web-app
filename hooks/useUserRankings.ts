@@ -20,11 +20,13 @@ export default function useUserRankingsQuery({
 }: {
   customEnabled?: boolean;
 }) {
-  const { user } = useTelegram();
+  const { user, webApp } = useTelegram();
   const query = useQuery({
     queryKey: ["userRankings", user?.id],
     queryFn: async () => {
-      const response = await fetch(`/api/user/${user?.id}/rankings`);
+      const response = await fetch(`/api/user/${user?.id}/rankings`, {
+        headers: { "x-telegram-data": webApp?.initData ?? "" },
+      });
       const data = await response.json();
       return data as IUserRanking;
     },

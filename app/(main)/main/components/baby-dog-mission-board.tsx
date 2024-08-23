@@ -160,6 +160,7 @@ export default function BabyDogMissionBoard({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "x-telegram-data": webApp?.initData ?? "",
           },
           body: JSON.stringify({
             mission_id: mission.id,

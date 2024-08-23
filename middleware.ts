@@ -10,7 +10,7 @@ export const config = {
 export function middleware(req: NextRequest) {
   // const url = req.nextUrl.clone();
 
-  const initData = req.headers.get("x-telegram-bot-api-secret-token");
+  const initData = req.headers.get("x-telegram-data");
   console.log("🚀 ~ middleware ~ initData:", initData);
 
   if (!initData) {

@@ -11,17 +11,14 @@ import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
+import useCreateUser from "@/hooks/useCreateUser";
 
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
-
-  const { data: userData, refetch: refetchUserInfo } = useUserInfoQuery();
-
-  const { refetch: refetchUserRankings } = useUserRankingsQuery({
-    customEnabled: !!userData?.userExist,
-  });
+  const createUser = useCreateUser();
+  const { data: userData } = useUserInfoQuery();
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
@@ -30,50 +27,27 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    const createUser = async () => {
-      if (!userData || userData.userExist) return;
-      if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
-        return;
+    if (!userData || userData.userExist) return;
+    if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
+      return;
 
-      const referralFromApp = webApp?.initDataUnsafe.start_param;
+    const referralFromApp = webApp?.initDataUnsafe.start_param;
+    const referral_code =
+      process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
+        ? referralFromQuery
+        : referralFromApp;
 
-      try {
-        const response = await fetch(`/api/user`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            telegram_id: user.id,
-            username: user.username,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            language_code: user.language_code,
-            is_premium: user.is_premium || false,
-            photo_url: user.photo_url,
-            referral_code:
-              process.env.NODE_ENV === "development"
-                ? referralFromQuery
-                : referralFromApp,
-          }),
-        });
-        const data = await response.json();
-      } catch (err: any) {
-        console.error("Unexpected error:", err);
-      } finally {
-        refetchUserInfo();
-        refetchUserRankings();
-      }
-    };
-    createUser();
+    createUser.mutate({
+      ...user,
+      referral_code: referral_code,
+    });
   }, [
     referralFromQuery,
-    refetchUserInfo,
-    refetchUserRankings,
     user,
     userData,
     userData?.userExist,
     webApp,
+    createUser,
   ]);
 
   return (

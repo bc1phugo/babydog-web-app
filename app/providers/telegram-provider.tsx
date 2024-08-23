@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { WebApp as IWebApp, WebAppUser } from "@twa-dev/types";
 import { usePathname, useRouter } from "next/navigation";
 import WebApp from "@twa-dev/sdk";
@@ -36,12 +29,12 @@ export const TelegramProvider = ({
           unsafeData: webApp.initDataUnsafe,
           user:
             process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
-              ? {
+              ? ({
                   id: 10002,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
                   referral_code: "MTQzMzgxOGUt",
-                }
+                } as WebAppUser)
               : webApp.initDataUnsafe.user,
         }
       : {};

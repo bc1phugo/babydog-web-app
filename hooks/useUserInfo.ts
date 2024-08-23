@@ -1,5 +1,6 @@
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
+import { headers } from "next/headers";
 
 export interface ITargetMission {
   id: number;
@@ -53,12 +54,14 @@ export type TIconType =
 export type TMissionType = "task" | "invite" | "reward";
 
 export default function useUserInfoQuery() {
-  const { user } = useTelegram();
+  const { user, webApp } = useTelegram();
 
   const query = useQuery({
     queryKey: ["userInfo", user?.id],
     queryFn: async () => {
-      const response = await fetch(`/api/user/${user?.id}`);
+      const response = await fetch(`/api/user/${user?.id}`, {
+        headers: { "x-telegram-data": webApp?.initData ?? "" },
+      });
       const data = await response.json();
       return data as IUserInfo;
     },
