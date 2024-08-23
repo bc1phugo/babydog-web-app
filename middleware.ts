@@ -7,17 +7,17 @@ export const config = {
   matcher: ["/api/:path*"],
 };
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   // const url = req.nextUrl.clone();
 
   const initData = req.headers.get("x-telegram-data");
   console.log("🚀 ~ middleware ~ initData:", initData);
 
-  if (!initData) {
+  if (!initData || initData === "") {
     return new NextResponse("Forbidden: Missing initData", { status: 403 });
   }
 
-  const isVerified = verifyTelegramInitData(initData);
+  const isVerified = await verifyTelegramInitData(initData);
 
   if (!isVerified) {
     return new NextResponse("Forbidden: Invalid initData", { status: 403 });
