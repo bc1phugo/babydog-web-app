@@ -20,15 +20,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!initData || initData === "") {
-    return new NextResponse("Forbidden: Missing initData", { status: 403 });
-  }
+  // if (!initData || initData === "") {
+  //   return new NextResponse("Forbidden: Missing initData", { status: 403 });
+  // }
 
-  const isVerified = await verifyTelegramInitData(initData);
+  // const isVerified = await verifyTelegramInitData(initData);
 
-  if (!isVerified) {
-    return new NextResponse("Forbidden: Invalid initData", { status: 403 });
-  }
+  // if (!isVerified) {
+  //   return new NextResponse("Forbidden: Invalid initData", { status: 403 });
+  // }
 
   return NextResponse.next();
 }

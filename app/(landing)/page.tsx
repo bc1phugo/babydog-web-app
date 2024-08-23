@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import useUserInfoQuery from "@/hooks/useUserInfo";
-import useUserRankingsQuery from "@/hooks/useUserRankings";
 import useCreateUser from "@/hooks/useCreateUser";
 
 export default function LandingPage() {
