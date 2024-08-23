@@ -31,8 +31,7 @@ export default function MainPage() {
               className="m-auto"
             />
             <div className="mt-[10px] flex flex-wrap justify-center text-4xl font-semibold">
-              <span>{userInfo?.user.baby_dog_points ?? 0}</span>
-              &nbsp;BABY&nbsp;DOGS&nbsp;
+              <span>{userInfo?.user.baby_dog_points ?? 0} BABY&nbsp;DOGS</span>
             </div>
           </div>
           <div className="mt-[30px]">

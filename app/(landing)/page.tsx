@@ -43,7 +43,6 @@ export default function LandingPage() {
       ...user,
       referral_code: referral_code,
     });
-    console.log(123321);
   }, [
     referralFromQuery,
     user,
