@@ -8,6 +8,7 @@ export interface ITargetMission {
   description: string | null;
   points: number;
   visible: boolean;
+  mission_type: TMissionType;
   icon_type: TIconType;
 }
 

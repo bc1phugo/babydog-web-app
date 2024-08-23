@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
-import useUserInfoQuery from "@/hooks/useUserInfo";
+import useUserInfoQuery, { IDBUser, ITargetMission } from "@/hooks/useUserInfo";
 import useCreateUser from "@/hooks/useCreateUser";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
 
@@ -22,6 +22,7 @@ export default function LandingPage() {
     onSuccess: () => setJustUserCreated(true),
   });
   const { data: userData } = useUserInfoQuery();
+
   useUserRankingsQuery({ customEnabled: userData && userData.userExist });
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export default function LandingPage() {
 
     createUser.mutate({
       ...user,
+      telegram_id: String(user.id),
       referral_code: referral_code,
     });
   }, [

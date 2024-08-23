@@ -4,7 +4,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { WebApp as IWebApp, WebAppUser } from "@twa-dev/types";
 import { usePathname, useRouter } from "next/navigation";
 import WebApp from "@twa-dev/sdk";
-import Script from "next/script";
 
 export interface ITelegramContext {
   webApp?: IWebApp;
@@ -30,7 +29,7 @@ export const TelegramProvider = ({
           user:
             process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
               ? ({
-                  id: 10002,
+                  id: 10004,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
                   referral_code: "MTQzMzgxOGUt",

@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { WebAppUser } from "@twa-dev/types";
 
 interface CreateUserParams extends WebAppUser {
+  telegram_id: string;
   referral_code?: string | null;
 }
 
