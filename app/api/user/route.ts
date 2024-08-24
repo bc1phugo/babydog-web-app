@@ -23,6 +23,7 @@ export async function POST(req: Request) {
 
     // 유저 생성하고, 다시 userInfo를 불러와야 하므로 revalidate
     revalidateTag(`userInfo-${telegramId}`);
+    revalidateTag(`userRankings-${telegramId}`);
     console.log(`userInfo-${telegramId} Revalidated after user created`);
 
     // 레퍼럴로 가입했으면, 레퍼럴한 유저의 포인트도 다시 불러와야하므로 revalidate
