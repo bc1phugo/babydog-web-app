@@ -47,6 +47,7 @@ export default function LandingPage() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "x-telegram-data": webApp?.initData ?? "",
           },
           body: JSON.stringify({
             telegram_id: user.id,
