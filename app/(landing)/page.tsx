@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 import { useTelegram } from "../providers/telegram-provider";
 import { useSearchParams } from "next/navigation";
 import useUserInfoQuery, { IDBUser, ITargetMission } from "@/hooks/useUserInfo";
-import useCreateUser from "@/hooks/useCreateUser";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
 
 export default function LandingPage() {
@@ -61,6 +60,7 @@ export default function LandingPage() {
           }),
         });
         const data = await response.json();
+        setJustUserCreated(true);
       } catch (err: any) {
         console.error("Unexpected error:", err);
       } finally {
@@ -114,6 +114,7 @@ export default function LandingPage() {
         </section>
         <Link
           href={justUserCreated ? "/account-check" : "/main"}
+          aria-disabled={!(userInfo && userInfo.userExist)}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "h-[60px] text-xl font-semibold leading-6",

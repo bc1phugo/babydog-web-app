@@ -120,7 +120,7 @@ export default function LeaderboardPage() {
                 const userName =
                   ranker.username ?? ranker.first_name ?? "Mr.Unkown";
                 return (
-                  <TableRow key={ranker.username}>
+                  <TableRow key={`${userName}-${ranker.rank}`}>
                     <TableCell className="w-[40px] px-0">
                       <Avatar>
                         <AvatarFallback className="bg-red-600 text-[18px] leading-4 tracking-tight text-background">
