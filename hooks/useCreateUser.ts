@@ -25,7 +25,7 @@ const useCreateUser = ({ onSuccess }: { onSuccess?: () => void }) => {
       // if (!response.ok) {
       //   throw new Error("Failed to create user");
       // }
-      return response.json();
+      return await response.json();
     },
     onSuccess: () => {
       // Invalidate or refetch the queries after a successful mutation
