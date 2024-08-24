@@ -18,12 +18,11 @@ export default function LandingPage() {
   const [justUserCreated, setJustUserCreated] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
-  const createUser = useCreateUser({
-    onSuccess: () => setJustUserCreated(true),
-  });
-  const { data: userData } = useUserInfoQuery();
+  const { data: userInfo, refetch: refetchUserInfo } = useUserInfoQuery();
 
-  useUserRankingsQuery({ customEnabled: userData && userData.userExist });
+  const { refetch: refetchUserRankings } = useUserRankingsQuery({
+    customEnabled: userInfo && userInfo.userExist,
+  });
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
@@ -32,28 +31,51 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    if (!userData || userData.userExist) return;
-    if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
-      return;
+    const createUser = async () => {
+      if (!userInfo || userInfo.userExist) return;
+      if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
+        return;
 
-    const referralFromApp = webApp?.initDataUnsafe.start_param;
-    const referral_code =
-      process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
-        ? referralFromQuery
-        : referralFromApp;
+      const referralFromApp = webApp?.initDataUnsafe.start_param;
+      const referral_code =
+        process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
+          ? referralFromQuery
+          : referralFromApp;
 
-    createUser.mutate({
-      ...user,
-      telegram_id: String(user.id),
-      referral_code: referral_code,
-    });
+      try {
+        const response = await fetch(`/api/user`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            telegram_id: user.id,
+            username: user.username,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            language_code: user.language_code,
+            is_premium: user.is_premium || false,
+            photo_url: user.photo_url,
+            referral_code: referral_code,
+          }),
+        });
+        const data = await response.json();
+      } catch (err: any) {
+        console.error("Unexpected error:", err);
+      } finally {
+        refetchUserInfo();
+        refetchUserRankings();
+      }
+    };
+    createUser();
   }, [
     referralFromQuery,
+    refetchUserInfo,
+    refetchUserRankings,
     user,
-    userData,
-    userData?.userExist,
+    userInfo,
+    userInfo?.userExist,
     webApp,
-    createUser,
   ]);
 
   return (
