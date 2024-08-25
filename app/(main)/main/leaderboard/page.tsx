@@ -78,7 +78,7 @@ export default function LeaderboardPage() {
 
   return (
     <>
-      <div className="mt-[60px] px-[23px]">
+      <div className="mt-[30px] px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="text-4xl font-semibold">
             Telegram <br />
@@ -109,11 +109,11 @@ export default function LeaderboardPage() {
           </div>
         </section>
       </div>
-      <section className="mt-[80px] flex flex-col items-center pb-[140px]">
+      <section className="mt-[50px] flex flex-col items-center pb-[140px]">
         <h2 className="text-4xl font-semibold">
           {userRankings.userCount ?? "-"} holders
         </h2>
-        <div className="mt-10 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
+        <div className="mt-8 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
           <Table className="">
             <TableBody>
               {userRankings.top20.map((ranker) => {

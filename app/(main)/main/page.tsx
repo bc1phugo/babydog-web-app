@@ -19,7 +19,7 @@ export default function MainPage() {
         <link rel="preload" href="/images/three-puppies.svg" as="image" />
       </Head>
 
-      <div className="mt-[67px] px-[23px]">
+      <div className="mt-[37px] px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <Image
@@ -92,7 +92,7 @@ export default function MainPage() {
             </div>
           </div>
         </section>
-        <section className="mt-20 flex flex-col gap-[15px]">
+        <section className="mt-16 flex flex-col gap-[15px]">
           <Button
             className={cn(
               buttonVariants({ variant: "orange", size: "xl" }),

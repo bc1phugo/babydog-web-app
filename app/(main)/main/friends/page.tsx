@@ -54,7 +54,7 @@ export default function FriendsPage() {
       <Head>
         <link rel="preload" href="/images/babydog-4.png" as="image" />
       </Head>
-      <div className="mt-[60px] px-[23px] pb-[140px]">
+      <div className="mt-[30px] flex flex-col justify-between px-[23px] pb-[140px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold">
@@ -69,15 +69,15 @@ export default function FriendsPage() {
               width={259}
               height={211}
               alt={"image-baby-dog"}
-              className="m-auto mt-[52px]"
+              className="m-auto mt-[20px]"
             />
           </div>
-          <div className="mt-[57px] text-[24px] leading-7">
+          <div className="mt-[30px] text-[24px] leading-7">
             Tap on the button to invite
             <br /> your friends
           </div>
         </section>
-        <section className="mt-[60px] flex flex-col gap-[15px]">
+        <section className="mt-[20px] flex flex-col gap-[15px]">
           <Drawer
             open={isInviteDrawerOpen}
             onOpenChange={setIsInviteDrawerOpen}
