@@ -50,7 +50,7 @@ export default function AccountScorePage() {
           <Progress className="h-[5px]" value={currentPhase >= 2 ? 100 : 0} />
         </div>
         <div className="relative h-full w-full flex-1 text-center">
-          <ParticlesBackground />
+          {/* <ParticlesBackground /> */}
           {currentPhase === 1 || currentPhase === 0 ? (
             <Phase1 telegramId={user?.id ?? 0} />
           ) : (
