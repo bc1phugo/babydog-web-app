@@ -54,7 +54,7 @@ export default function FriendsPage() {
       <Head>
         <link rel="preload" href="/images/babydog-4.png" as="image" />
       </Head>
-      <div className="mt-[30px] flex flex-col justify-between px-[23px] pb-[170px]">
+      <div className="mt-[30px] flex flex-col justify-between px-[23px] pb-[123px]">
         <section className="mb-[30px] flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold">
