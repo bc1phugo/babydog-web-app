@@ -27,6 +27,7 @@ export interface IDBUser {
   invite_points: number;
   referral_code: string;
   created_at: string;
+  telegram_creation_estimate: string;
 }
 
 export interface IUserInfo {

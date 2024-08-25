@@ -52,7 +52,7 @@ export default function AccountScorePage() {
         <div className="relative h-full w-full flex-1 text-center">
           {/* <ParticlesBackground /> */}
           {currentPhase === 1 || currentPhase === 0 ? (
-            <Phase1 telegramId={user?.id ?? 0} />
+            <Phase1 userInfo={userInfo} telegramId={user?.id ?? 0} />
           ) : (
             <Phase2 dogPoint={userInfo?.user.baby_dog_points ?? 0} />
           )}
