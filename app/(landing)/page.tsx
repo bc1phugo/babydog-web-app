@@ -42,6 +42,7 @@ export default function LandingPage() {
           : referralFromApp;
 
       try {
+        setJustUserCreated(true);
         const response = await fetch(`/api/user`, {
           method: "POST",
           headers: {
@@ -60,7 +61,6 @@ export default function LandingPage() {
           }),
         });
         const data = await response.json();
-        setJustUserCreated(true);
       } catch (err: any) {
         console.error("Unexpected error:", err);
       } finally {
