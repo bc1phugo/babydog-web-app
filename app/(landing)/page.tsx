@@ -31,7 +31,8 @@ export default function LandingPage() {
 
   useEffect(() => {
     const createUser = async () => {
-      if (!userInfo || userInfo.error || userInfo.userExist) return;
+      if (!userInfo || userInfo.userExist) return;
+
       if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
         return;
 
