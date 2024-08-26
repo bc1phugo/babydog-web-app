@@ -27,13 +27,13 @@ export interface IDBUser {
   invite_points: number;
   referral_code: string;
   created_at: string;
-  telegram_creation_estimate: string;
 }
 
 export interface IUserInfo {
   user: IDBUser;
   missions: Array<ITargetMission>;
   rewards: IReward[]; // Adjust the type if you know the exact structure of the rewards
+  error?: string;
   userExist: boolean;
 }
 
@@ -42,6 +42,7 @@ interface IReward {
   total_points: string;
   icon_type: TIconType;
   mission_type: TMissionType;
+  description: string;
 }
 
 export type TIconType =

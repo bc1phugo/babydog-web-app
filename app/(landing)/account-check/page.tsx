@@ -67,7 +67,7 @@ export default function AccountCheckPage() {
       <section className="mt-[10px] flex flex-col gap-10 text-lg leading-6">
         <div>
           <div className="flex justify-between tracking-tight">
-            Account Age Verified
+            Lucky Points Awarded
             <CheckCircleIcon
               width={18}
               height={18}

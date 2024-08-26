@@ -239,7 +239,7 @@ export default function BabyDogMissionBoard({
                   )}
                 </TableCell>
                 <TableCell className="gap-[3px] pl-2 pr-0 text-[16px] font-medium leading-6 tracking-tight text-muted-foreground">
-                  {reward.mission_name}
+                  {reward.description}
                 </TableCell>
                 <TableCell className="flex flex-wrap justify-end px-0 text-end text-[18px] font-semibold leading-6 tracking-tight">
                   <span>+ {reward.total_points} BABY&nbsp;DOG</span>

@@ -31,7 +31,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     const createUser = async () => {
-      if (!userInfo || userInfo.userExist) return;
+      if (!userInfo || userInfo.error || userInfo.userExist) return;
       if (!user || (process.env.NEXT_PUBLIC_ENV !== "DEVELOPMENT" && !webApp))
         return;
 
@@ -60,12 +60,18 @@ export default function LandingPage() {
             referral_code: referral_code,
           }),
         });
+
         const data = await response.json();
+
+        if (data.error) {
+          throw Error(data.error);
+        }
+
+        refetchUserInfo();
+        refetchUserRankings();
       } catch (err: any) {
         console.error("Unexpected error:", err);
       } finally {
-        refetchUserInfo();
-        refetchUserRankings();
       }
     };
     createUser();
