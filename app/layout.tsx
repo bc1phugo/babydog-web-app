@@ -8,6 +8,7 @@ import Providers from "./providers/providers";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Inter } from "next/font/google";
 
 const pretendard = localFont({
   src: "./font/PretendardVariable.woff2",
@@ -20,6 +21,11 @@ export const metadata: Metadata = {
   title: "Babydog Web App",
   description: "Babydog To The Moon",
 };
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -34,7 +40,7 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
       </head>
-      <body className={cn(pretendard.className, "h-full", "overflow-hidden")}>
+      <body className={cn(inter.className, "h-full", "overflow-hidden")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

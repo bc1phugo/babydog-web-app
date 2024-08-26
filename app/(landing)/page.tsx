@@ -114,7 +114,7 @@ export default function LandingPage() {
         </section>
         <Link
           href={justUserCreated ? "/account-check" : "/main"}
-          aria-disabled={!(userInfo && userInfo.userExist)}
+          aria-disabled={!userInfo}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "h-[60px] text-xl font-semibold leading-6",
