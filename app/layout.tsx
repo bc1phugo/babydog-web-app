@@ -10,13 +10,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
 
-const pretendard = localFont({
-  src: "./font/PretendardVariable.woff2",
-  display: "swap",
-  style: "normal",
-  weight: "100 1000",
-});
-
 export const metadata: Metadata = {
   title: "Babydog Web App",
   description: "Babydog To The Moon",
