@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Babydog Web App",
@@ -43,6 +44,7 @@ export default function RootLayout({
             <Suspense>{children}</Suspense>
             <Toaster />
             <SpeedInsights />
+            <Analytics />
           </Providers>
         </ThemeProvider>
       </body>
