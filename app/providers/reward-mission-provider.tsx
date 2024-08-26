@@ -37,7 +37,6 @@ export default function RewardMissionProvider({ children }: PropsWithChildren) {
     availableRewardMissins.forEach(async (rewardMission) => {
       if (
         rewardMission.mission_name === "Telegram Premium" &&
-        userInfo.user.is_premium === false &&
         user?.is_premium
       ) {
         await completePremium(rewardMission, userInfo.user);
