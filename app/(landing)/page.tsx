@@ -30,6 +30,28 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
+    const onLoad = () => {
+      var viewport = document.querySelector("meta[name=viewport]");
+      if (!viewport) return;
+
+      viewport.setAttribute(
+        "content",
+        "height=" +
+          window.innerHeight +
+          "px, width=" +
+          window.innerWidth +
+          "px, initial-scale=1.0",
+      );
+    };
+
+    addEventListener("load", onLoad);
+
+    return () => {
+      removeEventListener("load", onLoad);
+    };
+  }, []);
+
+  useEffect(() => {
     const createUser = async () => {
       if (!userInfo || userInfo.userExist) return;
 
