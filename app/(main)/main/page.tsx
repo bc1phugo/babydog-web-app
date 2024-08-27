@@ -48,7 +48,7 @@ export default function MainPage() {
                     priority
                     src="/images/three-puppies.svg"
                     alt="three-puppies-image"
-                    width={36}
+                    width={18}
                     height={17}
                   />
                 </div>
