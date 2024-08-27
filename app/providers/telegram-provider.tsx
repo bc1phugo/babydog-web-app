@@ -57,10 +57,9 @@ export const TelegramProvider = ({
   useEffect(() => {
     if (webApp) {
       if (window.scrollY === 0) {
-        window.scrollTo(0, 100);
+        window.scrollTo(0, 1);
       }
     }
-    return window.scrollTo(0, 1);
   }, [webApp, isExpanded]);
 
   useEffect(() => {
