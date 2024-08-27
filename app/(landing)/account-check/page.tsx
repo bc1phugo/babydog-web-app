@@ -86,7 +86,7 @@ export default function AccountCheckPage() {
         </div>
         <div>
           <div className="flex justify-between tracking-tight">
-            Acitivy Level Analyzed{" "}
+            Activity Level Analyzed
             <CheckCircleIcon
               width={18}
               height={18}
