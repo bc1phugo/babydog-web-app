@@ -19,6 +19,7 @@ export const TelegramProvider = ({
 }) => {
   const [webApp, setWebApp] = useState<IWebApp | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  console.log("🚀 ~ isExpanded:", isExpanded);
   const pathname = usePathname();
   const router = useRouter();
   const value = useMemo(() => {
@@ -56,9 +57,10 @@ export const TelegramProvider = ({
   useEffect(() => {
     if (webApp) {
       if (window.scrollY === 0) {
-        window.scrollTo(0, 1);
+        window.scrollTo(0, 100);
       }
     }
+    return window.scrollTo(0, 1);
   }, [webApp, isExpanded]);
 
   useEffect(() => {
