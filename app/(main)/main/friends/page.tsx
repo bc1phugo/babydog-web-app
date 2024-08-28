@@ -54,8 +54,8 @@ export default function FriendsPage() {
       <Head>
         <link rel="preload" href="/images/babydog-4.png" as="image" />
       </Head>
-      <div className="mt-[30px] flex flex-col justify-between px-[23px] pb-[123px]">
-        <section className="mb-[30px] flex flex-col items-center text-center">
+      <div className="mt-[25px] flex flex-col justify-between px-[23px] pb-[123px]">
+        <section className="mb-[20px] flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold">
               <span className="block text-4xl tracking-tight">
@@ -67,9 +67,9 @@ export default function FriendsPage() {
               priority
               src="/images/babydog-4.png"
               width={256}
-              height={211}
+              height={258}
               alt={"image-baby-dog"}
-              className="m-auto mt-[20px]"
+              className="m-auto mt-[10px]"
             />
           </div>
           <div className="mt-[15px] text-[24px] leading-7">

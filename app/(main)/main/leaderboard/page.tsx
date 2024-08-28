@@ -78,7 +78,7 @@ export default function LeaderboardPage() {
 
   return (
     <>
-      <div className="mt-[30px] px-[23px]">
+      <div className="mt-[25px] px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="text-4xl font-semibold">
             Telegram <br />
