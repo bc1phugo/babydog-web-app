@@ -19,7 +19,6 @@ export const TelegramProvider = ({
 }) => {
   const [webApp, setWebApp] = useState<IWebApp | null>(null);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  console.log("🚀 ~ isExpanded:", isExpanded);
   const pathname = usePathname();
   const router = useRouter();
   const value = useMemo(() => {
@@ -30,7 +29,7 @@ export const TelegramProvider = ({
           user:
             process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
               ? ({
-                  id: 5877776,
+                  id: 587338,
                   first_name: "Hugo",
                   username: "Hugo_Oh",
                   referral_code: "MTQzMzgxOGUt",

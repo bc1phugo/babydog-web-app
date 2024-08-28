@@ -61,23 +61,23 @@ export default function FriendsPage() {
               <span className="block text-4xl tracking-tight">
                 Invite friends
               </span>
-              <span className="block text-3xl">and get more BABY DOG</span>
+              <span className="block text-2xl">and get more BABY DOG</span>
             </div>
             <Image
               priority
               src="/images/babydog-4.png"
-              width={259}
+              width={256}
               height={211}
               alt={"image-baby-dog"}
               className="m-auto mt-[20px]"
             />
           </div>
-          <div className="mt-[25px] text-[24px] leading-7">
+          <div className="mt-[15px] text-[24px] leading-7">
             Tap on the button to invite
             <br /> your friends
           </div>
         </section>
-        <section className="flex-cgap-[15px] flex">
+        <section className="flex gap-[15px]">
           <Drawer
             open={isInviteDrawerOpen}
             onOpenChange={setIsInviteDrawerOpen}

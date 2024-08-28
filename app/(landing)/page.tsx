@@ -128,12 +128,12 @@ export default function LandingPage() {
           <Image
             priority
             src="/images/babydog-3.png"
-            width={250}
-            height={297}
+            width={353}
+            height={370}
             alt={"image-baby-dog"}
           />
         </section>
-        <section className="mb-[60px] mt-[27px] flex flex-col items-center justify-center text-center text-[18px] leading-7 text-primary">
+        <section className="mb-[10px] mt-[10px] flex flex-col items-center justify-center text-center text-[18px] leading-7 text-primary">
           <div>{`👋 Hey!`}</div>
           <div>
             {`You've been in Telegram for a while,`}

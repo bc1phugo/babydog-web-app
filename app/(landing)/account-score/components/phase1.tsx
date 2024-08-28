@@ -8,6 +8,13 @@ interface Phase1Props {
 }
 
 export default function Phase1({ telegramId, userInfo }: Phase1Props) {
+  console.log("🚀 ~ Phase1 ~ userInfo:", userInfo);
+  const luckyPointReward = userInfo?.rewards.filter((reward) =>
+    reward.mission_name.includes("lucky"),
+  )[0];
+  const luckyPointEarned = luckyPointReward?.total_points;
+  console.log("🚀 ~ Phase1 ~ luckyPointEarned:", luckyPointEarned);
+
   return (
     <>
       <h1 className="mt-[20px] text-4xl font-semibold">We are DOG Army!</h1>
@@ -23,8 +30,10 @@ export default function Phase1({ telegramId, userInfo }: Phase1Props) {
         You have joined Telegram
       </div>
       <div className="mb-[10px] mt-[20px]">
-        <div className="text-[220px] font-semibold leading-[180px]">{0}</div>
-        <div className="mt-[10px] text-4xl font-semibold">years ago</div>
+        <div className="text-[130px] font-semibold leading-[180px]">
+          {luckyPointEarned}
+        </div>
+        <div className="mt-[10px] text-4xl font-semibold">Lucky Point</div>
         <div className="mt-[59px] text-base tracking-tight">
           Your account number is #{telegramId}. <br />
           {/* {"You're in the Top 90% Telegram users"} */}
