@@ -40,7 +40,7 @@ export default function MainPage() {
                 <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                   Rewards
                 </div>
-                <div className={cn("flex gap-[5px]")}>
+                <div className={cn("flex items-center gap-[5px]")}>
                   <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                     + {userInfo?.user.reward_points}
                   </span>
@@ -48,7 +48,7 @@ export default function MainPage() {
                     priority
                     src="/images/three-puppies.svg"
                     alt="three-puppies-image"
-                    width={18}
+                    width={25}
                     height={17}
                   />
                 </div>
@@ -58,7 +58,7 @@ export default function MainPage() {
                   <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                     Task
                   </div>
-                  <div className={cn("flex gap-[5px]")}>
+                  <div className={cn("flex items-center gap-[5px]")}>
                     <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                       + {userInfo?.user.task_points}
                     </span>
@@ -66,7 +66,7 @@ export default function MainPage() {
                       priority
                       src="/images/three-puppies.svg"
                       alt="three-puppies-image"
-                      width={36}
+                      width={25}
                       height={17}
                     />
                   </div>
@@ -76,7 +76,7 @@ export default function MainPage() {
                 <div className="font-normal leading-[22px] tracking-tight text-muted-foreground">
                   Invites
                 </div>
-                <div className={cn("flex gap-[5px]")}>
+                <div className={cn("flex items-center gap-[5px]")}>
                   <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
                     + {userInfo?.user.invite_points}
                   </span>
@@ -84,7 +84,7 @@ export default function MainPage() {
                     priority
                     src="/images/three-puppies.svg"
                     alt="three-puppies-image"
-                    width={36}
+                    width={25}
                     height={17}
                   />
                 </div>
