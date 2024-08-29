@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          "h-screen",
+          "!h-screen",
           "min-h-screen",
           "overflow-hidden",
           "isolate",

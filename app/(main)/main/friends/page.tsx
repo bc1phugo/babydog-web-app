@@ -77,7 +77,7 @@ export default function FriendsPage() {
             <br /> your friends
           </div>
         </section>
-        <section className="flex gap-[15px]">
+        <section>
           <Drawer
             open={isInviteDrawerOpen}
             onOpenChange={setIsInviteDrawerOpen}
