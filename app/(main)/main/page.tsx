@@ -60,7 +60,7 @@ export default function MainPage() {
                   </div>
                   <div className={cn("flex items-center gap-[5px]")}>
                     <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
-                      + {userInfo?.user.task_points}
+                      +{userInfo?.user.task_points}
                     </span>
                     <Image
                       priority
