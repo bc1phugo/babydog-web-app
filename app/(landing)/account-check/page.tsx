@@ -6,17 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import CheckCircleIcon from "/public/icons/icon_check_circle.svg";
 import { cn } from "@/lib/utils";
-import WebApp from "@twa-dev/sdk";
 import { useTelegram } from "@/app/providers/telegram-provider";
-
-interface UserData {
-  id: number;
-  first_name: string;
-  last_name: string;
-  username?: string;
-  language_code: string;
-  is_premium?: boolean;
-}
 
 export default function AccountCheckPage() {
   const [accountAgeChecked, setAccountAgeChecked] = useState<boolean>(false);

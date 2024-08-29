@@ -9,7 +9,6 @@ import Phase1 from "./components/phase1";
 import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
-import ParticlesBackground from "@/components/ui/particles-background";
 
 export interface IDbUserData {
   id: number;

@@ -54,7 +54,7 @@ export default function FriendsPage() {
       <Head>
         <link rel="preload" href="/images/babydog-4.webp" as="image" />
       </Head>
-      <div className="mt-[25px] flex flex-col justify-between px-[23px] pb-[123px]">
+      <div className="flex h-full flex-col justify-between px-[23px] pb-[153px] pt-[25px]">
         <section className="mb-[20px] flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold">

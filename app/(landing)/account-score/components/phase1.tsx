@@ -8,7 +8,6 @@ interface Phase1Props {
 }
 
 export default function Phase1({ telegramId, userInfo }: Phase1Props) {
-  console.log("🚀 ~ Phase1 ~ userInfo:", userInfo);
   const luckyPointReward = userInfo?.rewards.filter((reward) =>
     reward.mission_name.includes("lucky"),
   )[0];
