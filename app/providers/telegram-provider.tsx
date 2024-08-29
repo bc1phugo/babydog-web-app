@@ -42,7 +42,6 @@ export const TelegramProvider = ({
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
-      WebApp.ready();
       setWebApp(WebApp);
     }
   }, []);

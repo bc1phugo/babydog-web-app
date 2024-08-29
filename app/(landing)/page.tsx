@@ -24,10 +24,11 @@ export default function LandingPage() {
   });
 
   useEffect(() => {
-    if (typeof window !== "undefined" && WebApp) {
-      WebApp.expand();
+    if (typeof window !== "undefined" && webApp) {
+      webApp.ready();
+      webApp.expand();
     }
-  }, []);
+  }, [webApp]);
 
   useEffect(() => {
     const onLoad = () => {
