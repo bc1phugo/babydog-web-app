@@ -42,7 +42,7 @@ export default function MainPage() {
                 </div>
                 <div className={cn("flex items-center gap-[5px]")}>
                   <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
-                    + {userInfo?.user.reward_points}
+                    +{userInfo?.user.reward_points}
                   </span>
                   <Image
                     priority
@@ -78,7 +78,7 @@ export default function MainPage() {
                 </div>
                 <div className={cn("flex items-center gap-[5px]")}>
                   <span className="text-center text-[18px] font-semibold leading-[22px] tracking-tight">
-                    + {userInfo?.user.invite_points}
+                    +{userInfo?.user.invite_points}
                   </span>
                   <Image
                     priority
