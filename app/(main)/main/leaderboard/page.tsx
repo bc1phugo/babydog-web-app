@@ -20,7 +20,7 @@ export default function LeaderboardPage() {
         return (
           <Image
             priority
-            src="/images/image_medal_gold.png"
+            src="/images/image_medal_gold.webp"
             width={24.25}
             height={40}
             alt="medal_gold"
@@ -31,7 +31,7 @@ export default function LeaderboardPage() {
         return (
           <Image
             priority
-            src="/images/image_medal_silver.png"
+            src="/images/image_medal_silver.webp"
             width={24.25}
             height={40}
             alt="medal_gold"
@@ -42,7 +42,7 @@ export default function LeaderboardPage() {
         return (
           <Image
             priority
-            src="/images/image_medal_copper.png"
+            src="/images/image_medal_copper.webp"
             width={24.25}
             height={40}
             alt="medal_gold"
