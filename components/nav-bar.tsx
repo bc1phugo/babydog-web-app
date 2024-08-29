@@ -151,7 +151,7 @@ export default function NavBar() {
   ];
 
   return (
-    <section className="flex justify-between bg-background px-10 pt-[29px] pb-[28px] fixed inset-x-0 bottom-0 rounded-t-[50px]">
+    <section className="fixed inset-x-0 bottom-0 flex justify-between rounded-t-[50px] bg-background px-10 pb-[28px] pt-[29px]">
       {targetInfo.map((target) => {
         const isActive = pathname === target.href;
 
@@ -159,13 +159,15 @@ export default function NavBar() {
           <nav key={target.href}>
             <Link
               href={target.href}
-              className="flex flex-col items-center gap-2"
+              className={cn("flex flex-col items-center gap-2", {
+                "pointer-events-none": isActive,
+              })}
             >
               {target.iconWithProps({ isActive })}
               <span
                 className={cn(
                   isActive ? "text-customOrange" : "text-muted-foreground",
-                  "text-base leading-[24px] font-semibold transition-all duration-300 ease-in-out"
+                  "select-none text-base font-semibold leading-[24px] transition-all duration-300 ease-in-out",
                 )}
               >
                 {target.title}

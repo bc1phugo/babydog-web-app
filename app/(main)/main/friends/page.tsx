@@ -54,7 +54,7 @@ export default function FriendsPage() {
       <Head>
         <link rel="preload" href="/images/babydog-4.webp" as="image" />
       </Head>
-      <div className="flex h-full flex-col justify-between px-[23px] pb-[153px] pt-[25px]">
+      <div className="flex h-full select-none flex-col justify-between px-[23px] pb-[153px] pt-[25px]">
         <section className="mb-[20px] flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <div className="font-semibold">
@@ -84,7 +84,9 @@ export default function FriendsPage() {
           >
             <DrawerTrigger asChild>
               <Button
-                className={cn("w-full text-xl font-semibold leading-6")}
+                className={cn(
+                  "w-full select-none text-xl font-semibold leading-6",
+                )}
                 variant="orange"
                 size="xl"
                 onClick={() => setIsInviteDrawerOpen(true)}

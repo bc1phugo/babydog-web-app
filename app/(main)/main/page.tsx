@@ -19,7 +19,7 @@ export default function MainPage() {
         <link rel="preload" href="/images/puppy-icon.webp" as="image" />
       </Head>
 
-      <div className="mt-[25px] px-[23px]">
+      <div className="mt-[25px] select-none px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="flex flex-col items-center">
             <Image

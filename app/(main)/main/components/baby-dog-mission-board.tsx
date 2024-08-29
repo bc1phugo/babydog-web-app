@@ -190,7 +190,7 @@ export default function BabyDogMissionBoard({
   };
 
   return (
-    <section className="mt-[60px] flex flex-col items-center rounded-t-[50px] bg-[#FFF8F2] pb-[140px]">
+    <section className="mt-[60px] flex select-none flex-col items-center rounded-t-[50px] bg-[#FFF8F2] pb-[140px]">
       <h2 className="mt-[44px] text-4xl font-semibold">Task</h2>
       <div className="mt-10 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
         <Table>

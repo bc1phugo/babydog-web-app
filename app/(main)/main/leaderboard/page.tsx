@@ -78,7 +78,7 @@ export default function LeaderboardPage() {
 
   return (
     <>
-      <div className="mt-[25px] px-[23px]">
+      <div className="mt-[25px] select-none px-[23px]">
         <section className="flex flex-col items-center text-center">
           <div className="text-4xl font-semibold">
             Telegram <br />
@@ -118,7 +118,7 @@ export default function LeaderboardPage() {
           )}
         </section>
       </div>
-      <section className="mt-[50px] flex flex-col items-center pb-[140px]">
+      <section className="mt-[50px] flex select-none flex-col items-center pb-[140px]">
         {userRankings ? (
           <>
             <h2 className="text-4xl font-semibold">
