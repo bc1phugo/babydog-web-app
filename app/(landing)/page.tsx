@@ -22,23 +22,11 @@ export default function LandingPage() {
   const { refetch: refetchUserRankings } = useUserRankingsQuery({
     customEnabled: userInfo && userInfo.userExist,
   });
-  const [height, setHeight] = useState<number>(0);
 
   useEffect(() => {
     if (typeof window !== "undefined" && WebApp) {
       WebApp.expand();
     }
-  }, []);
-
-  useEffect(() => {
-    setTimeout(
-      () => {
-        setHeight(document.body.clientHeight);
-        console.log(document.body.clientHeight);
-      },
-
-      1000,
-    );
   }, []);
 
   useEffect(() => {
@@ -130,44 +118,40 @@ export default function LandingPage() {
           as="image"
         />
       </Head>
-      {height > 0 && (
-        <main
+      <main
+        className={cn(
+          "flex h-full flex-col overflow-auto overflow-x-hidden px-[23px] pb-[30px] pt-[40px] before:absolute before:inset-0 before:z-[-1] before:bg-landing before:bg-center",
+          "justify-between",
+        )}
+      >
+        <section className="flex justify-center">
+          <Image
+            priority
+            src="/images/babydog-3.webp"
+            width={353}
+            height={370}
+            alt={"image-baby-dog"}
+          />
+        </section>
+        <section className="mb-[10px] mt-[10px] flex flex-col items-center justify-center text-center text-[18px] leading-7 text-primary">
+          <div>{`👋 Hey!`}</div>
+          <div>
+            {`You've been in Telegram for a while,`}
+            <br />
+            {`it's time to get rewarded!`}
+          </div>
+        </section>
+        <Link
+          href={justUserCreated ? "/account-check" : "/main"}
+          aria-disabled={!userInfo}
           className={cn(
-            "flex flex-col overflow-auto overflow-x-hidden px-[23px] pb-[30px] pt-[40px] before:absolute before:inset-0 before:z-[-1] before:bg-landing before:bg-center",
-            "justify-between",
-            `h-${height}px`,
+            buttonVariants({ variant: "orange", size: "xl" }),
+            "h-[60px] text-xl font-semibold leading-6",
           )}
         >
-          <section className="flex justify-center">
-            <Image
-              priority
-              src="/images/babydog-3.webp"
-              width={353}
-              height={370}
-              alt={"image-baby-dog"}
-            />
-          </section>
-          {height}
-          <section className="mb-[10px] mt-[10px] flex flex-col items-center justify-center text-center text-[18px] leading-7 text-primary">
-            <div>{`👋 Hey!`}</div>
-            <div>
-              {`You've been in Telegram for a while,`}
-              <br />
-              {`it's time to get rewarded!`}
-            </div>
-          </section>
-          <Link
-            href={justUserCreated ? "/account-check" : "/main"}
-            aria-disabled={!userInfo}
-            className={cn(
-              buttonVariants({ variant: "orange", size: "xl" }),
-              "h-[60px] text-xl font-semibold leading-6",
-            )}
-          >
-            {"Wow, let's go!"}
-          </Link>
-        </main>
-      )}
+          {"Wow, let's go!"}
+        </Link>
+      </main>
     </>
   );
 }
