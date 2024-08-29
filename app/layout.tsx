@@ -38,7 +38,7 @@ export default function RootLayout({
         className={cn(
           inter.className,
           "!h-screen",
-          "min-h-[745px]",
+          "min-h-screen",
           "overflow-hidden",
           "isolate",
         )}
