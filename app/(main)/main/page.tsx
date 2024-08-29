@@ -16,7 +16,7 @@ export default function MainPage() {
     <>
       <Head>
         <link rel="preload" href="/images/babydog-4.webp" as="image" />
-        <link rel="preload" href="/images/three-puppies.svg" as="image" />
+        <link rel="preload" href="/images/puppy-icon.webp" as="image" />
       </Head>
 
       <div className="mt-[25px] px-[23px]">
@@ -46,8 +46,8 @@ export default function MainPage() {
                   </span>
                   <Image
                     priority
-                    src="/images/three-puppies.svg"
-                    alt="three-puppies-image"
+                    src="/images/puppy-icon.webp"
+                    alt="puppy-icon-image"
                     width={25}
                     height={17}
                   />
@@ -64,8 +64,8 @@ export default function MainPage() {
                     </span>
                     <Image
                       priority
-                      src="/images/three-puppies.svg"
-                      alt="three-puppies-image"
+                      src="/images/puppy-icon.webp"
+                      alt="puppy-icon-image"
                       width={25}
                       height={17}
                     />
@@ -82,8 +82,8 @@ export default function MainPage() {
                   </span>
                   <Image
                     priority
-                    src="/images/three-puppies.svg"
-                    alt="three-puppies-image"
+                    src="/images/puppy-icon.webp"
+                    alt="puppy-icon-image"
                     width={25}
                     height={17}
                   />
