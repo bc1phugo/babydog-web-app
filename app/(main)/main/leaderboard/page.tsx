@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import useUserRankingsQuery from "@/hooks/useUserRankings";
-import { cn } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 import Image from "next/image";
 
 export default function LeaderboardPage() {
@@ -111,7 +111,7 @@ export default function LeaderboardPage() {
       </div>
       <section className="mt-[50px] flex flex-col items-center pb-[140px]">
         <h2 className="text-4xl font-semibold">
-          {userRankings.userCount ?? "-"} holders
+          {formatNumber(userRankings.userCount) ?? "-"} holders
         </h2>
         <div className="mt-8 flex w-full max-w-[700px] flex-col gap-2 px-[23px]">
           <Table className="">
