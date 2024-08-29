@@ -10,7 +10,7 @@ export default function Error() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/images/babydog-3.png" as="image" />
+        <link rel="preload" href="/images/babydog-3.webp" as="image" />
       </Head>
       <main
         className={cn(
@@ -21,7 +21,7 @@ export default function Error() {
         <section className="flex justify-center">
           <Image
             priority
-            src="/images/babydog-3.png"
+            src="/images/babydog-3.webp"
             width={250}
             height={297}
             alt={"image-baby-dog"}

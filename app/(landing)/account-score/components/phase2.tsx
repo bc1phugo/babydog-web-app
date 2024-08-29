@@ -9,11 +9,11 @@ export default function Phase2({ dogPoint }: Phase2Props) {
   return (
     <>
       <Head>
-        <link rel="preload" href="/images/babydog-2.png" as="image" />
+        <link rel="preload" href="/images/babydog-2-confetti.webp" as="image" />
       </Head>
       <Image
         priority
-        src="/images/babydog-2-confetti.png"
+        src="/images/babydog-2-confetti.webp"
         width={422}
         height={444}
         alt={"image-baby-dog"}

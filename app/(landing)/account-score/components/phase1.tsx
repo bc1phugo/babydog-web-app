@@ -13,14 +13,13 @@ export default function Phase1({ telegramId, userInfo }: Phase1Props) {
     reward.mission_name.includes("lucky"),
   )[0];
   const luckyPointEarned = luckyPointReward?.total_points;
-  console.log("🚀 ~ Phase1 ~ luckyPointEarned:", luckyPointEarned);
 
   return (
     <>
       <h1 className="mt-[20px] text-4xl font-semibold">We are DOG Army!</h1>
       <Image
         priority
-        src="/images/image_rocket.png"
+        src="/images/image_rocket.webp"
         width={417}
         height={284}
         alt={"image-baby-dog"}

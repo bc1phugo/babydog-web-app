@@ -115,7 +115,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        landing: "url('../public/images/image_background_landing.png')",
+        landing: "url('../public/images/image_background_landing.webp')",
       },
       transitionDelay: {
         3000: "3000ms",

@@ -111,10 +111,10 @@ export default function LandingPage() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/images/babydog-3.png" as="image" />
+        <link rel="preload" href="/images/babydog-3.webp" as="image" />
         <link
           rel="preload"
-          href="/images/image_background_landing.png"
+          href="/images/image_background_landing.webp"
           as="image"
         />
       </Head>
@@ -127,7 +127,7 @@ export default function LandingPage() {
         <section className="flex justify-center">
           <Image
             priority
-            src="/images/babydog-3.png"
+            src="/images/babydog-3.webp"
             width={353}
             height={370}
             alt={"image-baby-dog"}

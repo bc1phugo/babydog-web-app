@@ -52,7 +52,7 @@ export default function FriendsPage() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/images/babydog-4.png" as="image" />
+        <link rel="preload" href="/images/babydog-4.webp" as="image" />
       </Head>
       <div className="mt-[25px] flex flex-col justify-between px-[23px] pb-[123px]">
         <section className="mb-[20px] flex flex-col items-center text-center">
@@ -65,7 +65,7 @@ export default function FriendsPage() {
             </div>
             <Image
               priority
-              src="/images/babydog-4.png"
+              src="/images/babydog-4.webp"
               width={256}
               height={258}
               alt={"image-baby-dog"}
