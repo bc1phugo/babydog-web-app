@@ -3,7 +3,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { WebApp as IWebApp, WebAppUser } from "@twa-dev/types";
 import { usePathname, useRouter } from "next/navigation";
-import WebApp from "@twa-dev/sdk";
 
 export interface ITelegramContext {
   webApp?: IWebApp;
@@ -41,8 +40,8 @@ export const TelegramProvider = ({
   }, [webApp]);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && WebApp) {
-      setWebApp(WebApp);
+    if (typeof window !== "undefined" && window.Telegram.WebApp) {
+      setWebApp(window.Telegram.WebApp);
     }
   }, []);
 

@@ -6,9 +6,10 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import Phase1 from "./components/phase1";
-import Phase2 from "./components/phase2";
+// import Phase2 from "./components/phase2";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
+import dynamic from "next/dynamic";
 
 export interface IDbUserData {
   id: number;
@@ -23,6 +24,8 @@ export interface IDbUserData {
   referral_code: string;
   username: string;
 }
+
+const Phase2 = dynamic(() => import("./components/phase2"), { ssr: false });
 
 export default function AccountScorePage() {
   const [currentPhase, setCurrentPhase] = useState<0 | 1 | 2>(0);
