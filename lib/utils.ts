@@ -1,6 +1,5 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { HmacSHA256, enc } from "crypto-js";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -26,8 +25,41 @@ export const verifyTelegramWebAppData = async (
   initData.forEach(
     (val, key) => key !== "hash" && dataToCheck.push(`${key}=${val}`),
   );
-  const secret = HmacSHA256(TELEGRAM_BOT_TOKEN, "WebAppData");
-  const _hash = HmacSHA256(dataToCheck.join("\n"), secret).toString(enc.Hex);
+
+  // Generate HMAC key from the Telegram bot token using "WebAppData" as key
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode("WebAppData"),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+
+  const signatureKey = await crypto.subtle.sign(
+    "HMAC",
+    keyMaterial,
+    new TextEncoder().encode(TELEGRAM_BOT_TOKEN),
+  );
+
+  // Convert the signature key to a format that can be used in the second HMAC operation
+  const secretKey = await crypto.subtle.importKey(
+    "raw",
+    signatureKey,
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+
+  // Generate the hash of the data to check
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    secretKey,
+    new TextEncoder().encode(dataToCheck.join("\n")),
+  );
+
+  const _hash = Array.from(new Uint8Array(signature))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 
   return _hash === hash;
 };
