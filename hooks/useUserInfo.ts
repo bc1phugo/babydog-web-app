@@ -1,6 +1,5 @@
 import { useTelegram } from "@/app/providers/telegram-provider";
 import { useQuery } from "@tanstack/react-query";
-import { headers } from "next/headers";
 
 export interface ITargetMission {
   id: number;
