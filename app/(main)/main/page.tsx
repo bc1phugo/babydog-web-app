@@ -3,10 +3,18 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import BabyDogMissionBoard from "./components/baby-dog-mission-board";
+// import BabyDogMissionBoard from "./components/baby-dog-mission-board";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+
+const BabyDogMissionBoard = dynamic(
+  () => import("./components/baby-dog-mission-board"),
+  {
+    ssr: false,
+  },
+);
 
 export default function MainPage() {
   const { data: userInfo } = useUserInfoQuery();
