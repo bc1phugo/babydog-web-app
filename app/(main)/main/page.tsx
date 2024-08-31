@@ -23,7 +23,7 @@ export default function MainPage() {
   return (
     <>
       <Head>
-        <link rel="preload" href="/images/babydog-4.webp" as="image" />
+        <link rel="preload" href="/images/babydog-3.webp" as="image" />
         <link rel="preload" href="/images/puppy-icon.webp" as="image" />
       </Head>
 
@@ -32,7 +32,7 @@ export default function MainPage() {
           <div className="flex flex-col items-center">
             <Image
               priority
-              src="/images/babydog-4.webp"
+              src="/images/babydog-3.webp"
               width={190}
               height={191}
               alt={"image-baby-dog"}
