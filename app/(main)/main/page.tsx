@@ -107,7 +107,7 @@ export default function MainPage() {
               "w-full text-xl font-semibold leading-6",
             )}
             onClick={() => {
-              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              const url = "https://t.me/babydogrunescommunity";
               if (webApp) {
                 webApp.openTelegramLink(url);
               } else {

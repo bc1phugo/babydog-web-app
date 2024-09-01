@@ -63,7 +63,7 @@ export default function BabyDogMissionBoard({
             variant={"orange"}
             className="w-20 tracking-tight"
             onClick={async () => {
-              const url = "https://t.me/+fNtW_O4vdwswYThl";
+              const url = "https://t.me/babydogrunescommunity";
               if (webApp) {
                 webApp.openTelegramLink(url);
               } else {
