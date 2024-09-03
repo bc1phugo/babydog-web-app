@@ -27,8 +27,6 @@ export async function middleware(req: NextRequest) {
 
   const isVerified = await verifyTelegramWebAppData(initData);
 
-  console.log("VERIFIED:", isVerified);
-  console.log("TOKEN DATA:", initData);
   if (!isVerified) {
     return new NextResponse("Forbidden: Invalid initData", { status: 403 });
   }
