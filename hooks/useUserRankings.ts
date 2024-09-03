@@ -7,6 +7,7 @@ interface IUser {
   last_name: string | null;
   baby_dog_points: number;
   rank: number;
+  telegram_id: string;
 }
 
 interface IUserRanking {

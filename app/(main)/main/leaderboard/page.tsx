@@ -127,21 +127,23 @@ export default function LeaderboardPage() {
                   {userRankings.top20.map((ranker) => {
                     const userName =
                       ranker.username ?? ranker.first_name ?? "Mr.Unkown";
+                    const targetName =
+                      ranker.telegram_id === String(user?.id)
+                        ? (user?.username ?? user?.first_name ?? "Mr.Unknown")
+                        : userName;
                     return (
                       <TableRow key={`${userName}-${ranker.rank}`}>
                         <TableCell className="w-[40px] px-0">
                           <Avatar>
                             <AvatarFallback className="bg-red-600 text-[18px] leading-4 tracking-tight text-background">
-                              {getInitials(userName)}
+                              {getInitials(targetName)}
                             </AvatarFallback>
                           </Avatar>
                         </TableCell>
                         <TableCell className="gap-[3px] pl-2 pr-0 tracking-tight">
                           <div className="flex flex-col">
                             <span className="text-[16px] font-medium leading-6 tracking-tight text-muted-foreground">
-                              {ranker.username ??
-                                ranker.first_name ??
-                                "Mr.Unkown"}
+                              {targetName}
                             </span>
                             <span className="text-[18px] font-semibold leading-6 tracking-tight">
                               + {ranker.baby_dog_points} BABY DOGS
