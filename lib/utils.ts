@@ -61,6 +61,10 @@ export const verifyTelegramWebAppData = async (
     .map((b) => b.toString(16).padStart(2, "0"))
     .join("");
 
+  console.log("Data to check:", dataToCheck.join("\n"));
+  console.log("Generated hash:", _hash);
+  console.log("Received hash:", hash);
+
   return _hash === hash;
 };
 

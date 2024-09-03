@@ -73,9 +73,6 @@ export default function LeaderboardPage() {
     return initials;
   };
 
-  //TODO: 나중에 Skeleton으로 바꾸셈
-  if (!userRankings) return null;
-
   return (
     <>
       <div className="mt-[25px] select-none px-[23px]">
