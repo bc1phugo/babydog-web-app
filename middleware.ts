@@ -21,12 +21,14 @@ export async function middleware(req: NextRequest) {
   }
 
   if (!initData || initData === "") {
+    console.warn("NO INIT DATA");
     return new NextResponse("Forbidden: Missing initData", { status: 403 });
   }
 
   const isVerified = await verifyTelegramWebAppData(initData);
 
   if (!isVerified) {
+    console.warn("UNVERIFIED TOKEN DATA : ", initData);
     return new NextResponse("Forbidden: Invalid initData", { status: 403 });
   }
 
