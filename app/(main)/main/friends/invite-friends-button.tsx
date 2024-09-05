@@ -21,7 +21,7 @@ export default function InviteFriendsButton() {
   const { data: userData } = useUserInfoQuery();
   const telegramUrl = process.env.NEXT_PUBLIC_URL;
   const [isInviteDrawerOpen, setIsInviteDrawerOpen] = useState<boolean>(false);
-  const referalUrl = `${telegramUrl}?startapp=${
+  const referalUrl = `https://${telegramUrl}?startapp=${
     userData?.user.referral_code ?? ""
   }`;
 
