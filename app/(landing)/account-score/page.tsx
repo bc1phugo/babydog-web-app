@@ -62,7 +62,7 @@ export default function AccountScorePage() {
       </section>
       {isLastPhase ? (
         <Link
-          href={"/main"}
+          href={"/daily-check"}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "text-xl font-semibold leading-6",
