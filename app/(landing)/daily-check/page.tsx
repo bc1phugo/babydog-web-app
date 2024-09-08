@@ -20,7 +20,7 @@ export default function DailyCheckPage() {
         </p>
         {userInfo ? (
           <h1 className="mt-2 text-5xl font-semibold">
-            {userInfo?.user.checkin_days_count} Days
+            {userInfo.user.checkin_days_count} Days
           </h1>
         ) : (
           <Skeleton className={cn("mt-2 h-12 w-32 font-semibold")} />
