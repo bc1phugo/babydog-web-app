@@ -14,9 +14,20 @@ import useUserRankingsQuery from "@/hooks/useUserRankings";
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
   const [justUserCreated, setJustUserCreated] = useState<boolean>(false);
+  const [justDailyChecked, setJustDailyChecked] = useState<boolean>(true);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
   const { data: userInfo, refetch: refetchUserInfo } = useUserInfoQuery();
+  const getTargetLink = () => {
+    if (justUserCreated) {
+      return "/account-check";
+    }
+    if (justDailyChecked) {
+      return "/daily-check";
+    }
+    return "main";
+  };
+  const targetLink = getTargetLink();
 
   const { refetch: refetchUserRankings } = useUserRankingsQuery({
     customEnabled: userInfo && userInfo.userExist,
@@ -142,7 +153,7 @@ export default function LandingPage() {
           </div>
         </section>
         <Link
-          href={justUserCreated ? "/account-check" : "/main"}
+          href={targetLink}
           aria-disabled={!userInfo}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
