@@ -75,15 +75,15 @@ export default function LandingPage() {
     // Just extract the year, month, and day in the local timezone for comparison
 
     const updatedDateOnly = new Date(
-      lastCheckedInDate.getFullYear(),
-      lastCheckedInDate.getMonth(),
-      lastCheckedInDate.getDate(),
+      lastCheckedInDate.getUTCFullYear(),
+      lastCheckedInDate.getUTCMonth(),
+      lastCheckedInDate.getUTCDate(),
     );
 
     const nowLocalOnly = new Date(
-      nowLocal.getFullYear(),
-      nowLocal.getMonth(),
-      nowLocal.getDate(),
+      nowLocal.getUTCFullYear(),
+      nowLocal.getUTCMonth(),
+      nowLocal.getUTCDate(),
     );
     const shouldCompleteDailyCheck = updatedDateOnly < nowLocalOnly;
     if (!shouldCompleteDailyCheck) return;
