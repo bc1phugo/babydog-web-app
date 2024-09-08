@@ -25,18 +25,22 @@ export const TelegramProvider = ({
       ? {
           webApp,
           unsafeData: webApp.initDataUnsafe,
-          user: !webApp
-            ? ({
-                id: 888888,
-                first_name: "Hugo",
-                username: "Hugo_Oh",
-                referral_code: "MTQzMzgxOGUt",
-                is_premium: true,
-              } as WebAppUser)
-            : webApp.initDataUnsafe.user,
+          user:
+            process.env.NEXT_PUBLIC_ENV === "DEVELOPMENT"
+              ? ({
+                  id: 888888,
+                  first_name: "Hugo",
+                  username: "Hugo_Oh",
+                  referral_code: "MTQzMzgxOGUt",
+                  is_premium: true,
+                } as WebAppUser)
+              : webApp.initDataUnsafe.user,
         }
       : {};
   }, [webApp]);
+
+  console.log("webapp", webApp);
+  console.log(value);
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.Telegram.WebApp) {
