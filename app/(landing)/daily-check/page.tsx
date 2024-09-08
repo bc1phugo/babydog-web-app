@@ -39,9 +39,9 @@ export default function DailyCheckPage() {
           height={288}
           alt={"image-baby-dog-birthday"}
         />
-        <div>
-          <p className="text-4xl font-semibold">+ 500</p>
-          <p className="text-lg font-semibold">BABY DOG</p>
+        <div className="flex items-baseline gap-2">
+          <span className="text-4xl font-semibold">+ 500</span>
+          <span className="text-lg">BABY DOG</span>
         </div>
       </section>
 
