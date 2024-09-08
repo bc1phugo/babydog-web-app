@@ -17,7 +17,11 @@ export default function LandingPage() {
   const [justDailyChecked, setJustDailyChecked] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
-  const { data: userInfo, refetch: refetchUserInfo } = useUserInfoQuery();
+  const {
+    data: userInfo,
+    refetch: refetchUserInfo,
+    isFetching,
+  } = useUserInfoQuery();
   const getTargetLink = () => {
     if (justUserCreated) {
       return "/account-check";
@@ -64,7 +68,7 @@ export default function LandingPage() {
   }, []);
 
   useEffect(() => {
-    if (!userInfo || !userInfo.userExist) return;
+    if (!userInfo || !userInfo.userExist || isFetching) return;
 
     const lastCheckedInDate = userInfo
       ? new Date(userInfo.user.last_checkin_date)
@@ -123,7 +127,13 @@ export default function LandingPage() {
       }
     };
     executeDailyCheck();
-  }, [refetchUserInfo, userInfo, webApp?.initData, refetchUserRankings]);
+  }, [
+    refetchUserInfo,
+    isFetching,
+    userInfo,
+    webApp?.initData,
+    refetchUserRankings,
+  ]);
 
   useEffect(() => {
     const createUser = async () => {
