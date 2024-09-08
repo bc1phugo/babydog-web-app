@@ -7,15 +7,9 @@ import { cn } from "@/lib/utils";
 import { useTelegram } from "@/app/providers/telegram-provider";
 import useUserInfoQuery from "@/hooks/useUserInfo";
 import Image from "next/image";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DailyCheckPage() {
-  const [accountAgeChecked, setAccountAgeChecked] = useState<boolean>(false);
-  const [activityLevelChecked, setActivityLevelChecked] =
-    useState<boolean>(false);
-  const [isPremiumChecked, setIsPremiumChecked] = useState<boolean>(false);
-  const [ogStatusChecked, setOgStatusChecked] = useState<boolean>(false);
-
-  const { user } = useTelegram();
   const { data: userInfo } = useUserInfoQuery();
 
   return (
@@ -24,7 +18,14 @@ export default function DailyCheckPage() {
         <p className="text-md tracking-tight text-muted-foreground">
           Daily attendance 🐶
         </p>
-        <h1 className="mt-2 text-5xl font-semibold">3 Days</h1>
+        {userInfo ? (
+          <h1 className="mt-2 text-5xl font-semibold">
+            {userInfo?.user.checkin_days_count} Days
+          </h1>
+        ) : (
+          <Skeleton className={cn("mt-2 h-12 w-32 font-semibold")} />
+        )}
+
         <p className="mt-1 text-md tracking-tight text-muted-foreground">
           Congratulations!
           <br />

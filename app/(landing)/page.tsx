@@ -14,7 +14,7 @@ import useUserRankingsQuery from "@/hooks/useUserRankings";
 export default function LandingPage() {
   const { user, webApp } = useTelegram();
   const [justUserCreated, setJustUserCreated] = useState<boolean>(false);
-  const [justDailyChecked, setJustDailyChecked] = useState<boolean>(true);
+  const [justDailyChecked, setJustDailyChecked] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const referralFromQuery = searchParams.get("startapp");
   const { data: userInfo, refetch: refetchUserInfo } = useUserInfoQuery();
@@ -25,8 +25,9 @@ export default function LandingPage() {
     if (justDailyChecked) {
       return "/daily-check";
     }
-    return "main";
+    return "/main";
   };
+
   const targetLink = getTargetLink();
 
   const { refetch: refetchUserRankings } = useUserRankingsQuery({
@@ -61,6 +62,68 @@ export default function LandingPage() {
       removeEventListener("load", onLoad);
     };
   }, []);
+
+  useEffect(() => {
+    if (!userInfo || !userInfo.userExist) return;
+
+    const lastCheckedInDate = userInfo
+      ? new Date(userInfo.user.last_checkin_date)
+      : new Date(); // This is in UTC, but displayed in local time
+    const nowLocal = new Date(); // Local time
+
+    // No need to add any timezone offset here because lastCheckedInDate is already in UTC.
+    // Just extract the year, month, and day in the local timezone for comparison
+
+    const updatedDateOnly = new Date(
+      lastCheckedInDate.getFullYear(),
+      lastCheckedInDate.getMonth(),
+      lastCheckedInDate.getDate(),
+    );
+
+    const nowLocalOnly = new Date(
+      nowLocal.getFullYear(),
+      nowLocal.getMonth(),
+      nowLocal.getDate(),
+    );
+    const shouldCompleteDailyCheck = updatedDateOnly < nowLocalOnly;
+    if (!shouldCompleteDailyCheck) return;
+
+    const executeDailyCheck = async () => {
+      const dailyCheckInMission = userInfo.missions.find(
+        (mission) => mission.mission_name === "Daily Check-in",
+      );
+
+      if (!dailyCheckInMission) return;
+      setJustDailyChecked(true);
+      try {
+        const response = await fetch(
+          `/api/user/${userInfo.user.telegram_id}/mission`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "x-telegram-data": webApp?.initData ?? "",
+            },
+            body: JSON.stringify({
+              mission_id: dailyCheckInMission.id,
+              telegram_id: userInfo.user.telegram_id,
+            }),
+          },
+        );
+        const data = await response.json();
+
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        refetchUserInfo();
+        refetchUserRankings();
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+    executeDailyCheck();
+  }, [refetchUserInfo, userInfo, webApp?.initData, refetchUserRankings]);
 
   useEffect(() => {
     const createUser = async () => {
@@ -154,7 +217,7 @@ export default function LandingPage() {
         </section>
         <Link
           href={targetLink}
-          aria-disabled={!userInfo}
+          aria-disabled={!userInfo || !userInfo.userExist}
           className={cn(
             buttonVariants({ variant: "orange", size: "xl" }),
             "h-[60px] text-xl font-semibold leading-6",

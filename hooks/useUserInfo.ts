@@ -26,6 +26,9 @@ export interface IDBUser {
   invite_points: number;
   referral_code: string;
   created_at: string;
+  updated_at: string;
+  last_checkin_date: string;
+  checkin_days_count: number;
 }
 
 export interface IUserInfo {
